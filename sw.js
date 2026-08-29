@@ -1,6 +1,6 @@
 /* Vichy 2027 — service worker: רשת קודם, ומטמון כשאין רשת */
-const CACHE = 'vichy-v1';
-const SHELL = ['./', './index.html', './manifest.webmanifest',
+const CACHE = 'vichy-v2';
+const SHELL = ['./', './index.html', './subscribe.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png', './icon-180.png'];
 
 self.addEventListener('install', e => {

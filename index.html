@@ -498,23 +498,38 @@ ul.tight li::marker{color:var(--accent)}
 .bsum{grid-column:2;text-align:end;display:flex;flex-direction:column;line-height:1.25;padding:0 8px 10px 13px}
 .bsum b{font-size:.95rem;font-weight:700}
 .bsum i{font-style:normal;font-size:.7rem;color:var(--ink3);white-space:nowrap}
-.bchips{grid-column:1;display:flex;flex-wrap:wrap;gap:6px;padding:0 13px 10px}
+.bchips{grid-column:1;display:flex;flex-wrap:wrap;gap:6px;padding:0 13px 10px;max-width:100%}
+.bpair{max-width:100%}
 .bnone{font-size:.8rem;color:var(--ink3)}
-.bchip{display:inline-flex;align-items:center;gap:4px;
-  font-size:.78rem;padding:3px 8px 3px 4px;border-radius:9px;border:1px solid var(--line);
+.bchip{display:inline-flex;align-items:stretch;gap:0;min-height:36px;
+  font-size:.79rem;border-radius:10px;border:1px solid var(--line);
   background:color-mix(in srgb,var(--c) 9%,var(--bg));color:var(--ink);
-  border-inline-start:3px solid var(--c);transition:.14s}
-.bchip:hover{background:color-mix(in srgb,var(--c) 20%,var(--bg))}
-.bchip .blab{all:unset;display:inline-flex;align-items:center;gap:5px;cursor:pointer;padding:3px 2px}
-.chk.mini{width:20px;height:20px;border-radius:6px;border-width:1.5px}
-.chk.mini svg{width:12px;height:12px;stroke-width:3}
-.bchip em{font-style:normal;font-weight:700;font-size:.74rem;color:var(--ink2)}
-.bchip .bico{font-size:.85rem}
-.bchip .blink{color:var(--ink3);font-weight:700;margin-inline-end:-2px}
+  border-inline-start:3px solid var(--c);transition:background .14s,box-shadow .14s;
+  touch-action:pan-y;overflow:hidden}
+.bchip:hover{background:color-mix(in srgb,var(--c) 18%,var(--bg))}
+.bchip .blab{all:unset;display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  padding:0 8px 0 4px;min-height:36px;white-space:nowrap}
+.bchip .blab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:6px}
+.chk.mini{align-self:center;width:22px;height:22px;border-radius:6px;border-width:1.5px;
+  margin-inline-start:7px;flex:0 0 auto}
+.chk.mini svg{width:13px;height:13px;stroke-width:3}
+.bchip em{font-style:normal;font-weight:700;font-size:.75rem;color:var(--ink2);
+  font-variant-numeric:tabular-nums}
+.bchip .bico{font-size:.88rem;line-height:1}
+.bpair{display:inline-flex;align-items:stretch;gap:0;border-radius:10px}
+.bpair .bchip{border-radius:0}
+.bpair .bchip:first-child{border-start-end-radius:10px;border-end-end-radius:10px}
+.bpair .bchip:last-child{border-start-start-radius:10px;border-end-start-radius:10px}
+.bpair .bchip.cont{border-inline-start-width:1px;border-inline-start-style:solid}
+.bjoin{display:grid;place-items:center;font-size:.8rem;color:var(--ink3);
+  background:var(--bg);border-block:1px solid var(--line);padding:0 1px;font-weight:700}
 .bchip.cont{border-inline-start-style:dashed}
-.bchip.ok{background:color-mix(in srgb,var(--ok) 14%,var(--bg));border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
-.bchip.miss{opacity:.72}
-.bchip.miss .blab{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--race) 55%,transparent)}
+.bchip.ok{background:color-mix(in srgb,var(--ok) 13%,var(--bg));
+  border-color:color-mix(in srgb,var(--ok) 38%,var(--line))}
+.bchip.miss{opacity:.7}
+.bchip.miss .blab{text-decoration:line-through;
+  text-decoration-color:color-mix(in srgb,var(--race) 55%,transparent)}
+.bchip.moved{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--accent) 60%,transparent)}
 .bdetail{grid-column:1/-1;padding:2px 10px 12px;border-top:1px dashed var(--line);margin-top:2px}
 @media(max-width:899px){
   .brow{grid-template-columns:1fr auto;
@@ -539,6 +554,45 @@ ul.tight li::marker{color:var(--accent)}
   .bchip{font-size:.74rem;padding:3px 6px 3px 3px}
 }
 }
+
+/* ---- סנכרון ללוח השנה ---- */
+.syncrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.syncrow b{font-size:.9rem;font-weight:600}
+.sdot{width:9px;height:9px;border-radius:99px;background:var(--ink3);flex:0 0 auto}
+.sdot.ok{background:var(--ok)} .sdot.bad{background:var(--race)} .sdot.warn{background:#C1801F}
+#ghtok{font:inherit;font-size:.85rem;padding:8px 11px;border-radius:9px;border:1px solid var(--line);
+  background:var(--bg);color:var(--ink);direction:ltr}
+
+/* ---- גרירת אימונים ---- */
+.dragnote{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  font-size:.8rem;color:var(--ink3);padding:2px 2px 9px}
+.griphint{display:inline-block;vertical-align:-2px}
+.griphint svg,.bgrip svg{width:9px;height:14px;fill:currentColor}
+.bgrip{display:inline-flex;align-items:center;justify-content:center;cursor:grab;
+  color:var(--ink3);width:30px;min-height:36px;touch-action:none;
+  border-inline-start:1px solid color-mix(in srgb,var(--c) 22%,var(--line))}
+.bgrip:hover{color:var(--ink);background:color-mix(in srgb,var(--c) 26%,transparent)}
+.bgrip:active{cursor:grabbing}
+.bgrip:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.bgrip.fix{cursor:default;opacity:.2;width:22px}
+.bchip.dragging{opacity:.32}
+.bchip.moved{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 55%,transparent)}
+.dragghost{position:fixed;top:0;left:0;z-index:99;pointer-events:none;
+  box-shadow:0 10px 26px rgba(0,0,0,.32);transform-origin:top left;opacity:.96}
+body.dragmode{user-select:none;-webkit-user-select:none}
+body.dragmode .brow{transition:background .12s,box-shadow .12s}
+.brow.dropok{background:color-mix(in srgb,var(--accent) 11%,var(--surface));
+  box-shadow:inset 0 0 0 2px var(--accent)}
+.brow.dropno{background:color-mix(in srgb,var(--race) 8%,var(--surface));opacity:.6}
+/* אזהרה על יום שסודר ידנית */
+.brow.warn{border-inline-start-color:#C1801F}
+.bwarn{grid-column:1/-1;display:flex;gap:8px;align-items:flex-start;margin:0 10px 10px;
+  padding:8px 10px;border-radius:9px;font-size:.78rem;line-height:1.45;
+  background:color-mix(in srgb,#C1801F 12%,transparent);color:var(--ink2)}
+.bwarn .wico{flex:0 0 auto;width:16px;height:16px;border-radius:99px;background:#C1801F;color:#fff;
+  font-weight:800;font-size:.7rem;display:grid;place-items:center;margin-top:1px}
+.bwarn p{margin:0} .bwarn p+p{margin-top:4px}
+@media(prefers-reduced-motion:reduce){.dragghost,.brow{transition:none!important}}
 </style></head><body>
 <header class="mast">
   <div class="mast-in wrap">
@@ -652,6 +706,10 @@ ul.tight li::marker{color:var(--accent)}
         <textarea id="pimp" rows="4" placeholder="הדבק כאן את תוכן קובץ הגיבוי ולחץ «מזג»" spellcheck="false"></textarea>
         <div class="prow" style="margin-top:8px"><button class="minibtn" id="pdo">מזג</button><span id="pimpmsg" style="font-size:.82rem;color:var(--ink2)"></span></div>
       </div>
+    </div>
+    <div class="pcard" style="margin-top:12px">
+      <div class="eyebrow" style="margin-bottom:8px">סנכרון ללוח השנה בטלפון</div>
+      <div id="syncbox"></div>
     </div>
     <div class="wkpickwrap">
       <div class="eyebrow" style="margin-bottom:8px">בחר שבוע</div>
@@ -1337,8 +1395,12 @@ const KINDS={
   both:{st:14,  en:19,   cap:90,  rpe:3, max:1, lbl:"בין שתי משמרות"},
 };
 /* תקרת דקות לפי התפקיד של היום — כמה עומס נכון לתת ליום הזה */
-const ACAP={big:480,run:300,key:300,end:300,swim:240,strg:240,rest:150};
-const WKB=[0,0,0,1,2,4,3];                   /* משקל «סוף שבוע» — שישי ואז שבת */
+const ACAP={big:480,social:260,run:300,key:300,end:260,strg:260,rest:150};
+const WKB=[0,0,0,1,2,4,3];                   /* משקל «סוף שבוע» */
+/* עוגנים קבועים לבקשת הספורטאי: האימון הגדול בשבת, ריצת החבר בשישי בבוקר.
+   הבונוס גדול מספיק כדי לגבור על גודל החלון, אבל לא על יום שנשרף בין שתי משמרות. */
+const SAT_BONUS ={free:14, pre:14, post:2,  both:-99};
+const FRI_BONUS ={free:12, pre:9,  post:4,  both:-99};
 const cyc=(a,b)=>{const x=Math.abs(a-b); return Math.min(x,7-x);};
 
 function kindsFor(sh){
@@ -1348,13 +1410,13 @@ function kindsFor(sh){
   });
 }
 const ROLESET={
-  big :["bikeLong","runBrick"],          /* רכיבה ארוכה + Brick — בלוק אחד */
-  run :["runLong"],                      /* הריצה הארוכה, לבדה */
-  key :["bikeKey","runBrick2"],          /* איכות על האופניים + ריצת מעבר — בלוק אחד */
-  end :["swimA","bikeEnd"],              /* שחיית הסט ומיד אחריה רכיבת הנפח */
-  strg:["str","str2","swimC"],           /* ביקור אחד בחדר הכושר, ואחר כך שחייה טכנית */
-  swim:["swimB","runEasy"],
-  rest:["bikeSpin","mob"],
+  big   :["bikeLong","runBrick"],        /* האימון הגדול של השבוע — שואף לשבת */
+  social:["runSocial","swimB"],          /* שישי בבוקר: ריצה עם חבר, ואחריה שחיית ים */
+  run   :["runLong","swimA"],            /* הריצה הארוכה על רגליים רעננות */
+  key   :["bikeKey","runBrick2"],        /* איכות על האופניים + ריצת מעבר — בלוק אחד */
+  end   :["bikeEnd","swimC"],            /* נפח סבולת ושחייה טכנית — שניהם קלים */
+  strg  :["str","str2","runEasy"],       /* ביקור אחד בחדר הכושר, ואחריו ריצה קלה */
+  rest  :["bikeSpin","mob"],
 };
 
 /* בונה את שלד השבוע: איזה יום נושא איזה תפקיד, לפי המשמרות של אותו שבוע */
@@ -1365,41 +1427,48 @@ function skeletonFor(sh){
     for(let d=0;d<7;d++){ if(is(d)) continue; const s=f(d); if(s>bs){bs=s;b=d;} }
     taken.push(b); return b;};
 
-  /* 1 · הרכיבה הארוכה — היום עם החלון הגדול ביותר, במשקל סוף שבוע */
-  const big=pick(d=>(K[d]==="both"?-99:win(d))+WKB[d]);
-  /* 2 · הריצה הארוכה — עדיף למחרת הרכיבה הארוכה (הבלוק הגדול של סוף השבוע) */
-  const run=pick(d=>(d===big+1?8:0)+WKB[d]+(K[d]==="free"?3:K[d]==="pre"?2:K[d]==="post"?0:-99)
-                    -(d===big-1?6:0));
+  /* 1 · האימון הגדול — שבת קודם לכול, אלא אם היום שרוף */
+  const big=pick(d=>(K[d]==="both"?-99:win(d))+WKB[d]+(d===6?SAT_BONUS[K[d]]:0));
+  /* 2 · ריצת שישי בבוקר עם החבר */
+  const social=pick(d=>(K[d]==="both"?-99:win(d)/3)+(d===5?FRI_BONUS[K[d]]:0)
+                    -(d===big?99:0));
+  /* 3 · הריצה הארוכה — על רגליים רעננות, ולא בערב שלפני האימון הגדול */
+  const run=pick(d=>WKB[d]+(K[d]==="free"?5:K[d]==="pre"?2:K[d]==="post"?-2:-99)
+                    -(d===(big+6)%7?7:0));
   /* 3 · יום המנוחה — היום הפגוע ביותר, והרחוק ביותר מהרכיבה הארוכה */
   const rest=pick(d=>(K[d]==="both"?6:K[d]==="post"?4:K[d]==="pre"?1:0)+cyc(d,big));
   /* 4 · אימון האיכות באופניים — היום הרענן ביותר, לא ערב הרכיבה הארוכה */
   const key=pick(d=>(K[d]==="free"?5:K[d]==="pre"?2:K[d]==="post"?-2:-99)
                     +(d===(rest+1)%7?3:0)-(d===(big+6)%7?3:0));
-  /* 5 · רכיבת הנפח + שחיית הסט + ליבה */
-  const end=pick(d=>(K[d]==="free"?5:K[d]==="pre"?2:K[d]==="post"?1:-99)
-                    +(cyc(d,key)>=2?2:0)+win(d)/6);
-  /* 6 · הכוח — יום עם חדר כושר, רחוק לפחות 3 ימים מהרכיבה הארוכה */
-  const strg=pick(d=>(K[d]==="pre"?4:K[d]==="free"?2:K[d]==="post"?1:-99)+(cyc(d,big)>=3?3:0));
-  /* 7 · שחיית הים הארוכה — מה שנשאר */
-  const swim=pick(()=>0);
+  /* 5 · הכוח — חדר הכושר בעבודה. אף פעם לא ביום שאחרי משמרת: RPE 7 חורג מהתקרה שם */
+  const strg=pick(d=>(K[d]==="pre"?6:K[d]==="free"?4:K[d]==="post"?-20:-99)
+                    +(cyc(d,big)>=2?3:0));
+  /* 6 · נפח קל ושחייה טכנית — מה שנשאר, ועדיף ביום שאחרי משמרת */
+  const end=pick(d=>(K[d]==="post"?4:K[d]==="free"?3:K[d]==="pre"?2:-99)+win(d)/8);
+  /* 7 · מה שנשאר */
+  pick(()=>0);
 
-  const anchor=[]; anchor[big]="big"; anchor[run]="run"; anchor[rest]="rest";
-  anchor[key]="key"; anchor[end]="end"; anchor[strg]="strg"; anchor[swim]="swim";
+  const anchor=[]; anchor[big]="big"; anchor[social]="social"; anchor[run]="run";
+  anchor[rest]="rest"; anchor[key]="key"; anchor[end]="end"; anchor[strg]="strg";
   const roles=anchor.map(a=>ROLESET[a].slice());
   const day=[0,1,2,3,4,5,6].map(d=>{
     const k=K[d], A=KINDS[k], a=anchor[d];
-    const isRest=a==="rest";
-    return {k, a, st:A.st, en:A.en,
-      cap:Math.min(A.cap,ACAP[a]),
+    const isRest=a==="rest", isBig=a==="big";
+    /* יום האימון הגדול יוצא לדרך עם אור ראשון — כך רכיבה של 6 שעות
+       נכנסת גם בשבת שבערבה יש משמרת, ומסתיימת בזמן לישון לפניה */
+    const st=isBig&&k!=="post"?Math.min(A.st,5.5):A.st;
+    const winCap=Math.round((A.en-st)*60);
+    return {k, a, st, en:A.en,
+      cap:isBig?Math.min(ACAP.big,winCap):Math.min(A.cap,ACAP[a]),
       rpe:isRest?Math.min(A.rpe,3):A.rpe,
-      max:isRest?1:a==="big"?1:a==="run"?2:A.max, roles:roles[d]};
+      max:isRest?1:isBig?1:A.max, roles:roles[d]};
   });
-  return {K, anchor, roles, day, big, run, rest, key, end, strg, swim};
+  return {K, anchor, roles, day, big, social, run, rest, key, end, strg};
 }
 
 /* טקסט ההקשר של כל יום — נגזר מהשלד, לא קבוע מראש */
-const ANCHOR_TAG={big:"רכיבה ארוכה",run:"ריצה ארוכה",key:"יום מפתח",end:"נפח סבולת",
-                  strg:"כוח",swim:"שחיית ים",rest:"מנוחה"};
+const ANCHOR_TAG={big:"האימון הגדול",social:"ריצה עם חבר",run:"ריצה ארוכה",key:"יום מפתח",
+                  end:"נפח סבולת",strg:"כוח",rest:"מנוחה"};
 const KIND_TXT={
   free:"יום חופשי — חלון אימון מלא.",
   pre :"משמרת לילה ב-23:00. לסיים עד 13:00 ולישון אחר הצהריים.",
@@ -1407,13 +1476,13 @@ const KIND_TXT={
   both:"בין שתי משמרות — כמעט בלי חלון. מה שנעשה כאן חייב להיות קל.",
 };
 const ANCHOR_TXT={
-  big :{t:"יום הרכיבה הארוכה",d:"החלון הגדול של סוף השבוע — הרכיבה הארוכה ומיד אחריה ה-Brick. זה האימון החשוב בשבוע."},
-  run :{t:"יום הריצה הארוכה",d:"יום אחרי הרכיבה, על רגליים עייפות — בדיוק כמו המרתון של האיירונמן. אירובי בלבד, בלי איכות."},
-  key :{t:"יום האיכות באופניים",d:"אינטרוולים מדויקים על הטריינר — התחום החלש, ולכן הוא יושב על היום הרענן ביותר בשבוע."},
-  end :{t:"יום נפח הסבולת",d:"רכיבת נפח באזור 2 ושחיית הסט העיקרי. בלי עומס רגליים כבד — הרכיבה הארוכה מחכה."},
-  strg:{t:"יום הכוח",d:"כוח מרבי לרגליים במרחק בטוח מהרכיבה הארוכה, ולצידו שחייה טכנית."},
-  swim:{t:"יום שחיית הים",d:"השחייה הארוכה: העומס המכני הנמוך ביותר בתוכנית, ולכן היא שייכת ליום עם השינה הגרועה ביותר."},
-  rest:{t:"יום המנוחה",d:"שחרור קל על הטריינר וניידות. זה לא «אימון קל» — זו מנוחה."},
+  big   :{t:"האימון הגדול של השבוע",d:"הרכיבה הארוכה ומיד אחריה ה-Brick. זה היום שהשבוע נבנה סביבו."},
+  social:{t:"ריצת הבוקר עם החבר",d:"ריצה קלה בחברה, ואחריה שחיית ים. יום קל בכוונה — מחר האימון הגדול."},
+  run   :{t:"יום הריצה הארוכה",d:"על רגליים רעננות, בלי רכיבה ארוכה לפניה. אירובי בלבד, וקטעי הקצב בסוף."},
+  key   :{t:"יום האיכות באופניים",d:"אינטרוולים מדויקים על הטריינר ומיד אחריהם ריצת מעבר קצרה."},
+  end   :{t:"יום הנפח הקל",d:"רכיבה באזור 2 ושחייה טכנית. שניהם קלים — זה יום שנועד להיסגר בלי עייפות."},
+  strg  :{t:"יום הכוח",d:"ביקור אחד בחדר הכושר: כוח כבד לרגליים ומיד אחריו ליבה, ולצידם ריצה קלה."},
+  rest  :{t:"יום המנוחה",d:"שחרור קל על הטריינר וניידות. זו לא «אימון קל» — זו מנוחה."},
 };
 function ctxFor(sk){
   return sk.day.map(D=>({
@@ -1601,6 +1670,10 @@ const Z2SPEED={0:"22–26 קמ״ש בשטח מתגלגל",1:"23–27 קמ״ש",2
 
 function sessionsFor(w){
   const ph=w.ph, n=w.n, v=n%3, rec=w.rec, out=[];
+  /* כמה זמן באמת יש ביום שנושא את האימון הגדול — בשבוע עם משמרת במוצ״ש
+     החלון קצר, ולכן הרכיבה מתקצרת במקום לגלוש אל תוך המשמרת */
+  const _sk=skelFor(n), _bd=_sk.day[_sk.big];
+  const BIGWIN=Math.round((_bd.en-_bd.st)*60);
   const swimM=Math.round(w.s*60), bikeM=Math.round(w.b*60), runM=Math.round(w.r*60);
   const strM=Math.round(w.st*60), mobM=Math.round(w.mo*60);
 
@@ -1630,8 +1703,18 @@ function sessionsFor(w){
     cues:["זהו האימון שמתאים ליום שאחרי משמרת לילה","אם השבוע צפוף — זה האימון הראשון שנמחק"]}));
 
   /* ---------- BIKE ---------- */
-  const lr=Math.round(w.lride*60), restB=bikeM-lr;
+  const brQ=rec?Math.round(BRICK[ph]*0.5):BRICK[ph];
+  const lrCap=Math.max(90,BIGWIN-brQ-40);            /* 40 דק׳ שוליים לארוחה ולמקלחת */
+  const lr=Math.min(Math.round(w.lride*60),lrCap), restB=bikeM-lr;
+  const lrShort=lr<Math.round(w.lride*60)-4;
   let bK=R5(Math.min(restB*(rec?.45:.40),115)), bS=rec?0:Math.min(50,R5(restB*0.18)), bE=R5(restB-bK-bS);
+  /* רכיבת הנפח יושבת על יום קל — היא לא יכולה לבלוע את כל מה שנשאר.
+     העודף עובר לשחרור ואז לאימון האיכות, ולא מנפח יום שלא נבנה לזה. */
+  const ENDCAP=Math.max(70,_sk.day[_sk.end].cap-40);
+  if(bE>ENDCAP){ let ex=bE-ENDCAP; bE=ENDCAP;
+    const s1=Math.min(ex,Math.max(0,75-bS)); bS+=s1; ex-=s1;
+    const s2=Math.min(ex,Math.max(0,135-bK)); bK+=s2; ex-=s2;
+    bE=R5(bE+Math.min(ex,20)); }
   const [keySet,keyCue]=BIKE_KEY[rec?0:ph][rec?0:(v%BIKE_KEY[ph].length)];
   const climbTxt = w.lclimb>=400 ? ` · <strong>${w.lclimb.toLocaleString("en-US")} מ׳ טיפוס</strong>` : ` · ${w.lclimb} מ׳ טיפוס`;
   const longInsert = ph<=1 ? "רצוף ב-Z2, בלי קטעים" :
@@ -1642,7 +1725,7 @@ function sessionsFor(w){
              "רצוף ב-Z2 קל, בלי קטעים. זו רכיבת תחושה.";
   out.push(S("bike","אופניים · הרכיבה הארוכה",lr,{role:"bikeLong",
     dist:`${Math.round(w.lride*22)}–${Math.round(w.lride*26)} ק״מ${climbTxt}`, rpe: rec?"3":"4–5", where:"כביש / יער",
-    blocks:[`<strong>${MM(lr)} רצוף</strong> · ${longInsert}`],
+    blocks:[`<strong>${MM(lr)} רצוף</strong> · ${longInsert}`].concat(lrShort?[`<strong>הרכיבה קוצרה השבוע</strong> מ-${MM(Math.round(w.lride*60))} ל-${MM(lr)} — יש משמרת בלילה והחלון נגמר ב-${Math.floor(_bd.en)}:00. יוצאים מוקדם, וזה מה שיש.`]:[]),
     target:`<strong>ההישג הנדרש:</strong> השעה האחרונה באותה מהירות ממוצעת ובאותו קדנס כמו השעה הראשונה. ירידה של יותר מ-5% = יצאת חזק מדי או שאכלת מעט מדי.`,
     cues:["בעליות: קדנס 70+ תמיד. אף פעם לא דריכה כבדה ביושב — זה העומס הגבוה ביותר על הפיקה",
           "לקום מהאוכף ל-20 שניות כל 20 דקות — מונע קהות ושומר על הגב",
@@ -1653,12 +1736,11 @@ function sessionsFor(w){
     blocks:[keySet], target:keyCue,
     cues:["טריינר עדיף כאן — רמזורים ותנועה הורסים אינטרוול","מאוורר. חדר חם מוריד ואטים ומזייף את המבחן",...(ph>=2&&!rec?["אם יש כאב פיקה — מדלגים על קטעי הקדנס הנמוך, לא על כל האימון"]:[])]}));
   if(bE>=40) out.push(S("bike","אופניים B · נפח סבולת",bE,{role:"bikeEnd",
-    after:(swA>=30&&!rec)?{role:"swimA",gap:0.5}:undefined,
     dist:`${Math.round(bE/60*23)}–${Math.round(bE/60*27)} ק״מ`, rpe:"3–4", where:"כביש",
     blocks:[`<strong>${MM(bE)} רצוף ב-Z2</strong> (56–75% FTP) · ${Z2SPEED[ph]}`,
             ph>=3?"20 הדקות האחרונות בתנוחת אירובר רצוף":"קדנס 85–95 לאורך כל הרכיבה"],
     target:"רכיבה שאפשר לדבר בה במשפטים שלמים. אם אי אפשר — זה כבר לא Z2.",
-    cues:["זו הרכיבה שמוסיפה שעות אוכף בלי לעלות בעייפות",...(swA>=30&&!rec?["<strong>אימון משולב:</strong> יוצאים לרכיבה כחצי שעה אחרי היציאה מהמים. השחייה מחממת, והרכיבה על גוף שכבר עבד היא בדיוק המצב של יום המרוץ"]:["יום לפני משמרת — זו רכיבה מצוינת: אין עצימות, אפשר לסיים עד הצהריים"])]}));
+    cues:["זו הרכיבה שמוסיפה שעות אוכף בלי לעלות בעייפות","היום הזה נבנה קל בכוונה — הוא בא אחרי משמרת לילה, ולכן אין בו שום עצימות"]}));
   if(bS>=30) out.push(S("bike","אופניים C · שחרור",bS,{role:"bikeSpin",
     dist:"—", rpe:"1–2", where:"סטציונרי",
     blocks:[`${MM(bS)} ב-Z1 (<55% FTP), קדנס 90–100, ללא התנגדות`],
@@ -1666,8 +1748,14 @@ function sessionsFor(w){
     cues:["האימון האידיאלי ליום שאחרי משמרת לילה","אם התחושה גרועה — 20 דקות ומפסיקים. זה עדיין הצליח"]}));
 
   /* ---------- RUN ---------- */
-  const lrun=Math.round(w.lrun*60), br=rec?Math.round(BRICK[ph]*0.5):BRICK[ph];
-  let restR=runM-lrun-br, rE1=R5(restR*0.55), rE2=R5(restR-rE1);
+  const lrun=Math.round(w.lrun*60), br=brQ;
+  let restR=Math.max(0,runM-lrun-br);
+  let rSoc=R5(Math.min(75,Math.max(40,restR*0.45)));       /* ריצת שישי עם החבר */
+  let rE2 =R5(Math.min(70,(restR-rSoc)*0.55));             /* ריצת מעבר אחרי האיכות */
+  let rE1 =R5(Math.max(0,restR-rSoc-rE2));                 /* ריצה קלה נוספת */
+  /* שארית שקטנה מכדי להיות אימון נספגת חזרה, כדי שלא ייעלמו דקות מהשבוע */
+  if(rE1<25){ rSoc=R5(Math.min(90,rSoc+rE1)); rE1=0; }
+  if(rE2<25){ rSoc=R5(Math.min(90,rSoc+rE2)); rE2=0; }
   const longRunExtra = ph<=1?"רצוף ב-Z2 · 6×20 שניות סטרייד בסוף" :
     ph===2?"15 דק׳ אחרונות בקצב איירונמן היעד" :
     ph===3?"25 דק׳ אחרונות בקצב איירונמן היעד" :
@@ -1685,6 +1773,13 @@ function sessionsFor(w){
     blocks:[`<strong>${MM(br)}</strong> · ${ph>=3?"בקצב איירונמן היעד (6:45–7:15 לק״מ)":"בקצב Z2 נוח"} · המעבר מהאופניים לריצה תוך פחות מ-5 דקות`],
     target:`<strong>ההישג הנדרש:</strong> הק״מ הראשון בתוך 20 שניות מקצב היעד. אם הרגליים לא נושאות — <strong>רכבת חזק מדי</strong>. זו הבדיקה האמיתית של קצב הרכיבה.`,
     cues:["הצעדים הראשונים ירגישו זרים — זה נורמלי ונעלם תוך 8–10 דקות","קדנס גבוה מיד מההתחלה עוזר למעבר"]}));
+  if(rSoc>=30) out.push(S("run","ריצה · הריצה עם החבר",rSoc,{role:"runSocial",
+    dist:`${(rSoc/6.3).toFixed(0)} ק״מ בקירוב`, rpe:"2–3", where:"טיילת · בוקר",
+    blocks:[`<strong>${MM(rSoc)} ב-Z1–Z2</strong> · קצב שיחה מלאה לכל האורך${ph>=1?" · 4×20 שניות סטרייד בסוף":""}`],
+    target:"<strong>זו הריצה החברתית של השבוע, והיא נשארת קלה.</strong> הסכנה היחידה בה היא להיסחף לקצב של מישהו אחר — מחר האימון הגדול, והרגליים צריכות להגיע אליו טריות.",
+    cues:["אם אתם מדברים ואתה מתנשף — הקצב מהיר מדי. תגיד את זה בקול, זה בסדר",
+          "אם החבר רץ מהר ממך: אתם רצים בקצב שלך, או שאתה רץ לבד ונפגשים בסוף",
+          "זו הריצה שיורדת ראשונה אם הברך רגישה — לא הריצה הארוכה"]}));
   if(rE2>=25&&bK>=40&&!rec) out.push(S("run","ריצה · מעבר מיד אחרי אימון האיכות",rE2,{role:"runBrick2",
     after:{role:"bikeKey",gap:0},
     dist:`${(rE2/6.2).toFixed(0)} ק״מ בקירוב`, rpe:"3", where:"מיד מהטריינר, שטוח",
@@ -1693,8 +1788,8 @@ function sessionsFor(w){
     cues:["הצעדים הראשונים ירגישו זרים. זה עובר תוך 8–10 דקות",
           "קדנס גבוה מיד מההתחלה — זה מה שמגן על הפיקה כשהרגליים כבדות",
           "<strong>אם יש כאב פיקה — מדלגים על הריצה הזו ולא על אחרת.</strong> זו הריצה עם העומס הגבוה ביותר בשבוע"]}));
-  [[rE1,"א"],[(rE2>=25&&bK>=40&&!rec)?0:rE2,"ב"]].forEach(([m,lbl],ix)=>{ if(m<25) return;
-    out.push(S("run",`ריצה · קלה ${lbl}`,m,{role:"runEasy",
+  [[rE1,""],[(rE2>=25&&bK>=40&&!rec)?0:rE2,"ב"]].forEach(([m,lbl],ix)=>{ if(m<25) return;
+    out.push(S("run",`ריצה · קלה${lbl?" "+lbl:""}`,m,{role:"runEasy",
     dist:`${(m/6.2).toFixed(0)} ק״מ בקירוב`, rpe:"2–3", where:"שטוח, קרקע רכה אם אפשר",
     blocks:[`${MM(m)} ב-Z1–Z2, נשימה שמאפשרת שיחה מלאה${ph>=1?" · 4–6×20 שניות סטרייד בסוף":""}`],
     target:"תדירות, לא מרחק. שלוש ריצות קצרות מגנות על הפיקה טוב יותר משתי ריצות ארוכות. אין בתוכנית הזו ריצת טמפו או אינטרוולים בריצה — כל עבודת המהירות היא הסטרייד שבסוף הריצה הקלה.",
@@ -1921,7 +2016,7 @@ function injectPrepRace(out, w){
 const TICON={swim:"🏊",bike:"🚴",run:"🏃",str:"🏋️",str2:"🏋️",mob:"🧘",race:"🏁"};
 const SROLE={bikeLong:"רכיבה ארוכה",runBrick:"Brick",runBrick2:"ריצת מעבר",runLong:"ריצה ארוכה",
  bikeKey:"איכות",bikeEnd:"נפח",bikeSpin:"שחרור",swimA:"סטים",swimB:"ים",swimB2:"ים",swimC:"טכניקה",
- runEasy:"קלה",str:"כוח כבד",str2:"ליבה",mob:"ניידות",race:"מרוץ"};
+ runEasy:"קלה",runSocial:"עם החבר",str:"כוח כבד",str2:"ליבה",mob:"ניידות",race:"מרוץ"};
 const sName=s=>SROLE[s.role]||String(s.title).split(" · ").pop();
 const TLABEL={swim:"שחייה",bike:"אופניים",run:"ריצה",str:"כוח",str2:"כוח",mob:"ניידות",race:"מרוץ"};
 const RLBL={bikeLong:"הרכיבה הארוכה",bikeKey:"אימון האיכות באופניים",bikeEnd:"רכיבת הנפח",
@@ -2384,7 +2479,7 @@ const PRESET={
   norm:{n:"רגיל"},                  short:{n:"קצר",cap:75},
   easy:{n:"קל בלבד",maxRpe:3},      off:{n:"אין",cap:0},
 };
-const PRIO=["race","bikeLong","runBrick","runLong","bikeKey","runBrick2","str","swimB","swimA","bikeEnd","str2","runEasy","swimC","bikeSpin","mob"];
+const PRIO=["race","bikeLong","runBrick","runLong","bikeKey","runBrick2","str","runSocial","swimB","swimA","bikeEnd","str2","runEasy","swimC","bikeSpin","mob"];
 /* אימון "נגרר" רץ מיד אחרי העוגן שלו, באותו יום, ונחשב איתו לאימון אחד */
 const isFollow=s=>!!(s&&s.after);
 const prio=s=>{const i=PRIO.indexOf(s.role); return i<0?99:i;};
@@ -2415,9 +2510,26 @@ function setCons(n,d,patch){
   const c=PROG.cons[n]||{days:{}}; c.days=c.days||{};
   c.days[d]=Object.assign({},c.days[d],patch); c.ts=Date.now();
   PROG.cons[n]=c; PROG.updated=c.ts; saveLocal(); dirty=true; scheduleSave(); rerenderProgress();
+  if(typeof scheduleSync==="function") scheduleSync();
+}
+/* --- סידור ידני: גרירה של אימון ליום אחר --- */
+function placeOf(n){ return (PROG.cons&&PROG.cons[n]&&PROG.cons[n].place)||{}; }
+function setPlace(n,key,d){
+  PROG.cons=PROG.cons||{};
+  const c=PROG.cons[n]||{days:{}}; c.place=Object.assign({},c.place);
+  if(d===null) delete c.place[key]; else c.place[key]=d;
+  c.ts=Date.now(); PROG.cons[n]=c; PROG.updated=c.ts;
+  saveLocal(); dirty=true; scheduleSave(); rerenderProgress();
+  if(typeof scheduleSync==="function") scheduleSync();
+}
+function clearPlace(n){
+  if(PROG.cons&&PROG.cons[n]){ delete PROG.cons[n].place; PROG.cons[n].ts=Date.now(); }
+  PROG.updated=Date.now(); saveLocal(); dirty=true; scheduleSave(); rerenderProgress();
+  if(typeof scheduleSync==="function") scheduleSync();
 }
 function resetCons(n){ if(PROG.cons)delete PROG.cons[n];
-  PROG.updated=Date.now(); saveLocal(); dirty=true; scheduleSave(); rerenderProgress(); }
+  PROG.updated=Date.now(); saveLocal(); dirty=true; scheduleSave(); rerenderProgress();
+  if(typeof scheduleSync==="function") scheduleSync(); }
 
 /* --- baseline: איפה כל אימון היה אמור לשבת, בלי קשר למה שקרה בפועל ------ */
 const _base={};
@@ -2458,7 +2570,13 @@ function layoutWeek(n,opt){
     st:con.days[d].st, en:con.days[d].en, a:sk.day[d].a, k:sk.day[d].k,
     shift:con.days[d].shift, past:!RAW&&(gone||(isCur&&d<todayDow)), p:con.days[d].p}));
 
-  /* 1 · completed sessions are pinned to the day they were actually done */
+  /* 1 · אימונים שנגררו ידנית — נעוצים ליום שנבחר */
+  const manual=RAW?{}:placeOf(n);
+  ss.forEach(s=>{ if(isFollow(s)) return;
+    const d=manual[sKey(n,s)];
+    if(d!==undefined&&d>=0&&d<=6&&s.t!=="race") s.day=d; });
+
+  /* 2 · completed sessions are pinned to the day they were actually done */
   const open=[], missed=[];
   ss.forEach(s=>{const v=RAW?0:PROG.items[sKey(n,s)];
     if(typeof v==="number"&&v>0){ const dt=new Date(v), d=dt.getDay();
@@ -2487,7 +2605,7 @@ function layoutWeek(n,opt){
   function tryPlace(s,d,after){
     const D=days[d];
     if(D.past) return null;
-    const pin = s.day===d && s.t==="race";       /* מרוץ ביום שלו — גובר על תקרות היום */
+    const pin = s.day===d;                       /* נעוץ ליום שלו — גובר על תקרות היום */
     if(!pin&&D.cap<=0) return null;
     if(!pin&&s.t!=="mob"&&rpeOf(s)>D.maxRpe) return null;
     if(!pin&&s.t!=="mob"&&D.used+s.dur>D.cap) return null;
@@ -2535,14 +2653,21 @@ function layoutWeek(n,opt){
     const order=(hard?pref:pref.concat(fallback.filter(d=>pref.indexOf(d)<0))).filter(d=>!days[d].past);
     let best=null;
     for(const d of order){ const r=tryPlace(s,d); if(r){best={d,r};break;} }
+    if(!best&&pinned&&s.t!=="race"&&!days[s.day].past){
+      /* גרירה ידנית תמיד נשמרת — גם כשהיא שוברת כלל. האזהרה תופיע במסך. */
+      const D=days[s.day], st=Math.max(D.t,s.day*24+D.st);
+      best={d:s.day,r:{st,en:st+s.dur/60}};
+    }
     if(!best){ dropped.push(s); continue; }
     days[best.d].sessions.push(s); days[best.d].items.push({s,st:best.r.st,en:best.r.en});
     days[best.d].used+=s.dur; days[best.d].t=best.r.en;
-    /* כל אימון שנגרר אחרי זה — מיד אחריו, באותו יום */
+    /* כל אימון שנגרר אחרי זה — מיד אחריו, באותו יום.
+       אם העוגן נעוץ (גרירה ידנית או מרוץ), הנגרר הולך איתו גם אם היום צר. */
     for(const f of follows){
       if(f.after.role!==s.role) continue;
       if(days.some(dd=>dd.sessions.includes(f))||dropped.indexOf(f)>=0) continue;
-      const rf=tryPlace(f,best.d,best.r.en+(f.after.gap||0));
+      let rf=tryPlace(f,best.d,best.r.en+(f.after.gap||0));
+      if(!rf&&pinned){ const st=best.r.en+(f.after.gap||0); rf={st,en:st+f.dur/60}; }
       if(rf){ days[best.d].sessions.push(f); days[best.d].items.push({s:f,st:rf.st,en:rf.en});
         days[best.d].used+=f.dur; days[best.d].t=rf.en; f._done=1; }
     }
@@ -2550,8 +2675,16 @@ function layoutWeek(n,opt){
   /* נגרר שהעוגן שלו לא קיים השבוע — משובץ כאימון עצמאי רגיל */
   for(const f of follows){
     if(f._done||days.some(dd=>dd.sessions.includes(f))||dropped.indexOf(f)>=0) continue;
-    const anchorPlaced=days.some(dd=>dd.sessions.some(x=>x.role===f.after.role));
-    const cand=(anchorPlaced?[]:[0,1,2,3,4,5,6].filter(d=>DR[d].indexOf(f.role)>=0))
+    /* אם העוגן כבר שובץ (או סומן כבוצע) — הנגרר הולך ליום שלו, מיד אחריו */
+    let aDay=-1, aEnd=null;
+    days.forEach(dd=>dd.items.forEach(it=>{ if(it.s.role===f.after.role){ aDay=dd.dow; aEnd=it.en; } }));
+    if(aDay>=0&&!days[aDay].past){
+      let rf=tryPlace(f,aDay,aEnd+(f.after.gap||0));
+      if(!rf) rf=tryPlace(f,aDay);
+      if(rf){ days[aDay].sessions.push(f); days[aDay].items.push({s:f,st:rf.st,en:rf.en});
+        days[aDay].used+=f.dur; days[aDay].t=rf.en; continue; }
+    }
+    const cand=(aDay>=0?[]:[0,1,2,3,4,5,6].filter(d=>DR[d].indexOf(f.role)>=0))
       .concat(fallback).filter(d=>!days[d].past);
     let ok=null; const save=f.after; f.after=undefined;
     for(const d of cand){ const r=tryPlace(f,d); if(r){ok={d,r};break;} }
@@ -2572,7 +2705,31 @@ function layoutWeek(n,opt){
       const c=days.findIndex(d=>d.sessions.some(x=>x.role===s.role&&x.title===s.title));
       if(c>=0&&pref.length&&pref.indexOf(c)<0) moved++;});
   }
-  return {days,dropped,moved,sk,missed};
+  /* --- אזהרות: מה נשבר בגלל סידור ידני --- */
+  const warn=[[],[],[],[],[],[],[]];
+  if(!RAW&&Object.keys(manual).length){
+    const flat=[]; days.forEach(D=>D.items.forEach(it=>{ if(!it.missed) flat.push(Object.assign({d:D.dow},it)); }));
+    flat.sort((a,b)=>a.st-b.st);
+    for(let i=0;i<flat.length-1;i++){
+      const a=flat[i], b=flat[i+1], need=gapBetween(a.s,b.s,w);
+      let gap=b.st-a.en;
+      for(let d=Math.floor(a.en/24);d<Math.floor(b.st/24);d++) if(days[d]&&days[d].shift) gap-=12;
+      if(gap+0.3<need) warn[b.d].push(`בין «${a.s.title.split(" · ")[0]}» ל«${b.s.title.split(" · ")[0]}» יש ${Math.max(0,gap).toFixed(0)} שעות, וצריך ${need}. העומס לא יספיק להתאושש.`);
+    }
+    days.forEach(D=>{
+      const real=D.sessions.filter(x=>x.t!=="mob"&&!isFollow(x));
+      const min=D.sessions.reduce((a,x)=>a+x.dur,0);
+      if(real.length>D.max) warn[D.dow].push(`${real.length} בלוקים ביום הזה — התקרה שלו היא ${D.max}.`);
+      if(min>D.cap+1) warn[D.dow].push(`${MM(min)} אימון ביום עם חלון של ${MM(D.cap)}.`);
+      const disc={}; real.forEach(x=>{const k=x.t==="str2"?"str":x.t; disc[k]=(disc[k]||0)+1;});
+      Object.entries(disc).forEach(([k,v])=>{ if(v>1) warn[D.dow].push(`שני אימוני ${TLABEL[k]||k} באותו יום.`); });
+      D.sessions.forEach(x=>{ if(x.t!=="mob"&&x.t!=="race"&&rpeOf(x)>D.maxRpe)
+        warn[D.dow].push(`«${x.title.split(" · ")[0]}» ב-RPE ${rpeOf(x)} ביום שהתקרה שלו ${D.maxRpe}${D.k==="post"?" — אחרי משמרת לילה":""}.`); });
+      const en=D.items.length?Math.max(...D.items.map(x=>x.en))-D.dow*24:0;
+      if(en>D.en+0.02) warn[D.dow].push(`היום נגמר ב-${Math.floor(en)}:${String(Math.round((en%1)*60)).padStart(2,"0")} והחלון נסגר ב-${Math.floor(D.en)}:00.`);
+    });
+  }
+  return {days,dropped,moved,sk,missed,warn,manual};
 }
 
 /* ============ לוח המשמרות של השבוע (רכיב אחד, מוצג בכל המסכים) ============ */
@@ -2618,20 +2775,40 @@ const dvOpenDay=new Set();                       /* ימים פתוחים בתצ
 function setDvMode(m){dvMode=m; try{localStorage.setItem(DVMODE,m);}catch(e){} rerenderProgress();}
 
 /* ---- לוח השבוע: שורה ליום, צ׳יפ לכל אימון ---- */
-function weekBoard(n,w,plan,dates,isCur,tdow,raceDay){
-  return `<div class="board">${[0,1,2,3,4,5,6].map(d=>{
+function weekBoard(n,w,plan,dates,isCur,tdow,raceDay,ad){
+  const WARN=(ad&&ad.warn)||[[],[],[],[],[],[],[]];
+  const nMan=Object.keys((ad&&ad.manual)||{}).length;
+  return `<div class="board" data-week="${n}">${[0,1,2,3,4,5,6].map(d=>{
     const dss=plan[d].sessions, min=dss.reduce((a,s)=>a+s.dur,0);
     const real=dss.filter(s=>s.t!=="mob"), blocks=real.filter(s=>!s.after).length;
     const ctx=raceDay?{t:["האימון האחרון בישראל","משמרת אחרונה","מנוחה ואריזה","טיסה לצרפת","הרכבת אופניים","race briefing","ערב המרוץ"][d],c:d<2?"shift":"key"}:ctxOf(w.n,d);
     const done=dss.filter(s=>isDone(sKey(n,s))).length, mis=dss.filter(s=>isMissed(n,s)).length;
     const td=isCur&&d===tdow, past=plan[d].past, open=dvOpenDay.has(n+"|"+d);
-    const chips=dss.map(s=>{const o=isDone(sKey(n,s)), m=!o&&isMissed(n,s), k=sKey(n,s).replace(/"/g,"&quot;");
-      return `<span class="bchip${o?" ok":""}${m?" miss":""}${s.after?" cont":""}" style="--c:var(${TVAR[s.t]})">
+    const chipOf=s=>{
+      const o=isDone(sKey(n,s)), m=!o&&isMissed(n,s), k=sKey(n,s).replace(/"/g,"&quot;");
+      const fixed=!!s.after||s.t==="race"||past;
+      const moved=!fixed&&((ad&&ad.manual)||{})[sKey(n,s)]!==undefined;
+      return `<span class="bchip${o?" ok":""}${m?" miss":""}${s.after?" cont":""}${moved?" moved":""}" style="--c:var(${TVAR[s.t]})"
+        data-key="${k}" data-week="${n}" data-day="${d}" data-name="${sName(s)}">
         <button class="chk mini${o?" on":""}" data-k="${k}" role="checkbox" aria-checked="${o}"
           aria-label="${o?"בטל את סימון הביצוע של":"סמן כבוצע את"} ${s.title}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
-        <button class="blab" data-bs="${k}" data-bday="${n}|${d}">${s.after?'<span class="blink">›</span>':""}<span class="bico">${TICON[s.t]}</span>${sName(s)}<em class="num">${MM(s.dur)}</em></button>
-      </span>`}).join("");
-    return `<div class="brow ${ctx.c}${td?" td":""}${past?" past":""}${open?" open":""}">
+        <button class="blab" data-bs="${k}" data-bday="${n}|${d}"><span class="bico">${TICON[s.t]}</span>${sName(s)}<em class="num">${MM(s.dur)}</em></button>
+        ${fixed?'<span class="bgrip fix" aria-hidden="true"></span>'
+               :`<span class="bgrip" role="button" tabindex="0" aria-label="גרור את ${sName(s)} ליום אחר" title="גרירה ליום אחר"><svg viewBox="0 0 10 16" aria-hidden="true"><circle cx="3" cy="3" r="1.3"/><circle cx="7" cy="3" r="1.3"/><circle cx="3" cy="8" r="1.3"/><circle cx="7" cy="8" r="1.3"/><circle cx="3" cy="13" r="1.3"/><circle cx="7" cy="13" r="1.3"/></svg></span>`}
+      </span>`};
+    /* אימון וההמשך שלו נשארים יחד — נעטפים כזוג שלא נשבר בשורה */
+    const groups=[];
+    dss.forEach(s=>{
+      const prev=groups[groups.length-1];
+      if(s.after&&prev&&prev.some(x=>x.role===s.after.role)) prev.push(s);
+      else groups.push([s]);
+    });
+    const chips=groups.map(g=>g.length>1
+      ? `<span class="bpair">${g.map(chipOf).join('<span class="bjoin" aria-hidden="true">›</span>')}</span>`
+      : chipOf(g[0])).join("");
+    const wr=WARN[d]||[];
+    return `<div class="brow ${ctx.c}${td?" td":""}${past?" past":""}${open?" open":""}${wr.length?" warn":""}"
+      data-day="${d}" data-past="${past?1:0}">
       <button class="bhead" data-bd="${n}|${d}" aria-expanded="${open}">
         <span class="bday"><b>${DAYNAME[d]}</b><i class="ltr num">${dates[d].getDate()}.${dates[d].getMonth()+1}</i></span>
         <span class="btag ${td?"td":ctx.c}">${td?"היום":ctx.s||ctx.t}</span>
@@ -2639,6 +2816,7 @@ function weekBoard(n,w,plan,dates,isCur,tdow,raceDay){
       </button>
       <div class="bchips">${dss.length?chips:`<span class="bnone">${past?"עבר":"מנוחה"}</span>`}</div>
       <div class="bsum">${min?`<b class="num">${MM(min)}</b><i>${blocks===1?"בלוק אחד":blocks+" בלוקים"}${done?` · ${done} בוצעו`:""}${mis?` · ${mis} לא בוצעו`:""}</i>`:""}</div>
+      ${wr.length?`<div class="bwarn"><span class="wico" aria-hidden="true">!</span><div>${wr.map(x=>`<p>${x}</p>`).join("")}</div></div>`:""}
       ${open?`<div class="bdetail">${dss.length?dss.map(s=>sessCard(n,s,w,true)).join(""):`<p class="dnone" style="padding:6px 2px">${past?"היום הזה כבר עבר.":"אין אימון מתוכנן. זהו יום מנוחה."}</p>`}</div>`:""}
     </div>`}).join("")}</div>`;
 }
@@ -2666,7 +2844,12 @@ function dayView(n,hostId){
     <button class="segb${dvMode==="board"?" on":""}" data-dvm="board">לוח שבועי</button>
     <button class="segb${dvMode==="full"?" on":""}" data-dvm="full">פירוט מלא</button></span>
     <span class="thint" style="margin:0">${dvMode==="board"?"לחיצה על יום או על אימון פותחת את הפירוט המלא.":"כל האימונים פרוסים במלואם."}</span></div>`;
-  if(dvMode==="board"){ html+=weekBoard(n,w,plan,dates,isCur,tdow,raceDay); }
+  if(dvMode==="board"){
+    const nMan=Object.keys(ad.manual||{}).length;
+    html+=`<div class="dragnote">${nMan
+      ? `<span><b>${nMan}</b> אימונים סודרו על ידך.</span><button class="minibtn" data-unplace="${n}">החזר לסידור המומלץ</button>`
+      : `<span>לגרירה: אחיזה ארוכה על הידית <span class="griphint" aria-hidden="true"><svg viewBox="0 0 10 16"><circle cx="3" cy="3" r="1.3"/><circle cx="7" cy="3" r="1.3"/><circle cx="3" cy="8" r="1.3"/><circle cx="7" cy="8" r="1.3"/><circle cx="3" cy="13" r="1.3"/><circle cx="7" cy="13" r="1.3"/></svg></span> וגרירה ליום אחר.</span>`}</div>`;
+    html+=weekBoard(n,w,plan,dates,isCur,tdow,raceDay,ad); }
   else for(let d=0;d<7;d++){
     const dss=plan[d].sessions, min=dss.reduce((a,s)=>a+s.dur,0);
     const ctx=raceDay?{t:["בבית — האימון האחרון בישראל","בבית — משמרת אחרונה","מנוחה ואריזה","טיסה לצרפת","Vichy — הרכבת אופניים","Vichy — race briefing","ערב המרוץ"][d],c:d<2?"shift":"key"}:ctxOf(w.n,d);
@@ -2692,6 +2875,7 @@ function dayView(n,hostId){
       <div class="sesslist">${race.map(s=>sessCard(n,s,w,true)).join("")}</div></section>`;
   }
   host.innerHTML=html;
+  if(dvMode==="board"&&typeof dragInit==="function") dragInit(hostId);
 }
 /* ============ NUTRITION TAB RENDER ============ */
 function drawNutri(){
@@ -2883,6 +3067,179 @@ function rerenderProgress(){
   dayView(1,"dv1"); dayView(dvWeek,"dvout"); markPicker2();
   drawToday();
   renderStatus();
+  if(typeof renderSync==="function") renderSync();
+}
+/* ============ סנכרון אוטומטי: מהאתר אל לוח השנה ============ */
+/* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
+   GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
+   הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
+const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json"};
+const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
+let ghTok=null;  try{ghTok=localStorage.getItem(TKEY)||null;}catch(e){}
+let syncSt={last:0,ok:null,msg:""};
+try{const r=localStorage.getItem(SSKEY); if(r)syncSt=JSON.parse(r);}catch(e){}
+let syncTimer=null, syncing=false, syncBooted=false;
+
+function saveSyncSt(){try{localStorage.setItem(SSKEY,JSON.stringify(syncSt));}catch(e){}}
+function setTok(t){ ghTok=t||null;
+  try{t?localStorage.setItem(TKEY,t):localStorage.removeItem(TKEY);}catch(e){}
+  renderSync(); }
+
+/* כל האילוצים שסוטים מברירת המחדל, בפורמט שהמאגר קורא */
+function consPayload(){
+  const out={};
+  for(let n=1;n<=52;n++){
+    const c=PROG.cons&&PROG.cons[n]; if(!c||!c.days) continue;
+    const sh=shiftsFor(n), day=[]; let diff=false;
+    for(let d=0;d<7;d++){
+      const p=(c.days[d]&&c.days[d].p)||"norm"; day.push(p);
+      if(sh[d]!==DEFSHIFT[d]||p!=="norm") diff=true;
+    }
+    if(diff) out[n]={shift:sh,day};
+  }
+  return out;
+}
+function b64utf8(s){const b=new TextEncoder().encode(s);let x="";
+  for(const c of b) x+=String.fromCharCode(c); return btoa(x);}
+
+async function ghSync(manual){
+  if(!ghTok){ if(manual){syncSt={last:Date.now(),ok:false,msg:"אין טוקן"};saveSyncSt();renderSync();} return; }
+  if(syncing) return;
+  syncing=true; renderSync("שולח…");
+  try{
+    const url=`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}`;
+    const H={Authorization:"Bearer "+ghTok,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};
+    let sha=null;
+    const g=await fetch(url+"?ref="+GH.branch,{headers:H,cache:"no-store"});
+    if(g.status===200){ sha=(await g.json()).sha; }
+    else if(g.status===401||g.status===403){ throw new Error("הטוקן נדחה — לבדוק שהוא בתוקף ושיש לו הרשאת Contents: write"); }
+    else if(g.status!==404){ throw new Error("קריאה מהמאגר נכשלה ("+g.status+")"); }
+    const payload=JSON.stringify(consPayload(),null,1);
+    const body={message:"shifts from the app · "+new Date().toISOString().slice(0,16).replace("T"," "),
+                content:b64utf8(payload),branch:GH.branch};
+    if(sha) body.sha=sha;
+    const r=await fetch(url,{method:"PUT",headers:H,body:JSON.stringify(body)});
+    if(!r.ok){ let d=""; try{d=(await r.json()).message||"";}catch(e){}
+      throw new Error("שמירה נכשלה ("+r.status+") "+d); }
+    syncSt={last:Date.now(),ok:true,msg:"",weeks:Object.keys(consPayload()).length};
+  }catch(e){
+    const off=(typeof navigator!=="undefined"&&navigator.onLine===false);
+    syncSt={last:Date.now(),ok:false,msg:off?"אין חיבור לרשת — יסונכרן אוטומטית כשיחזור":String(e.message||e)};
+  }
+  syncing=false; saveSyncSt(); renderSync();
+}
+function scheduleSync(){ if(!ghTok||!syncBooted) return;
+  clearTimeout(syncTimer); syncTimer=setTimeout(()=>ghSync(false),4000); }
+
+function agoTxt(t){ if(!t) return "";
+  const m=Math.round((Date.now()-t)/60000);
+  return m<1?"לפני רגע":m<60?`לפני ${m} דק׳`:m<1440?`לפני ${Math.round(m/60)} שעות`:`לפני ${Math.round(m/1440)} ימים`;}
+
+function renderSync(busy){
+  const el=document.getElementById("syncbox"); if(!el) return;
+  const n=Object.keys(consPayload()).length;
+  const dot=busy?"warn":!ghTok?"":syncSt.ok===true?"ok":syncSt.ok===false?"bad":"";
+  const line=busy?busy
+    :!ghTok?"לא מחובר — שינויים נשמרים במכשיר בלבד"
+    :syncSt.ok===true?`מסונכרן · ${agoTxt(syncSt.last)}`
+    :syncSt.ok===false?`שגיאה: ${syncSt.msg}`
+    :"מחובר · ממתין לשינוי הראשון";
+  el.innerHTML=`
+    <div class="syncrow">
+      <span class="sdot ${dot}"></span>
+      <b>${line}</b>
+      ${ghTok?`<button class="minibtn" id="syncnow"${busy?" disabled":""}>סנכרן עכשיו</button>
+               <button class="minibtn danger" id="syncoff">נתק</button>`:""}
+    </div>
+    <p class="thint" style="margin:8px 0 0">${ghTok
+      ? `${n} שבועות עם אילוצים שאינם ברירת המחדל נשלחים למאגר. כל שינוי במשמרות נשמר אוטומטית תוך כ-4 שניות, גיטהאב בונה מחדש את לוח השנה, והאייפון מושך אותו בפעם הבאה שהוא מתרענן.`
+      : `כדי שהשינויים יגיעו ללוח השנה בטלפון צריך להדביק כאן טוקן של גיטהאב. הוא נשמר <strong>רק במכשיר הזה</strong> — לא בדף ולא במאגר.`}</p>
+    ${ghTok?"":`
+    <div class="prow" style="margin-top:10px">
+      <input id="ghtok" type="password" inputmode="text" autocomplete="off" spellcheck="false"
+        placeholder="github_pat_… או ghp_…" style="flex:1 1 220px">
+      <button class="minibtn" id="syncsave">חבר</button>
+    </div>
+    <p class="thint" style="margin-top:8px">ליצור ב-<span class="ltr">github.com/settings/personal-access-tokens/new</span> ←
+      Only select repositories ← <span class="ltr">ironman-vichy</span> ← Permissions → <strong>Contents: Read and write</strong>.</p>`}`;
+}
+/* ============ גרירת אימונים בין ימים ============ */
+/* Pointer Events — אותו קוד למגע ולעכבר. האחיזה נתפסת אחרי לחיצה ארוכה
+   קצרה (150ms) או אחרי תזוזה של 8 פיקסלים, כדי שגלילה רגילה לא תיחשב לגרירה. */
+let dragS=null;
+
+function dragInit(hostId){
+  const el=document.getElementById(hostId); if(!el||el._dragOn) return; el._dragOn=1;
+
+  el.addEventListener("pointerdown",e=>{
+    const grip=e.target.closest(".bgrip"); if(!grip) return;
+    const chip=grip.closest(".bchip"); if(!chip) return;
+    const row=chip.closest(".brow"); if(!row) return;
+    e.preventDefault();
+    const r=chip.getBoundingClientRect();
+    dragS={host:el,chip,row,id:e.pointerId,
+      key:chip.dataset.key, week:+chip.dataset.week, from:+row.dataset.day,
+      dx:e.clientX-r.left, dy:e.clientY-r.top, w:r.width,
+      sx:e.clientX, sy:e.clientY, x:e.clientX, y:e.clientY,
+      armed:false, over:null,
+      locked:[...el.querySelectorAll(".brow")].filter(x=>x.dataset.past==="1").map(x=>+x.dataset.day)};
+    try{grip.setPointerCapture(e.pointerId);}catch(err){}
+    dragS.timer=setTimeout(dragArm,150);
+  });
+
+  el.addEventListener("pointermove",e=>{
+    if(!dragS||e.pointerId!==dragS.id) return;
+    dragS.x=e.clientX; dragS.y=e.clientY;
+    if(!dragS.armed){
+      if(Math.hypot(e.clientX-dragS.sx,e.clientY-dragS.sy)>8) dragArm(); else return;
+    }
+    e.preventDefault(); dragMove();
+  },{passive:false});
+
+  const finish=e=>{ if(dragS&&(!e||e.pointerId===dragS.id)) dragDrop(); };
+  el.addEventListener("pointerup",finish);
+  el.addEventListener("pointercancel",finish);
+}
+
+function dragArm(){
+  if(!dragS||dragS.armed) return;
+  clearTimeout(dragS.timer); dragS.armed=true;
+  const g=dragS.chip.cloneNode(true);
+  g.className="bchip dragghost"; g.style.width=dragS.w+"px";
+  document.body.appendChild(g); dragS.ghost=g;
+  dragS.chip.classList.add("dragging");
+  document.body.classList.add("dragmode");
+  if(navigator.vibrate){ try{navigator.vibrate(8);}catch(e){} }
+  dragMove();
+}
+
+function dragMove(){
+  const s=dragS, g=s.ghost; if(!g) return;
+  g.style.transform=`translate(${s.x-s.dx}px, ${s.y-s.dy}px)`;
+  const rows=[...s.host.querySelectorAll(".brow")];
+  let hit=null;
+  for(const r of rows){ const b=r.getBoundingClientRect();
+    if(s.y>=b.top&&s.y<=b.bottom){ hit=r; break; } }
+  if(hit===s.over) return;
+  rows.forEach(r=>r.classList.remove("dropok","dropno"));
+  s.over=hit;
+  if(!hit) return;
+  const d=+hit.dataset.day;
+  hit.classList.add(s.locked.indexOf(d)>=0?"dropno":"dropok");
+}
+
+function dragDrop(){
+  const s=dragS; dragS=null; if(!s) return;
+  clearTimeout(s.timer);
+  if(s.ghost) s.ghost.remove();
+  s.chip.classList.remove("dragging");
+  document.body.classList.remove("dragmode");
+  s.host.querySelectorAll(".brow").forEach(r=>r.classList.remove("dropok","dropno"));
+  if(!s.armed||!s.over) return;
+  const to=+s.over.dataset.day;
+  if(to===s.from||s.locked.indexOf(to)>=0) return;
+  setPlace(s.week,s.key,to);
+  toast(`«${s.chip.dataset.name}» הועבר ליום ${DAYNAME[to]}`,true,false);
 }
 /* ============ INIT ============ */
 loadLocal();
@@ -2890,7 +3247,7 @@ buildPicker();
 try{const s=localStorage.getItem(WKEY); if(s&&+s>=1&&+s<=52) curWeek=+s;}catch(e){}
 dvWeek=Math.min(52,Math.max(1,weekOfDate(new Date())));
 chart(); phaseCards(); weeksTable(); buildPicker2();
-drawNutri(); drawWeek(curWeek); dayView(1,"dv1"); dayView(dvWeek,"dvout"); drawToday(); rerenderProgress();
+drawNutri(); renderSync(); drawWeek(curWeek); dayView(1,"dv1"); dayView(dvWeek,"dvout"); drawToday(); rerenderProgress();
 (function(){const h=document.querySelector(".mast h1");
   if(h){const d=Math.max(0,Math.ceil((RACE_DAY-new Date())/864e5)); h.setAttribute("data-days",d+" ימים");}})();
 
@@ -2954,6 +3311,8 @@ document.getElementById("wkpick2").addEventListener("click",e=>{
   if(bs){ dvOpenDay.add(bs.dataset.bday); OPEN.add(bs.dataset.bs); rerenderProgress();
     setTimeout(()=>{const t=document.querySelector(`#${id} .bdetail .chk[data-k="${bs.dataset.bs.replace(/"/g,'\\"')}"]`);
       if(t)t.closest(".sess").scrollIntoView({block:"center",behavior:"smooth"});},80); return;}
+  const up=e.target.closest("[data-unplace]");
+  if(up){ clearPlace(+up.dataset.unplace); toast("הסידור חזר להמלצה",true,false); return;}
   const bd=e.target.closest("[data-bd]");
   if(bd){ const k=bd.dataset.bd; dvOpenDay.has(k)?dvOpenDay.delete(k):dvOpenDay.add(k); rerenderProgress(); return;}
   const tg=e.target.closest("[data-tog]");
@@ -2966,6 +3325,14 @@ document.getElementById("pimpbtn").addEventListener("click",()=>{
   const w=document.getElementById("pimpwrap"); w.hidden=!w.hidden; if(!w.hidden)document.getElementById("pimp").focus();
 });
 document.getElementById("pdo").addEventListener("click",importProg);
+document.addEventListener("click",e=>{
+  if(e.target.closest("#syncsave")){const i=document.getElementById("ghtok");
+    if(i&&i.value.trim()){setTok(i.value.trim()); ghSync(true);} return;}
+  if(e.target.closest("#syncoff")){ setTok(null); return;}
+  if(e.target.closest("#syncnow")){ ghSync(true); return;}
+});
+window.addEventListener("online",()=>{if(ghTok&&syncSt.ok===false) ghSync(false);});
+setTimeout(()=>{syncBooted=true;},1500);
 document.getElementById("prst").addEventListener("click",resetProg);
 window.addEventListener("beforeunload",()=>{if(dirty&&cloud){clearTimeout(saveTimer);cloudSave();}});
 function dayWatch(){ if(new Date().toDateString()!==lastDrawnDay) drawToday(); }
