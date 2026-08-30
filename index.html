@@ -599,6 +599,43 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
 .trow+.trow{border-top:1px dashed var(--line)}
 .tmark{flex:0 0 18px;text-align:center;font-weight:700}
 .tmark.ok{color:var(--ok)} .tmark.bad{color:var(--race)} .tmark.run{color:var(--ink3)}
+
+/* ---------- מזג אוויר ---------- */
+.wxchip{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:99px;
+  border:1px solid var(--line);background:var(--surface2);font-size:.74rem;white-space:nowrap;margin-inline-start:6px}
+.wxchip b{font-weight:700}
+.wxchip i{font-style:normal;color:var(--ink3);font-size:.68rem}
+.wxchip i span{font-size:.6rem}
+.wxchip.mid{border-color:color-mix(in srgb,#C1801F 55%,var(--line))}
+.wxchip.hi{border-color:color-mix(in srgb,var(--race) 60%,var(--line));background:color-mix(in srgb,var(--race) 9%,var(--surface2))}
+.wxchip.soft{opacity:.62}
+.wx{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface2)}
+.wx.sev2{border-color:color-mix(in srgb,#C1801F 45%,var(--line))}
+.wx.sev3{border-color:color-mix(in srgb,var(--race) 55%,var(--line))}
+.wx-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 12px;border-bottom:1px solid var(--line)}
+.wx-h b{font-size:.87rem}
+.wx-ico{font-size:1.15rem;line-height:1}
+.wx-conf{margin-inline-start:auto;font-size:.7rem;padding:2px 8px;border-radius:99px;background:var(--surface);color:var(--ink3);border:1px solid var(--line)}
+.wx-conf.hi{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.wx-conf.lo{opacity:.75}
+.wx-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));padding:8px 6px}
+.wx-stats>span{display:flex;flex-direction:column;gap:1px;padding:4px 6px;min-width:0}
+.wx-stats i{font-style:normal;font-size:.66rem;color:var(--ink3);white-space:nowrap}
+.wx-stats b{font-size:.95rem;font-weight:600}
+.wx-stats b span{font-size:.68rem;font-weight:400;color:var(--ink3);margin-inline-start:1px}
+.wx-adv{border-top:1px solid var(--line)}
+.wxa{display:flex;gap:9px;padding:9px 12px;align-items:flex-start}
+.wxa+.wxa{border-top:1px dashed var(--line)}
+.wxa b{font-size:.84rem;display:block;margin-bottom:2px}
+.wxa p{font-size:.82rem;line-height:1.6;color:var(--ink2);margin:0}
+.wxa-b{flex:0 0 auto;font-size:.65rem;font-weight:700;padding:3px 7px;border-radius:6px;margin-top:1px;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink3)}
+.wxa.s1 .wxa-b{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.wxa.s2 .wxa-b{color:#C1801F;border-color:color-mix(in srgb,#C1801F 50%,var(--line))}
+.wxa.s3 .wxa-b{color:#fff;background:var(--race);border-color:var(--race)}
+.wxa.s0 .wxa-b{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.wx-fuel,.wx-best{margin:0;padding:9px 12px;border-top:1px dashed var(--line);font-size:.81rem;line-height:1.6;color:var(--ink2)}
+.wx-act{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-top:1px solid var(--line)}
 </style></head><body>
 <header class="mast">
   <div class="mast-in wrap">
@@ -2056,6 +2093,7 @@ function sessCard(n,s,w,collapsible){
     <div class="sess-b">
       ${s.blocks.map(b=>`<p class="sblock">${b}</p>`).join("")}
       ${s.target?`<p class="starget">${s.target}</p>`:""}
+      ${typeof wxCard==="function"?wxCard(n,s):""}
       ${f?`<div class="fuel"><div class="fuel-h">תזונה · פחמימות, נוזלים ומלחים</div>
         <p><i>לפני</i><span>${f.pre}</span></p>
         <p><i>במהלך</i><span>${f.during}</span></p>
@@ -2778,6 +2816,330 @@ function consPanel(n,ad){
     <p class="thint" style="margin-top:8px"><strong>הכללים שלא נשברים:</strong> רכיבה ארוכה וריצה ארוכה לעולם לא באותו יום, והריצה הארוכה לעולם לא בערב שלפני הרכיבה — רק אחריה. לא יותר משני אימוני מפתח ביום, לא שני אימונים מאותו ענף ביום, ולא יותר מ-3 אימונים ביום חופשי / 2 ביום משמרת / 1 בין שתי משמרות. כל מרווח מנוחה נבדק בשני הכיוונים.</p>`:""}
   </div>`;
 }
+/* ============ WEATHER LAYER ============
+   שכבת מזג אוויר: לא משנה את התוכנית לעולם. היא מציגה את התנאים
+   בחלון האימון עצמו, מתרגמת אותם להנחיות ביצוע, ומציעה — בלחיצה
+   מפורשת בלבד — להזיז אימון ליום טוב יותר.                       */
+
+let WX = null, wxState = "load";          /* load | ok | none */
+
+async function wxLoad(){
+  try{
+    const r = await fetch("weather.json?t=" + Math.floor(Date.now()/36e5), {cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    if(!j || !Array.isArray(j.days) || !j.days.length) throw new Error("empty");
+    WX = j; wxState = "ok";
+  }catch(e){ WX = null; wxState = "none"; }
+  if(typeof rerenderProgress === "function") rerenderProgress();
+}
+
+const wxDay = ds => (WX && WX.days.find(d => d.d === ds)) || null;
+
+/* כמה ימים קדימה — קובע את מידת הביטחון בתחזית */
+function wxLead(ds){
+  const t = new Date(); t.setHours(0,0,0,0);
+  return Math.round((new Date(ds+"T00:00:00") - t) / 864e5);
+}
+function wxConf(ds){
+  const L = wxLead(ds);
+  if(L < 0)  return {k:"past", t:"עבר"};
+  if(L <= 2) return {k:"hi",  t:"תחזית אמינה"};
+  if(L <= 4) return {k:"mid", t:"תחזית בינונית — לבדוק שוב יומיים לפני"};
+  return {k:"lo", t:"תחזית מוקדמת — עוד תשתנה"};
+}
+
+/* ---------- צבירה על חלון האימון ---------- */
+function wxWin(D, st, en){
+  if(!D) return null;
+  const a = Math.floor(st), b = Math.max(Math.ceil(en), a+1);
+  const H = D.h.filter(x => x.hr >= a && x.hr < b);
+  if(!H.length) return null;
+  const mx = k => { const v = H.map(x=>x[k]).filter(x=>x!==null&&x!==undefined); return v.length?Math.max(...v):null; };
+  const av = k => { const v = H.map(x=>x[k]).filter(x=>x!==null&&x!==undefined); return v.length?v.reduce((p,c)=>p+c,0)/v.length:null; };
+  const sm = k => { const v = H.map(x=>x[k]).filter(x=>x!==null&&x!==undefined); return v.length?v.reduce((p,c)=>p+c,0):null; };
+  return {app:mx("app"), temp:mx("temp"), rh:Math.round(av("rh")), wind:mx("wind"), gust:mx("gust"),
+    dir:H[Math.floor(H.length/2)].dir, pop:mx("pop"), rain:sm("rain"), uv:mx("uv"),
+    wave:mx("wave"), wper:Math.round(av("wper")), sst:av("sst")===null?null:Math.round(av("sst")*10)/10,
+    wst:H[Math.floor(H.length/2)].wst, n:H.length, rise:D.rise, set:D.set};
+}
+
+/* ---------- מכפיל נוזלים ומלח לפי טמפרטורה מורגשת ---------- */
+function wxFuelMul(app){
+  if(app === null || app === undefined) return {f:1, s:1, lab:""};
+  if(app < 24) return {f:1,    s:1,    lab:""};
+  if(app < 28) return {f:1.10, s:1.15, lab:"חמים"};
+  if(app < 32) return {f:1.25, s:1.35, lab:"חם"};
+  if(app < 36) return {f:1.45, s:1.55, lab:"חם מאוד"};
+  return              {f:1.60, s:1.70, lab:"חום קיצוני"};
+}
+
+/* ---------- החלון הנוח ביותר באותו יום ---------- */
+function wxBestWindow(D, mins, kind, lo, hi){
+  if(!D || !D.h.length) return null;
+  const len = Math.max(1, Math.ceil(mins/60));
+  const pool = D.h.filter(x => (lo===undefined || x.hr >= Math.floor(lo)) &&
+                               (hi===undefined || x.hr <  Math.ceil(hi)));
+  if(pool.length < len) return null;
+  const rise = D.rise ? +D.rise.slice(0,2) + (+D.rise.slice(3,5))/60 : 6;
+  const dusk = D.set  ? +D.set.slice(0,2)  + (+D.set.slice(3,5))/60  : 19;
+  let best = null;
+  for(let i=0; i+len <= pool.length; i++){
+    const seg = pool.slice(i, i+len);
+    if(seg.some((x,j)=> j && x.hr !== seg[j-1].hr+1)) continue;
+    const app = Math.max(...seg.map(x=>x.app??0));
+    const uv  = Math.max(...seg.map(x=>x.uv??0));
+    const wnd = Math.max(...seg.map(x=>x.wind??0));
+    const pop = Math.max(...seg.map(x=>x.pop??0));
+    /* עלות: חום הוא הגורם הדומיננטי בישראל, אחריו רוח לאופניים וגשם */
+    /* חום הוא הגורם הדומיננטי בקיץ הישראלי; חושך הוא אי-נוחות, לא מכשול —
+       יציאה ב-05:30 עם תאורה עדיפה בבירור על רכיבה ב-34° תחת UV 8. */
+    let cost = Math.max(0, app-24)*4.5 + uv*2 + pop*0.25
+             + (kind==="bike" ? wnd*0.9 : wnd*0.35);
+    const h0 = seg[0].hr, h1 = seg[seg.length-1].hr+1;
+    /* חושך אינו "עלות" אלא מגבלה: יציאה 45 דק׳ לפני הזריחה עם תאורה היא נורמה,
+       אימון של שעות בחושך אינו אפשרות. לכן חלון כזה נפסל, ולא רק נקנס. */
+    const dark = Math.max(0, rise-h0) + Math.max(0, h1-dusk);
+    if(dark > 1.25) continue;
+    cost += dark * 10;
+    if(!best || cost < best.cost) best = {cost, h0, h1, app:Math.round(app*10)/10, wind:Math.round(wnd), uv:Math.round(uv*10)/10};
+  }
+  return best;
+}
+
+/* ---------- מנוע ההנחיות ---------- */
+/* אימונים שמתבצעים בחוץ — bikeSpin כלול: זו רכיבה, גם אם קלה. */
+const WXOUT = {bikeLong:1, bikeKey:1, bikeEnd:1, bikeSpin:1, runLong:1, runSocial:1,
+               runEasy:1, runBrick:1, runBrick2:1, swimB:1, race:1};
+const WXSEA = {swimB:1};
+
+function wxAdvice(s, D, st, en){
+  const W = wxWin(D, st, en); if(!W) return null;
+  const role = s.role || "", out = !!WXOUT[role], sea = !!WXSEA[role];
+  const A = [], t = s.t;
+  const add = (sev,ttl,txt) => A.push({sev,ttl,txt});
+  const hard = /[6-9]/.test(String(s.rpe||""));
+
+  if(!out && t!=="swim"){
+    if(t === "mob") return null;                       /* ניידות בבית — אין מה לומר */
+    if(W.pop >= 60 || W.app >= 34)
+      add(0,"אימון מקורה — מזג האוויר לא רלוונטי",
+          "זה היום הנכון בשבוע לשים בו את העבודה שבפנים. אין מה להתאים.");
+    return {W, A, fuel:{f:1,s:1,lab:""}, indoorSafe:true};
+  }
+
+  /* ---- חום ---- */
+  /* בשחייה המים הם מדיום הקירור — כללי החום היבשתיים אינם חלים. */
+  const F = sea ? {f:1, s:1, lab:""} : wxFuelMul(W.app);
+  const move = t==="run" ? "ריצה" : "רכיבה";
+  if(sea){ /* מדלגים על החום, מטופל בסעיף הים */ }
+  else if(W.app >= 36)
+    add(3,`חום קיצוני · מרגיש ${W.app}°`,
+      `${move} בתנאים האלה היא סיכון בריאותי, לא גירוי אימוני. `
+      +`${t==="bike"?"האופניים הנייחות בחדר הכושר בעבודה נותנות כאן את אותו גירוי אירובי בדיוק, בלי הסיכון. "
+                    :"הליכון במקום ממוזג, או להזיז לחלון הקריר של היום. "}`
+      +`אם בכל זאת בחוץ — להוריד עצימות בדרגה שלמה, לא לרדוף אחרי קצב או ואט, ולהפסיק מיד `
+      +`אם מופיעים צמרמורת, בחילה או הפסקת הזעה.`);
+  else if(W.app >= 32)
+    add(2,`חם מאוד · מרגיש ${W.app}° בלחות ${W.rh}%`,
+      `הקצב לאותו מאמץ ייפול ב-5–8%. ${hard?"אימון האיכות הזה — לשמור על העצימות לפי דופק או תחושה, לא לפי קצב. ":""}`
+      +`נוזלים ומלח מוגברים, ומסלול שיש בו מים או צל.`);
+  else if(W.app >= 28)
+    add(1,`חם · מרגיש ${W.app}°`,
+      `להוסיף נוזלים ומלח. ${hard?"בקטעי האיכות — לפי דופק, לא לפי קצב.":"אירובי טהור, אין מה לשנות מעבר לשתייה."}`);
+
+  /* ---- רוח ---- */
+  if(t==="bike"){
+    if(W.wind >= 45 || W.gust >= 60)
+      add(3,`רוח חזקה · ${W.wind} קמ״ש, משבים ${W.gust}`,
+        `לא לרכוב בחוץ. משב פתאומי על אופני כביש מזיז אותך חצי נתיב. `
+        +`אופניים נייחות בחדר הכושר, או להזיז את הרכיבה ליום אחר.`);
+    else if(W.wind >= 30)
+      add(2,`רוח משמעותית · ${W.wind} קמ״ש מכיוון ${W.dir}`,
+        `לצאת נגד הרוח ולחזור איתה — כך העייפות בסוף לא נופלת על הקטע הקשה. `
+        +`המהירות תהיה נמוכה ב-10–15% לאותו מאמץ; זה תקין ואינו סימן לירידה בכושר.`);
+    else if(W.wind >= 20)
+      add(1,`רוח בינונית · ${W.wind} קמ״ש מ-${W.dir}`,
+        `לתכנן את המסלול נגד הרוח בהתחלה. לא למדוד את האימון לפי מהירות.`);
+  } else if(t==="run" && W.wind >= 40){
+    add(1,`רוח חזקה · ${W.wind} קמ״ש`,
+      `על הטיילת זה מורגש. לצאת נגד הרוח, ולוותר על יעד קצב היום.`);
+  }
+
+  /* ---- גשם ---- */
+  if(W.pop >= 60 || (W.rain||0) >= 2){
+    if(t==="bike")
+      add(3,`גשם צפוי · ${W.pop}%`,
+        `כביש רטוב, אופניים חדשות ושנה ראשונה על אופני כביש — זה השילוב שגורם לנפילות. `
+        +`מרחק הבלימה מוכפל. להעביר לנייחות בחדר הכושר או להזיז יום.`);
+    else
+      add(1,`גשם צפוי · ${W.pop}%`,
+        `לריצה זה בסדר גמור ואפילו מקרר. להיזהר ממדרכות חלקות ומשלוליות שמסתירות בורות — `
+        +`נחיתה לא צפויה היא בדיוק מה שמרגיז את הפיקה.`);
+  } else if(W.pop >= 35){
+    add(1,`סיכוי לגשם · ${W.pop}%`, `לקחת מעיל קל. לא סיבה לשנות תוכנית.`);
+  }
+
+  /* ---- קרינה ---- */
+  if(W.uv >= 8)
+    add(1,`UV ${W.uv} — קרינה גבוהה מאוד`,
+      `קרם הגנה 50 עמיד למים, שרוולים או שרוולוני שמש, וכובע. `
+      +`בין 10:00 ל-16:00 הקרינה בשיא — אם אפשר, מוקדם יותר.`);
+
+  /* ---- אור יום ---- */
+  if(D.rise && D.set){
+    const r = +D.rise.slice(0,2) + (+D.rise.slice(3,5))/60;
+    const t2 = +D.set.slice(0,2) + (+D.set.slice(3,5))/60;
+    if(en > t2 + 0.33)
+      add(2,`האימון נגמר אחרי השקיעה (${D.set})`,
+        `${t==="bike"?"רכיבה בחושך על כביש פתוח — רק עם תאורה קדמית ואחורית ואפוד מחזיר אור, ועדיף לוותר.":"לרוץ במקום מואר בלבד, ולא על שביל לא מוכר."}`);
+    else if(st < r - 0.33)
+      add(1,`האימון מתחיל לפני הזריחה (${D.rise})`,
+        `${t==="bike"?"תאורה חובה.":"על הטיילת יש תאורה — זה החלון הקריר ביותר ביום."}`);
+  }
+
+  /* ---- ים ---- */
+  if(sea){
+    if(W.wave >= 1.2)
+      add(3,`ים גבוה · ${W.wave} מ׳`,
+        `לא לשחייה במים פתוחים לבד. להעביר לבריכה, או להחליף את האימון בעבודת טכניקה.`);
+    else if(W.wave >= 0.8)
+      add(2,`ים סוער · ${W.wave} מ׳${W.wper<5?", גלים קצרים":""}`,
+        `לשחות במקביל לחוף וקרוב אליו, ולא לצאת רחוק. `
+        +`זו דווקא הזדמנות טובה לתרגל התמצאות וסייטינג בתנאים לא נוחים — זה בדיוק Vichy ביום גרוע.`);
+    else if(W.wave <= 0.5 && W.wst === "Off-shore")
+      add(0,`ים מצוין · ${W.wave} מ׳, רוח מהיבשה`,
+        `התנאים הטובים ביותר שיש. אם תכננת סט ארוך רצוף — היום.`);
+    if(W.sst !== null && W.sst >= 30)
+      add(1,`מים ${W.sst}° — חמים מאוד`,
+        `מים חמים לא מקררים. הזעה מוסתרת לחלוטין: לשתות 500 מ״ל אחרי, גם בלי צמא, ולקצר סטים ארוכים.`);
+    if(W.sst !== null && W.sst < 22)
+      add(1,`מים ${W.sst}° — קרים`, `חליפה. Vichy עצמו הוא ללא חליפה — אבל לא מתאמנים בקור בלי אחת.`);
+  }
+
+  A.sort((a,b)=>b.sev-a.sev);
+  return {W, A, fuel:F, indoorSafe:false};
+}
+
+/* ---------- היום הטוב ביותר בשבוע להעביר אליו אימון ---------- */
+function wxBetterDay(s, dates, curDow, kind){
+  if(!WX) return null;
+  let best = null;
+  for(let d=0; d<7; d++){
+    if(d === curDow) continue;
+    const D = wxDay(dates[d]); if(!D) continue;
+    if(wxLead(dates[d]) < 0) continue;
+    const b = wxBestWindow(D, s.dur||90, kind);
+    if(!b) continue;
+    if(!best || b.cost < best.cost) best = {dow:d, ...b, d:dates[d]};
+  }
+  return best;
+}
+
+/* ============ WEATHER · UI ============ */
+const WXT = {};                      /* sKey -> {ds, st, en} — מתמלא ב-dayView */
+const wxISO = dt => dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
+const wxHM = h => String(Math.floor(h)).padStart(2,"0")+":"+String(Math.round((h%1)*60)).padStart(2,"0");
+
+function wxRegister(n, plan, dates){
+  if(!WX) return;
+  for(let d=0; d<7; d++){
+    const ds = wxISO(dates[d]);
+    (plan[d].items||[]).forEach(it=>{
+      WXT[sKey(n, it.s)] = {ds, st: it.st - d*24, en: it.en - d*24, dow:d, n,
+                            lo: plan[d].st, hi: plan[d].en};   /* גבולות היום עצמו */
+    });
+  }
+}
+
+/* אייקון לפי מה שדומיננטי באותו יום */
+function wxIcon(D){
+  if(!D) return "";
+  if(D.popMax >= 60) return "🌧️";
+  if(D.windMax >= 35) return "💨";
+  if(D.appMax >= 36) return "🥵";
+  if(D.appMax >= 32) return "☀️";
+  if(D.popMax >= 35) return "🌦️";
+  return "🌤️";
+}
+
+function wxChip(ds){
+  const D = wxDay(ds); if(!D) return "";
+  const c = wxConf(ds); if(c.k === "past") return "";
+  const sev = D.appMax>=36||D.windMax>=45||D.popMax>=70 ? "hi"
+            : D.appMax>=32||D.windMax>=30||D.popMax>=50 ? "mid" : "lo";
+  return `<span class="wxchip ${sev}${c.k==="lo"?" soft":""}" title="${c.t}">${wxIcon(D)}<b class="num">${Math.round(D.appMax)}°</b>${
+    D.windMax>=25?`<i class="num">${D.windMax}<span>קמ״ש</span></i>`:""}${
+    D.popMax>=35?`<i class="num">${D.popMax}<span>%</span></i>`:""}</span>`;
+}
+
+const WXSEV = ["ok","lo","mid","hi"];
+function wxCard(n, s){
+  if(!WX) return "";
+  const T = WXT[sKey(n,s)]; if(!T) return "";
+  const D = wxDay(T.ds); if(!D) return "";
+  const conf = wxConf(T.ds); if(conf.k === "past") return "";
+  const R = wxAdvice(s, D, T.st, T.en); if(!R) return "";
+  const W = R.W, top = R.A.length ? R.A[0].sev : 0;
+  const kind = s.t === "bike" ? "bike" : "run";
+  const best = R.indoorSafe ? null : wxBestWindow(D, s.dur, kind, T.lo, T.hi);
+  /* מציעים חלון אחר רק אם הוא באמת משנה משהו — לפחות 2.5° מורגשים פחות. */
+  const shift = best && Math.abs(best.h0 - T.st) >= 1.5
+                && W.app !== null && best.app <= W.app - 2.5 ? best : null;
+
+  const stat = (lbl,val,unit) => val===null||val===undefined ? ""
+    : `<span><i>${lbl}</i><b class="num">${val}${unit?`<span>${unit}</span>`:""}</b></span>`;
+
+  return `<div class="wx sev${top}">
+    <div class="wx-h">
+      <span class="wx-ico" aria-hidden="true">${wxIcon(D)}</span>
+      <b>מזג האוויר בחלון האימון · ${wxHM(T.st)}–${wxHM(T.en)}</b>
+      <span class="wx-conf ${conf.k}">${conf.t}</span>
+    </div>
+    <div class="wx-stats">
+      ${stat("מרגיש כמו", W.app, "°")}
+      ${stat("טמפרטורה", W.temp, "°")}
+      ${stat("לחות", W.rh, "%")}
+      ${stat("רוח", W.wind===null?null:`${W.wind}`, "קמ״ש")}
+      ${W.gust>=W.wind+12?stat("משבים", W.gust, "קמ״ש"):""}
+      ${stat("כיוון", W.dir, "")}
+      ${stat("סיכוי גשם", W.pop, "%")}
+      ${stat("UV", W.uv, "")}
+      ${s.t==="swim"&&W.wave!==null?stat("גובה גל", W.wave, "מ׳"):""}
+      ${s.t==="swim"&&W.sst!==null?stat("מים", W.sst, "°"):""}
+      ${stat("זריחה", D.rise, "")}
+      ${stat("שקיעה", D.set, "")}
+    </div>
+    ${R.A.length?`<div class="wx-adv">${R.A.map(a=>
+      `<div class="wxa s${a.sev}"><span class="wxa-b">${a.sev>=3?"עצור":a.sev===2?"שים לב":a.sev===1?"טיפ":"נוח"}</span>
+        <div><b>${a.ttl}</b><p>${a.txt}</p></div></div>`).join("")}</div>`:""}
+    ${R.fuel.f>1?`<p class="wx-fuel"><b>תיקון תזונה לתנאים:</b> נוזלים ומלח למעלה —
+      <span class="num">${Math.round((fluidPerHour(s,n))*R.fuel.f/10)*10} מ״ל</span> ו-<span class="num">${Math.round((naPerHour(s,n))*R.fuel.s/10)*10} מ״ג נתרן</span> לשעה
+      במקום <span class="num">${fluidPerHour(s,n)}</span> ו-<span class="num">${naPerHour(s,n)}</span>.
+      מעל 1,000 מ״ל לשעה חובה שהמלח יעלה יחד עם הנוזל — שתייה מרובה בלי נתרן היא הדרך להיפונתרמיה.</p>`:""}
+    ${shift?`<p class="wx-best">החלון הנוח ביותר באותו יום: <b class="num">${String(shift.h0).padStart(2,"0")}:00–${String(shift.h1).padStart(2,"0")}:00</b>
+      — מרגיש ${shift.app}°, רוח ${shift.wind} קמ״ש. זו הצעה בלבד; התוכנית לא זזה.</p>`:""}
+    ${top>=3&&conf.k!=="lo"?wxMoveBtn(n,s,T):""}
+  </div>`;
+}
+
+/* רק אימוני המפתח שווים הזזה בגלל מזג אוויר. ספין, ריצה קלה וניידות — לא. */
+const WXMOVE = {bikeLong:1, bikeKey:1, bikeEnd:1, runLong:1, swimB:1};
+function wxMoveBtn(n, s, T){
+  if(s.after || s.t==="race" || !WXMOVE[s.role]) return "";
+  const dates = weekDates(n).map(wxISO);
+  const kind = s.t==="bike" ? "bike" : "run";
+  const b = wxBetterDay(s, dates, T.dow, kind);
+  if(b && b.dow === T.dow) return "";
+  if(!b) return "";
+  const cur = wxBestWindow(wxDay(T.ds), s.dur, kind);
+  if(cur && b.cost >= cur.cost * 0.85) return "";        /* לא מספיק טוב כדי להצדיק הזזה */
+  return `<div class="wx-act">
+    <button class="minibtn" data-act="wxmove" data-wxn="${n}" data-wxk="${sKey(n,s).replace(/"/g,"&quot;")}" data-wxd="${b.dow}">
+      העבר ל${DAYNAME[b.dow]}</button>
+    <span class="thint">שם: מרגיש ${b.app}°, רוח ${b.wind} קמ״ש. ההעברה תעדכן גם את היומן.</span>
+  </div>`;
+}
 const DVKEY="vichy.dvweek.v1", DVMODE="vichy.dvmode.v1";
 let dvWeek=1; try{const v=+localStorage.getItem(DVKEY); if(v>=1&&v<=52)dvWeek=v;}catch(e){}
 let dvMode="board"; try{if(localStorage.getItem(DVMODE)==="full")dvMode="full";}catch(e){}
@@ -2822,6 +3184,7 @@ function weekBoard(n,w,plan,dates,isCur,tdow,raceDay,ad){
       <button class="bhead" data-bd="${n}|${d}" aria-expanded="${open}">
         <span class="bday"><b>${DAYNAME[d]}</b><i class="ltr num">${dates[d].getDate()}.${dates[d].getMonth()+1}</i></span>
         <span class="btag ${td?"td":ctx.c}">${td?"היום":ctx.s||ctx.t}</span>
+        ${typeof wxChip==="function"?wxChip(wxISO(dates[d])):""}
         <span class="bcar" aria-hidden="true">${open?"▴":"▾"}</span>
       </button>
       <div class="bchips">${dss.length?chips:`<span class="bnone">${past?"עבר":"מנוחה"}</span>`}</div>
@@ -2838,6 +3201,7 @@ function dayView(n,hostId){
   const _now=new Date(), curW=Math.min(52,Math.max(1,weekOfDate(_now))), isCur=n===curW, tdow=_now.getDay();
   const w=WEEKS[n-1], ad=planWeekAdaptive(n), plan=ad.days, dates=weekDates(n);
   const ss=sessionsFor(w), done=ss.filter(s=>isDone(sKey(n,s))).length;
+  if(typeof wxRegister==="function") wxRegister(n, plan, dates);
   const raceDay=n===52;
   let html=`<div class="dvhead">
     <div><div class="eyebrow">${PH_META[w.ph].n} · <span class="ltr">${fmtD(w.start)}–${fmtD(w.end)}.${w.start.slice(2,4)}</span></div>
@@ -3083,7 +3447,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-08-30b";
+const BUILD="2026-08-30c";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json"};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
 let ghTok=null;  try{ghTok=localStorage.getItem(TKEY)||null;}catch(e){}
@@ -3442,6 +3806,11 @@ document.addEventListener("click",e=>{
     if(a==="syncnow"){ ghSync(true); return;}
     if(a==="forcefresh"){ forceFresh(); return;}
     if(a==="synctest"){ ghTest(); return;}
+    if(a==="wxmove"){
+      const n=+act.dataset.wxn, k=act.dataset.wxk, d=+act.dataset.wxd;
+      setPlace(n,k,d);
+      if(typeof toast==="function") toast("האימון הועבר ל"+DAYNAME[d]+" · היומן יתעדכן");
+      return;}
   }
 });
 /* מנקה מטמון ו-service worker ומושך את הגרסה העדכנית מהשרת */
@@ -3453,6 +3822,7 @@ async function forceFresh(){
 }
 window.addEventListener("online",()=>{if(ghTok&&syncSt.ok===false) ghSync(false);});
 setTimeout(()=>{syncBooted=true;},1500);
+if(typeof wxLoad==="function") wxLoad();
 document.getElementById("prst").addEventListener("click",resetProg);
 window.addEventListener("beforeunload",()=>{if(dirty&&cloud){clearTimeout(saveTimer);cloudSave();}});
 function dayWatch(){ if(new Date().toDateString()!==lastDrawnDay) drawToday(); }
