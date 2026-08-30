@@ -1,32 +1,32 @@
 {
-  "fetched": "2026-08-30T04:47:01.343Z",
+  "fetched": "2026-08-30T07:18:32.524Z",
   "spot": "תל אביב · חוף הילטון",
   "lat": 32.0892,
   "lon": 34.7695,
   "seaTemp": 30.1,
-  "source": "Open-Meteo Marine & Weather API",
+  "source": "Open-Meteo Forecast & Marine API",
   "days": [
     {
       "d": "2026-08-30",
       "am": {
         "h": 1.7,
         "p": 7,
-        "w": 5,
+        "w": 8,
         "dir": "W",
-        "st": "Glassy"
+        "st": "On-shore"
       },
       "pm": {
         "h": 1.4,
         "p": 7,
-        "w": 15,
+        "w": 14,
         "dir": "W",
         "st": "On-shore"
       },
       "nt": {
         "h": 1.2,
         "p": 6,
-        "w": 10,
-        "dir": "WSW",
+        "w": 9,
+        "dir": "WNW",
         "st": "On-shore"
       },
       "seaTemp": 30.1,
@@ -37,23 +37,23 @@
       "d": "2026-08-31",
       "am": {
         "h": 1,
-        "p": 6,
-        "w": 5,
-        "dir": "SW",
+        "p": 7,
+        "w": 7,
+        "dir": "SSW",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.8,
         "p": 6,
-        "w": 15,
+        "w": 14,
         "dir": "W",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.8,
         "p": 6,
-        "w": 5,
-        "dir": "SW",
+        "w": 7,
+        "dir": "NNW",
         "st": "Glassy"
       },
       "seaTemp": 30.1,
@@ -66,13 +66,13 @@
         "h": 0.7,
         "p": 6,
         "w": 5,
-        "dir": "S",
+        "dir": "SSE",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.7,
         "p": 6,
-        "w": 15,
+        "w": 14,
         "dir": "NW",
         "st": "On-shore"
       },
@@ -80,8 +80,8 @@
         "h": 0.7,
         "p": 5,
         "w": 10,
-        "dir": "S",
-        "st": "Cross"
+        "dir": "N",
+        "st": "On-shore"
       },
       "seaTemp": 30.1,
       "rise": "06:16",
@@ -91,24 +91,24 @@
       "d": "2026-09-02",
       "am": {
         "h": 0.5,
-        "p": 5,
-        "w": 5,
-        "dir": "S",
+        "p": 6,
+        "w": 4,
+        "dir": "SE",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.5,
         "p": 5,
-        "w": 15,
+        "w": 14,
         "dir": "NW",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.6,
         "p": 4,
-        "w": 10,
-        "dir": "S",
-        "st": "Cross"
+        "w": 9,
+        "dir": "N",
+        "st": "On-shore"
       },
       "seaTemp": 30.2,
       "rise": "06:16",
@@ -119,22 +119,22 @@
       "am": {
         "h": 0.4,
         "p": 5,
-        "w": 5,
+        "w": 4,
         "dir": "S",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.5,
         "p": 4,
-        "w": 15,
+        "w": 14,
         "dir": "WNW",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.5,
         "p": 4,
-        "w": 5,
-        "dir": "WNW",
+        "w": 8,
+        "dir": "NNW",
         "st": "Glassy"
       },
       "seaTemp": 30.3,
@@ -146,21 +146,21 @@
       "am": {
         "h": 0.4,
         "p": 5,
-        "w": 5,
+        "w": 7,
         "dir": "SSW",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.5,
         "p": 4,
-        "w": 15,
+        "w": 14,
         "dir": "WNW",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.5,
         "p": 5,
-        "w": 5,
+        "w": 7,
         "dir": "NW",
         "st": "Glassy"
       },
@@ -174,7 +174,7 @@
         "h": 0.6,
         "p": 5,
         "w": 5,
-        "dir": "SSW",
+        "dir": "S",
         "st": "Glassy"
       },
       "pm": {
@@ -187,11 +187,11 @@
       "nt": {
         "h": 0.8,
         "p": 6,
-        "w": 5,
-        "dir": "NW",
+        "w": 8,
+        "dir": "NNW",
         "st": "Glassy"
       },
-      "seaTemp": 30.3,
+      "seaTemp": 30.2,
       "rise": "06:18",
       "set": "19:00"
     }
