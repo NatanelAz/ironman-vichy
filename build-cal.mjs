@@ -60,6 +60,8 @@ if (fs.existsSync('shifts.json')) {
 
 /* --- כתיבת ICS --- */
 const VER  = process.env.VER || String(Math.floor(Date.now() / 864e5));
+/* DTSTAMP יציב ליום — כך ריצה שלא שינתה דבר לא יוצרת diff מדומה. */
+const STAMP = new Date(Number(VER) * 864e5).toISOString().replace(/[-:]/g,'').slice(0,15) + 'Z';
 const LIVE = 'https://natanelaz.github.io/ironman-vichy/';
 const LITE = process.env.LITE === '1';
 const OUT  = process.env.OUTF || 'vichy.ics';
@@ -136,7 +138,7 @@ for (const w of API.WEEKS) {
       const st=it.st-di*24, en=Math.min(it.en-di*24,23.9);
       const ev=['BEGIN:VEVENT',
         `UID:vichy-w${w.n}-d${di}${ix===0?'':'-'+s.role+suff}@vichy2027`,
-        `SEQUENCE:${VER}`,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',
+        `SEQUENCE:${VER}`,'DTSTAMP:'+STAMP,
         `DTSTART;TZID=Asia/Jerusalem:${stamp(day,st)}`,
         `DTEND;TZID=Asia/Jerusalem:${stamp(day,en)}`,
         fold(`SUMMARY:${ICON[s.t]} ${cont?'↳ ':''}${esc(shortName(s))} · ${HM(s.dur)}`),
@@ -151,7 +153,7 @@ for (const w of API.WEEKS) {
   });
 }
 L.push('BEGIN:VEVENT','UID:vichy-raceday@vichy2027',`SEQUENCE:${VER}`,
- 'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',
+ 'DTSTAMP:'+STAMP,
  'DTSTART;TZID=Asia/Jerusalem:20270822T064000','DTEND;TZID=Asia/Jerusalem:20270822T203000',
  fold('SUMMARY:🏁 IRONMAN VICHY · יום המרוץ'),
  fold('DESCRIPTION:'+esc(['3.8 ק"מ שחייה ללא חליפה · 180 ק"מ עם כ-2,400 מ׳ טיפוס · מרתון בחום',

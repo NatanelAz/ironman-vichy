@@ -3083,7 +3083,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-08-30a";
+const BUILD="2026-08-30b";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json"};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
 let ghTok=null;  try{ghTok=localStorage.getItem(TKEY)||null;}catch(e){}
@@ -3201,13 +3201,22 @@ async function ghTest(){
   /* 3 · כתיבה אמיתית — שולח את האילוצים הנוכחיים ומוודא שהתוכן במאגר אכן השתנה */
   r=step("כתיבה למאגר");
   try{ await ghSync(true);
-    const x=await fetch(`${API}/contents/${GH.path}?ref=${GH.branch}`,
-        {headers:{Authorization:"Bearer "+ghTok,Accept:"application/vnd.github+json"}});
+    if(syncSt.ok===false) throw new Error(syncSt.msg||"הסנכרון נכשל");
+    const x=await fetch(`${API}/contents/${GH.path}?ref=${GH.branch}&t=${Date.now()}`,
+        {headers:{Authorization:"Bearer "+ghTok,Accept:"application/vnd.github+json"},cache:"no-store"});
     const j=await x.json();
+    /* משווים תוכן, לא sha: אם התוכן זהה גיטהאב לא יוצר commit חדש וה-sha נשאר — וזה הצלחה. */
+    let remote="";
+    try{ remote=decodeURIComponent(escape(atob((j.content||"").replace(/\s/g,"")))); }catch(e){ remote=""; }
+    const mine=JSON.stringify(consPayload(),null,1);
     const n=Object.keys(consPayload()).length;
-    if(j.sha!==sha) done(r,true,`הקובץ עודכן במאגר · ${n} שבועות · ${j.size} בייטים. גיטהאב בונה עכשיו את היומן (כדקה).`);
-    else if(n===0) done(r,true,"הכתיבה עברה, אבל אין מה לשלוח — כל השבועות בברירת המחדל. סמן משמרות ונסה שוב.");
-    else done(r,false,"הקובץ במאגר לא השתנה");
+    const fresh=j.sha!==sha;
+    if(remote.trim()===mine.trim())
+      done(r,true,`הקובץ במאגר תואם למה שבטלפון · ${n} שבועות · ${j.size} בייטים.`
+        +(fresh?" נכתב עכשיו — גיטהאב בונה את היומן (כדקה)."
+               :" היה מעודכן כבר, לכן לא נוצר commit חדש. זה תקין."));
+    else if(!n) done(r,true,"אין מה לשלוח — כל השבועות בברירת המחדל. סמן משמרות ונסה שוב.");
+    else done(r,false,`התוכן במאגר שונה ממה שבטלפון (${j.size} בייטים במאגר מול ${mine.length} כאן)`);
   }catch(e){ done(r,false,"נכשל: "+(e.message||e)); }
   testing=false;
 }
