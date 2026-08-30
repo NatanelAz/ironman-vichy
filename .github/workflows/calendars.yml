@@ -1,0 +1,82 @@
+name: Update calendars
+
+# בונה מחדש את לוחות השנה ודוחף אותם למאגר.
+# רץ: כל יום ב-06:15 שעון ישראל · בכל שינוי ב-index.html או ב-shifts.json · ובלחיצה ידנית.
+
+on:
+  schedule:
+    - cron: '15 3 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'index.html'
+      - 'shifts.json'
+      - 'build-cal.mjs'
+      - 'fetch-weather.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: calendars
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Weather & sea forecast (Gush Dan)
+        continue-on-error: true
+        run: node fetch-weather.mjs && node genwaves.mjs waves-data.json waves.ics
+
+      - name: Training calendars
+        run: |
+          node build-cal.mjs
+          LITE=1 OUTF=vichy-lite.ics node build-cal.mjs
+
+      - name: Validate
+        run: |
+          node -e "
+            const fs=require('fs');
+            for (const f of ['vichy.ics','vichy-lite.ics','waves.ics']) {
+              if(!fs.existsSync(f)) { console.log('skip (missing):',f); continue; }
+              const s=fs.readFileSync(f,'utf8'), L=s.split('\r\n');
+              const n=L.filter(l=>l==='BEGIN:VEVENT').length;
+              const e=L.filter(l=>l==='END:VEVENT').length;
+              const bad=L.filter(l=>Buffer.from(l,'utf8').length>75).length;
+              const uids=new Set(L.filter(l=>l.startsWith('UID:')));
+              if(!s.startsWith('BEGIN:VCALENDAR')) throw new Error(f+': bad header');
+              if(!s.trimEnd().endsWith('END:VCALENDAR')) throw new Error(f+': bad footer');
+              if(n!==e) throw new Error(f+': '+n+' begin vs '+e+' end');
+              if(n<5) throw new Error(f+': only '+n+' events');
+              if(bad) throw new Error(f+': '+bad+' over-long lines');
+              if(uids.size!==n) throw new Error(f+': duplicate UIDs');
+              console.log('ok', f, n, 'events,', s.length, 'bytes');
+            }
+          "
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "Vichy Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for f in vichy.ics vichy-lite.ics waves.ics waves-data.json weather.json; do
+            [ -f "$f" ] && git add "$f" || true
+          done
+          echo "--- staged ---"; git status --porcelain
+          if git diff --staged --quiet; then
+            echo "nothing changed"; exit 0
+          fi
+          git commit -m "calendars rebuilt $(date -u +%F)"
+          # האתר עשוי לדחוף shifts.json בזמן שהריצה הזו רצה — אז מושכים ומנסים שוב
+          for i in 1 2 3 4 5; do
+            if git push; then echo "pushed on attempt $i"; exit 0; fi
+            echo "push rejected — rebasing and retrying ($i)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || exit 1
+            sleep 3
+          done
+          echo "push failed after 5 attempts"; exit 1
