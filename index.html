@@ -3089,13 +3089,15 @@ function setTok(t){ ghTok=t||null;
 function consPayload(){
   const out={};
   for(let n=1;n<=52;n++){
-    const c=PROG.cons&&PROG.cons[n]; if(!c||!c.days) continue;
+    const c=PROG.cons&&PROG.cons[n]; if(!c) continue;
+    c.days=c.days||{};
     const sh=shiftsFor(n), day=[]; let diff=false;
     for(let d=0;d<7;d++){
       const p=(c.days[d]&&c.days[d].p)||"norm"; day.push(p);
       if(sh[d]!==DEFSHIFT[d]||p!=="norm") diff=true;
     }
-    if(diff) out[n]={shift:sh,day};
+    const pl=c.place&&Object.keys(c.place).length?c.place:null;
+    if(diff||pl){ out[n]={shift:sh,day}; if(pl) out[n].place=pl; }
   }
   return out;
 }
@@ -3154,6 +3156,9 @@ function renderSync(busy){
     <p class="thint" style="margin:8px 0 0">${ghTok
       ? `${n} שבועות עם אילוצים שאינם ברירת המחדל נשלחים למאגר. כל שינוי במשמרות נשמר אוטומטית תוך כ-4 שניות, גיטהאב בונה מחדש את לוח השנה, והאייפון מושך אותו בפעם הבאה שהוא מתרענן.`
       : `כדי שהשינויים יגיעו ללוח השנה בטלפון צריך להדביק כאן טוקן של גיטהאב. הוא נשמר <strong>רק במכשיר הזה</strong> — לא בדף ולא במאגר.`}</p>
+    <p class="thint" style="margin:8px 0 0">
+      <a href="subscribe.html" style="color:var(--acc);font-weight:600">מנוי ללוח השנה בטלפון →</a>
+      <span style="color:var(--ink3)"> · vichy.ics · vichy-lite.ics · waves.ics</span></p>
     ${ghTok?"":`
     <div class="prow" style="margin-top:10px">
       <input id="ghtok" type="password" inputmode="text" autocomplete="off" spellcheck="false"

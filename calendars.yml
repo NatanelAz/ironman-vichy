@@ -1,6 +1,6 @@
 name: Update calendars
 
-# בונה מחדש את שני לוחות השנה ודוחף אותם למאגר.
+# בונה מחדש את לוחות השנה ודוחף אותם למאגר.
 # רץ: כל יום ב-06:15 שעון ישראל · בכל שינוי ב-index.html או ב-shifts.json · ובלחיצה ידנית.
 
 on:
@@ -11,6 +11,8 @@ on:
     paths:
       - 'index.html'
       - 'shifts.json'
+      - 'build-cal.mjs'
+      - 'fetch-waves.mjs'
 
 permissions:
   contents: write
@@ -24,263 +26,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # ─────────── 1 · לוח הים ───────────
-      - name: Fetch the Tel Aviv marine forecast
+      - name: Sea forecast (Tel Aviv)
         continue-on-error: true
+        run: node fetch-waves.mjs && node genwaves.mjs waves-data.json waves.ics
+
+      - name: Training calendars
         run: |
-          cat > fetch-waves.mjs <<'EOF'
-          import fs from 'fs';
-          const LAT = 32.0892, LON = 34.7695, TZ = 'Asia%2FJerusalem';
-          const get = async u => { const r = await fetch(u);
-            if (!r.ok) throw new Error(u + ' -> HTTP ' + r.status); return r.json(); };
-
-          const M = await get(`https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}`
-            + `&hourly=wave_height,wave_period,wave_direction,sea_surface_temperature&timezone=${TZ}&forecast_days=7`);
-          const W = await get(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
-            + `&hourly=wind_speed_10m,wind_direction_10m&daily=sunrise,sunset&timezone=${TZ}&forecast_days=7`);
-
-          if (!M.hourly || !M.hourly.time || !M.hourly.wave_height) throw new Error('marine API shape changed');
-          if (!W.hourly || !W.hourly.wind_speed_10m)                throw new Error('weather API shape changed');
-
-          const COMPASS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-          const dirName = d => COMPASS[Math.round((((d % 360) + 360) % 360) / 22.5) % 16];
-          const mean = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0;
-          const num  = v => (typeof v === 'number' && isFinite(v)) ? v : null;
-
-          /* onshore at Tel Aviv = wind coming from the west sector */
-          const state = (deg, kmh) => {
-            if (kmh < 8) return 'Glassy';
-            const d = ((deg % 360) + 360) % 360;
-            if (d >= 225 && d <= 315) return 'On-shore';
-            if (d >= 45  && d <= 135) return 'Off-shore';
-            return 'Cross';
-          };
-
-          const wind = {};                       /* ISO hour -> {s, d} */
-          W.hourly.time.forEach((t, i) => {
-            wind[t] = { s: num(W.hourly.wind_speed_10m[i]), d: num(W.hourly.wind_direction_10m[i]) };
-          });
-
-          const byDay = {};
-          M.hourly.time.forEach((t, i) => {
-            const [date, hm] = t.split('T'); const hour = +hm.slice(0, 2);
-            const seg = hour >= 6 && hour < 12 ? 'am' : hour >= 12 && hour < 18 ? 'pm'
-                      : hour >= 18 ? 'nt' : null;
-            if (!seg) return;
-            const h = num(M.hourly.wave_height[i]); if (h === null) return;
-            (byDay[date] = byDay[date] || { am: [], pm: [], nt: [], sst: [] });
-            const wv = wind[t] || {};
-            byDay[date][seg].push({ h, p: num(M.hourly.wave_period[i]),
-              wd: num(M.hourly.wave_direction[i]), ws: wv.s, wdir: wv.d });
-            const s = num(M.hourly.sea_surface_temperature[i]); if (s !== null) byDay[date].sst.push(s);
-          });
-
-          const sun = {};
-          (W.daily?.time || []).forEach((d, i) => {
-            sun[d] = { rise: (W.daily.sunrise[i] || '').slice(11, 16),
-                       set:  (W.daily.sunset[i]  || '').slice(11, 16) };
-          });
-
-          const pack = rows => {
-            if (!rows.length) return null;
-            const ws = rows.map(r => r.ws).filter(v => v !== null);
-            const wd = rows.map(r => r.wdir).filter(v => v !== null);
-            const kmh = Math.round(mean(ws) / 5) * 5;
-            const deg = wd.length ? mean(wd) : 270;
-            return { h: +Math.max(...rows.map(r => r.h)).toFixed(1),
-                     p: Math.round(mean(rows.map(r => r.p).filter(v => v !== null))) || 6,
-                     w: kmh, dir: dirName(deg), st: state(deg, kmh) };
-          };
-
-          const days = Object.keys(byDay).sort().map(d => {
-            const o = { d, am: pack(byDay[d].am), pm: pack(byDay[d].pm), nt: pack(byDay[d].nt) };
-            if (byDay[d].sst.length) o.seaTemp = +mean(byDay[d].sst).toFixed(1);
-            if (sun[d]) { o.rise = sun[d].rise; o.set = sun[d].set; }
-            return o;
-          }).filter(o => o.am || o.pm);
-
-          if (days.length < 3) throw new Error('only ' + days.length + ' usable days came back');
-
-          const out = { fetched: new Date().toISOString(), spot: 'תל אביב · חוף הילטון',
-            lat: LAT, lon: LON, seaTemp: days[0].seaTemp ?? 24,
-            source: 'Open-Meteo Marine & Weather API', days };
-          fs.writeFileSync('waves-data.json', JSON.stringify(out, null, 2));
-          console.log('days:', days.length, '| sea:', out.seaTemp + '°');
-          EOF
-          node fetch-waves.mjs && node genwaves.mjs waves-data.json waves.ics
-
-      # ─────────── 2 · לוח האימונים ───────────
-      - name: Rebuild the training calendar from index.html
-        run: |
-          cat > build-cal.mjs <<'EOF'
-          /* ─────────────────────────────────────────────────────────────
-             בונה את vichy.ics ו-vichy-lite.ics ישירות מ-index.html שבמאגר.
-             אין תלות חיצונית. רץ על ראנר של GitHub Actions.
-             קלט אופציונלי: shifts.json  → {"30":[0,0,0,1,0,1,0], ...}
-                            (7 ספרות ליום ראשון..שבת; 1 = משמרת לילה בלילה הזה)
-             ───────────────────────────────────────────────────────────── */
-          import fs from 'fs';
-
-          const HTML = fs.readFileSync('index.html', 'utf8');
-          const i = HTML.lastIndexOf('<script>');
-          const j = HTML.indexOf('/* ============ INIT ============ */');
-          if (i < 0 || j < i) throw new Error('לא נמצא בלוק הסקריפט ב-index.html');
-          const SRC = HTML.slice(i + 8, j);
-
-          /* --- מעטפת: מספקת את מה שהדפדפן היה מספק --- */
-          /* --- מעטפת: הדף כבר מגדיר PROG/sKey/isDone וכו׳ — צריך רק את מה שהדפדפן נותן --- */
-          /* --- מעטפת: הדף כבר מגדיר PROG/sKey/isDone וכו׳.
-                 כאן רק מה שהדפדפן נותן. querySelector מחזיר אובייקט־בלימה שסופג כל שרשור,
-                 ו-getElementById מחזיר null כדי שפונקציות הציור ייצאו מיד. --- */
-          const PRE = `
-          const __sink=new Proxy(function(){},{
-            get:(t,k)=>{ if(k==='length') return 0;
-                         if(k===Symbol.toPrimitive||k==='toString'||k==='valueOf') return ()=>'';
-                         if(k===Symbol.iterator) return function*(){};
-                         return __sink; },
-            set:()=>true, apply:()=>__sink, construct:()=>__sink });
-          const localStorage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}};
-          const document={querySelector:()=>__sink,querySelectorAll:()=>[],getElementById:()=>null,
-            addEventListener:()=>{},createElement:()=>__sink,documentElement:__sink,body:__sink,
-            head:__sink,title:''};
-          const window={addEventListener:()=>{},matchMedia:()=>({matches:false,addEventListener(){}}),
-            location:{protocol:'file:',hostname:''},navigator:{}};
-          const navigator={};
-          const requestAnimationFrame=f=>0;
-          `;
-          const API = new Function(PRE + SRC + `
-            return {WEEKS,sessionsFor,planWeekAdaptive,weekDates,fuelFor,recoveryFor,MM,PH_META,
-                    ctxOf,DAYNAME,dayType,dayTarget,heatWeek,rpeOf,PROG};`)();
-
-          /* --- משמרות שהוזנו ידנית --- */
-          if (fs.existsSync('shifts.json')) {
-            const raw = JSON.parse(fs.readFileSync('shifts.json', 'utf8'));
-            const cons = {};
-            for (const [wk, arr] of Object.entries(raw)) {
-              if (!Array.isArray(arr) || arr.length !== 7) { console.warn('shifts.json: שבוע', wk, 'לא תקין — דולג'); continue; }
-              const days = {};
-              arr.forEach((v, d) => { days[d] = { shift: v ? 1 : 0 }; });
-              cons[wk] = { days, ts: Date.now() };
-            }
-            API.PROG.cons = cons;
-            console.log('shifts.json נטען · שבועות:', Object.keys(cons).join(', ') || '—');
-          }
-
-          /* --- כתיבת ICS --- */
-          const VER  = process.env.VER || String(Math.floor(Date.now() / 864e5));
-          const LIVE = 'https://natanelaz.github.io/ironman-vichy/';
-          const LITE = process.env.LITE === '1';
-          const OUT  = process.env.OUTF || 'vichy.ics';
-
-          const ICON = {swim:'🏊',bike:'🚴',run:'🏃',str:'🏋️',str2:'🏋️',mob:'🧘',race:'🏁'};
-          const CAT  = {swim:'שחייה',bike:'אופניים',run:'ריצה',str:'כוח',str2:'כוח',mob:'ניידות',race:'מרוץ'};
-          const SHORT= {bikeLong:'רכיבה ארוכה',runBrick:'Brick',runBrick2:'ריצת מעבר',runLong:'ריצה ארוכה',
-            bikeKey:'אופניים איכות',bikeEnd:'אופניים נפח',bikeSpin:'ספין שחרור',swimA:'שחייה סטים',
-            swimB:'שחיית ים',swimB2:'שחיית ים',swimC:'שחייה קלה',runEasy:'ריצה קלה',
-            str:'כוח רגליים',str2:'כוח ליבה',mob:'ניידות',race:'מרוץ'};
-          const RLBL = {bikeLong:'הרכיבה הארוכה',bikeKey:'אימון האיכות באופניים',bikeEnd:'רכיבת הנפח',
-            swimA:'שחיית הסט העיקרי',swimB:'שחיית הים',str:'כוח #1',runLong:'הריצה הארוכה'};
-
-          const strip = s => String(s).replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();
-          const esc   = s => String(s).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
-          const pad   = n => String(n).padStart(2,'0');
-          function fold(line){ const b=Buffer.from(line,'utf8'); if(b.length<=73) return line;
-            const out=[]; let k=0, first=true;
-            while(k<b.length){ const max=first?73:72; let e=Math.min(k+max,b.length);
-              while(e>k&&(b[e]&0xC0)===0x80) e--;
-              out.push((first?'':' ')+b.slice(k,e).toString('utf8')); k=e; first=false; }
-            return out.join('\r\n'); }
-          const stamp = (d,h)=>{const hh=Math.floor(h),mm=Math.round((h-hh)*60);
-            return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(hh)}${pad(mm)}00`;};
-          const HM = m => { const h=Math.floor(m/60), x=Math.round(m%60); return h?`${h}:${pad(x)}`:`${x} דק׳`; };
-          const shortName = s => s.role==='race'
-            ? strip(s.title).replace(/^מרוץ הכנה · /,'').replace(/ · יום ראשון.*$/,'')
-            : (SHORT[s.role]||strip(s.title).replace(/^[^·]+· /,''));
-
-          const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Vichy 2027//Ironman Plan//HE','CALSCALE:GREGORIAN','METHOD:PUBLISH',
-           fold('X-WR-CALNAME:Vichy 2027 · אימונים'+(LITE?' (מקוצר)':'')),'X-WR-TIMEZONE:Asia/Jerusalem',
-           'REFRESH-INTERVAL;VALUE=DURATION:PT6H','X-PUBLISHED-TTL:PT6H',
-           fold('X-WR-CALDESC:'+esc(`תוכנית 52 שבועות ל-IRONMAN Vichy · נבנה אוטומטית ${new Date().toISOString().slice(0,10)} · אירוע נפרד לכל אימון · ${LIVE}`)),
-           'BEGIN:VTIMEZONE','TZID:Asia/Jerusalem',
-           'BEGIN:STANDARD','DTSTART:19701025T020000','TZOFFSETFROM:+0300','TZOFFSETTO:+0200','RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU','END:STANDARD',
-           'BEGIN:DAYLIGHT','DTSTART:19700327T020000','TZOFFSETFROM:+0200','TZOFFSETTO:+0300','RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1FR','END:DAYLIGHT',
-           'END:VTIMEZONE'];
-
-          let count=0;
-          for (const w of API.WEEKS) {
-            const {days} = API.planWeekAdaptive(w.n), dates = API.weekDates(w.n);
-            days.forEach((D,di)=>{
-              const items = D.items.filter(it=>!(w.n===52&&it.s.role==='race'));
-              if(!items.length) return;
-              const day=dates[di], dayMin=items.reduce((a,x)=>a+x.s.dur,0);
-              const dt=API.dayType(dayMin), tg=API.dayTarget(dt), ctx=API.ctxOf(w.n,di);
-              const blocks=items.filter(x=>x.s.t!=='mob'&&!x.s.after).length;
-              const seen={};
-              items.forEach((it,ix)=>{
-                const s=it.s, f=API.fuelFor(s,w), rv=API.recoveryFor(s,w);
-                const k=(seen[s.role]=(seen[s.role]||0)+1), suff=k>1?'-'+k:'';
-                const cont=!!s.after, P=[];
-                P.push(`שבוע ${w.n}/52 · ${API.PH_META[w.ph].n}${w.rec?' · שבוע התאוששות':''}${w.race?' · שבוע מרוץ':w.prep?' · שבוע עם מרוץ הכנה':''}`);
-                P.push(`${ctx.t} · ${blocks===1?'בלוק אחד':blocks+' בלוקים'} ביום · סה"כ ${HM(dayMin)}`);
-                if(cont) P.push(`◆ החלק השני של אימון משולב — ${s.after.gap?`${Math.round(s.after.gap*60)} דקות`:'מיד'} אחרי ${RLBL[s.after.role]||s.after.role}.`);
-                P.push('');
-                P.push(`${HM(s.dur)} · RPE ${s.rpe}${s.dist&&s.dist!=='—'?' · '+strip(s.dist):''}${s.where?' · '+strip(s.where):''}`);
-                P.push('');
-                if(LITE){
-                  P.push(strip(s.blocks[0]||''));
-                  if(f&&f.cho) P.push(`תזונה תוך כדי: ${f.cho} ג׳ פחמימה/שעה · ${f.fl} מ״ל/שעה · ${f.na} מ״ג נתרן/שעה`);
-                  if(rv) P.push(`מנוחה אחרי: ${rv.next}ש׳ לעומס דומה · ${rv.quality}ש׳ לאיכות באותו ענף`);
-                } else {
-                  s.blocks.forEach(x=>P.push(strip(x)));
-                  if(s.target) P.push('', '◆ '+strip(s.target));
-                  (s.cues||[]).forEach(c=>P.push('• '+strip(c)));
-                  if(f) P.push('', `תזונה — לפני: ${strip(f.pre)}`, `במהלך: ${strip(f.during)}`, `אחרי: ${strip(f.post)}`);
-                  if(rv) P.push('', `מנוחה אחרי: ${rv.same}ש׳ לאימון קל בענף אחר · ${rv.next}ש׳ לעומס דומה · ${rv.quality}ש׳ לאיכות באותו ענף`);
-                  if(ix===0) P.push('', `━━━ תזונה יומית · ${dt.n}`,
-                    `${tg.kcal.toLocaleString('en-US')} קק"ל · ${tg.cho} ג׳ פחמימה · ${tg.pro} ג׳ חלבון · ${tg.fat} ג׳ שומן`,
-                    `נוזלים ${(2.5+dayMin/60*(API.heatWeek(w.n)?0.85:0.6)).toFixed(1)} ליטר · נתרן ${(Math.round((2500+dayMin/60*(API.heatWeek(w.n)?900:550))/10)*10).toLocaleString('en-US')} מ"ג`);
-                  P.push('', 'הדף המלא: '+LIVE);
-                }
-                const st=it.st-di*24, en=Math.min(it.en-di*24,23.9);
-                const ev=['BEGIN:VEVENT',
-                  `UID:vichy-w${w.n}-d${di}${ix===0?'':'-'+s.role+suff}@vichy2027`,
-                  `SEQUENCE:${VER}`,'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',
-                  `DTSTART;TZID=Asia/Jerusalem:${stamp(day,st)}`,
-                  `DTEND;TZID=Asia/Jerusalem:${stamp(day,en)}`,
-                  fold(`SUMMARY:${ICON[s.t]} ${cont?'↳ ':''}${esc(shortName(s))} · ${HM(s.dur)}`),
-                  fold(`DESCRIPTION:${esc(P.join('\n'))}`),
-                  fold(`LOCATION:${esc(strip(s.where||'').replace(/^—$/,''))}`),
-                  fold(`URL;VALUE=URI:${LIVE}`),
-                  `CATEGORIES:${CAT[s.t]||'אימון'}`,'TRANSP:OPAQUE'];
-                if(!cont&&s.t!=='mob') ev.push('BEGIN:VALARM','TRIGGER:-PT45M','ACTION:DISPLAY',
-                  fold(`DESCRIPTION:${esc('בעוד 45 דק׳: '+shortName(s)+' · '+HM(s.dur))}`),'END:VALARM');
-                ev.push('END:VEVENT'); L.push(...ev); count++;
-              });
-            });
-          }
-          L.push('BEGIN:VEVENT','UID:vichy-raceday@vichy2027',`SEQUENCE:${VER}`,
-           'DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',
-           'DTSTART;TZID=Asia/Jerusalem:20270822T064000','DTEND;TZID=Asia/Jerusalem:20270822T203000',
-           fold('SUMMARY:🏁 IRONMAN VICHY · יום המרוץ'),
-           fold('DESCRIPTION:'+esc(['3.8 ק"מ שחייה ללא חליפה · 180 ק"מ עם כ-2,400 מ׳ טיפוס · מרתון בחום',
-            'השכמה 04:00 · זינוק 06:40','','יעד עבודה 13:45 · חלון ריאלי 13:15–14:30'].join('\n'))),
-           'LOCATION:Vichy\\, France',fold(`URL;VALUE=URI:${LIVE}`),'CATEGORIES:מרוץ','TRANSP:OPAQUE',
-           'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY',fold('DESCRIPTION:'+esc('מחר: IRONMAN VICHY · השכמה 04:00')),'END:VALARM',
-           'END:VEVENT','END:VCALENDAR');
-
-          fs.writeFileSync(OUT, L.join('\r\n')+'\r\n');
-          console.log(OUT, '· אירועים:', count+1, '· בייטים:', fs.statSync(OUT).size);
-          EOF
           node build-cal.mjs
           LITE=1 OUTF=vichy-lite.ics node build-cal.mjs
 
-      # ─────────── 3 · בדיקה לפני שמירה ───────────
-      - name: Validate every calendar
+      - name: Validate
         run: |
           node -e "
             const fs=require('fs');
@@ -301,13 +60,13 @@ jobs:
             }
           "
 
-      # ─────────── 4 · שמירה ───────────
       - name: Commit if anything changed
         run: |
-          rm -f fetch-waves.mjs build-cal.mjs
           git config user.name  "Vichy Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A vichy.ics vichy-lite.ics waves.ics waves-data.json
+          for f in vichy.ics vichy-lite.ics waves.ics waves-data.json; do
+            [ -f "$f" ] && git add "$f" || true
+          done
           if git diff --staged --quiet; then
             echo "nothing changed"
           else
