@@ -3073,6 +3073,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
+const BUILD="2026-08-29c";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json"};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
 let ghTok=null;  try{ghTok=localStorage.getItem(TKEY)||null;}catch(e){}
@@ -3159,6 +3160,8 @@ function renderSync(busy){
     <p class="thint" style="margin:8px 0 0">
       <a href="subscribe.html" style="color:var(--acc);font-weight:600">מנוי ללוח השנה בטלפון →</a>
       <span style="color:var(--ink3)"> · vichy.ics · vichy-lite.ics · waves.ics</span></p>
+    <p class="thint" style="margin:6px 0 0;color:var(--ink3)">גרסת האתר: <span class="ltr">${BUILD}</span>
+      <button class="minibtn" id="forcefresh" style="margin-inline-start:8px">רענון מלא</button></p>
     ${ghTok?"":`
     <div class="prow" style="margin-top:10px">
       <input id="ghtok" type="password" inputmode="text" autocomplete="off" spellcheck="false"
@@ -3335,7 +3338,15 @@ document.addEventListener("click",e=>{
     if(i&&i.value.trim()){setTok(i.value.trim()); ghSync(true);} return;}
   if(e.target.closest("#syncoff")){ setTok(null); return;}
   if(e.target.closest("#syncnow")){ ghSync(true); return;}
+  if(e.target.closest("#forcefresh")){ forceFresh(); return;}
 });
+/* מנקה מטמון ו-service worker ומושך את הגרסה העדכנית מהשרת */
+async function forceFresh(){
+  try{ if("caches" in window){ const k=await caches.keys(); await Promise.all(k.map(x=>caches.delete(x))); } }catch(e){}
+  try{ if(navigator.serviceWorker){ const rs=await navigator.serviceWorker.getRegistrations();
+        await Promise.all(rs.map(r=>r.unregister())); } }catch(e){}
+  location.replace(location.pathname+"?v="+Date.now());
+}
 window.addEventListener("online",()=>{if(ghTok&&syncSt.ok===false) ghSync(false);});
 setTimeout(()=>{syncBooted=true;},1500);
 document.getElementById("prst").addEventListener("click",resetProg);

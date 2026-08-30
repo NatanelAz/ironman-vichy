@@ -1,5 +1,5 @@
 /* Vichy 2027 — service worker: רשת קודם, ומטמון כשאין רשת */
-const CACHE = 'vichy-v2';
+const CACHE = 'vichy-v3';
 const SHELL = ['./', './index.html', './subscribe.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png', './icon-180.png'];
 
