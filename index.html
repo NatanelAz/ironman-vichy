@@ -1050,6 +1050,10 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
   <div class="block">
     <h2>השבוע — יום אחר יום</h2>
     <p style="max-width:66ch;color:var(--ink2)">נפתח תמיד על השבוע הנוכחי, והיום של היום מסומן. לחיצה על אימון פותחת את הפירוט המלא — סטים, תזונה, התאוששות וסימון ביצוע. אפשר גם לדפדף לכל שבוע אחר בעונה.</p>
+    <div class="pcard" style="margin-bottom:14px">
+      <div class="eyebrow" style="margin-bottom:8px">סנכרון ללוח השנה בטלפון</div>
+      <div data-syncbox></div>
+    </div>
     <div class="wkpickwrap">
       <div class="eyebrow" style="margin-bottom:8px">בחר שבוע</div>
       <div id="wkpick2" class="wkpick"></div>
@@ -3073,7 +3077,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-08-29c";
+const BUILD="2026-08-30a";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json"};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
 let ghTok=null;  try{ghTok=localStorage.getItem(TKEY)||null;}catch(e){}
@@ -3139,7 +3143,8 @@ function agoTxt(t){ if(!t) return "";
   return m<1?"לפני רגע":m<60?`לפני ${m} דק׳`:m<1440?`לפני ${Math.round(m/60)} שעות`:`לפני ${Math.round(m/1440)} ימים`;}
 
 function renderSync(busy){
-  const el=document.getElementById("syncbox"); if(!el) return;
+  const hosts=document.querySelectorAll("#syncbox,[data-syncbox]");
+  if(!hosts.length) return;
   const n=Object.keys(consPayload()).length;
   const dot=busy?"warn":!ghTok?"":syncSt.ok===true?"ok":syncSt.ok===false?"bad":"";
   const line=busy?busy
@@ -3147,29 +3152,37 @@ function renderSync(busy){
     :syncSt.ok===true?`מסונכרן · ${agoTxt(syncSt.last)}`
     :syncSt.ok===false?`שגיאה: ${syncSt.msg}`
     :"מחובר · ממתין לשינוי הראשון";
-  el.innerHTML=`
+  const HTML=`
     <div class="syncrow">
       <span class="sdot ${dot}"></span>
       <b>${line}</b>
-      ${ghTok?`<button class="minibtn" id="syncnow"${busy?" disabled":""}>סנכרן עכשיו</button>
-               <button class="minibtn danger" id="syncoff">נתק</button>`:""}
+      ${ghTok?`<button class="minibtn" data-act="syncnow"${busy?" disabled":""}>סנכרן עכשיו</button>
+               <button class="minibtn danger" data-act="syncoff">נתק</button>`:""}
     </div>
     <p class="thint" style="margin:8px 0 0">${ghTok
       ? `${n} שבועות עם אילוצים שאינם ברירת המחדל נשלחים למאגר. כל שינוי במשמרות נשמר אוטומטית תוך כ-4 שניות, גיטהאב בונה מחדש את לוח השנה, והאייפון מושך אותו בפעם הבאה שהוא מתרענן.`
-      : `כדי שהשינויים יגיעו ללוח השנה בטלפון צריך להדביק כאן טוקן של גיטהאב. הוא נשמר <strong>רק במכשיר הזה</strong> — לא בדף ולא במאגר.`}</p>
+      : `<strong>המשמרות שאתה מסמן נשארות כרגע בטלפון בלבד ולא מגיעות ליומן.</strong> «טוקן» הוא סיסמה חד-פעמית שנותנת לדף הזה רשות לכתוב קובץ אחד במאגר שלך בגיטהאב. הוא נשמר <strong>רק במכשיר הזה</strong> — לא בדף, לא במאגר, ואף אחד אחר לא רואה אותו.`}</p>
     <p class="thint" style="margin:8px 0 0">
       <a href="subscribe.html" style="color:var(--acc);font-weight:600">מנוי ללוח השנה בטלפון →</a>
-      <span style="color:var(--ink3)"> · vichy.ics · vichy-lite.ics · waves.ics</span></p>
+      <span style="color:var(--ink3)">&nbsp;— אימונים, גרסה מקוצרת, ומצב הים</span></p>
     <p class="thint" style="margin:6px 0 0;color:var(--ink3)">גרסת האתר: <span class="ltr">${BUILD}</span>
-      <button class="minibtn" id="forcefresh" style="margin-inline-start:8px">רענון מלא</button></p>
+      <button class="minibtn" data-act="forcefresh" style="margin-inline-start:8px">רענון מלא</button></p>
     ${ghTok?"":`
     <div class="prow" style="margin-top:10px">
-      <input id="ghtok" type="password" inputmode="text" autocomplete="off" spellcheck="false"
+      <input class="ghtok" type="password" inputmode="text" autocomplete="off" spellcheck="false"
         placeholder="github_pat_… או ghp_…" style="flex:1 1 220px">
-      <button class="minibtn" id="syncsave">חבר</button>
+      <button class="minibtn" data-act="syncsave">חבר</button>
     </div>
-    <p class="thint" style="margin-top:8px">ליצור ב-<span class="ltr">github.com/settings/personal-access-tokens/new</span> ←
-      Only select repositories ← <span class="ltr">ironman-vichy</span> ← Permissions → <strong>Contents: Read and write</strong>.</p>`}`;
+    <ol class="thint" style="margin:10px 0 0;padding-inline-start:18px;line-height:1.75">
+      <li>פותחים <a class="ltr" style="color:var(--acc);font-weight:600" target="_blank" rel="noopener"
+          href="https://github.com/settings/personal-access-tokens/new">github.com/settings/personal-access-tokens/new</a></li>
+      <li><b>Token name</b> — כל שם, למשל <span class="ltr">vichy</span>. <b>Expiration</b> — <span class="ltr">No expiration</span>.</li>
+      <li><b>Repository access</b> → <span class="ltr">Only select repositories</span> → לבחור <span class="ltr">ironman-vichy</span>.</li>
+      <li><b>Permissions</b> → <span class="ltr">Repository permissions</span> → לחפש <span class="ltr">Contents</span> → לבחור <span class="ltr">Read and write</span>.</li>
+      <li>למטה <span class="ltr">Generate token</span> → להעתיק את המחרוזת שמתחילה ב-<span class="ltr">github_pat_</span> → להדביק כאן ולחיצה על «חבר».</li>
+    </ol>
+    <p class="thint" style="margin-top:8px;color:var(--ink3)">המחרוזת מוצגת פעם אחת בלבד. אם איבדת אותה — פשוט יוצרים חדשה.</p>`}`;
+  hosts.forEach(el=>{el.innerHTML=HTML;});
 }
 /* ============ גרירת אימונים בין ימים ============ */
 /* Pointer Events — אותו קוד למגע ולעכבר. האחיזה נתפסת אחרי לחיצה ארוכה
@@ -3334,11 +3347,16 @@ document.getElementById("pimpbtn").addEventListener("click",()=>{
 });
 document.getElementById("pdo").addEventListener("click",importProg);
 document.addEventListener("click",e=>{
-  if(e.target.closest("#syncsave")){const i=document.getElementById("ghtok");
-    if(i&&i.value.trim()){setTok(i.value.trim()); ghSync(true);} return;}
-  if(e.target.closest("#syncoff")){ setTok(null); return;}
-  if(e.target.closest("#syncnow")){ ghSync(true); return;}
-  if(e.target.closest("#forcefresh")){ forceFresh(); return;}
+  const act=e.target.closest("[data-act]");
+  if(act){
+    const card=act.closest("#syncbox,[data-syncbox]")||document;
+    const a=act.dataset.act;
+    if(a==="syncsave"){ const i=card.querySelector(".ghtok");
+      if(i&&i.value.trim()){setTok(i.value.trim()); ghSync(true);} return;}
+    if(a==="syncoff"){ setTok(null); return;}
+    if(a==="syncnow"){ ghSync(true); return;}
+    if(a==="forcefresh"){ forceFresh(); return;}
+  }
 });
 /* מנקה מטמון ו-service worker ומושך את הגרסה העדכנית מהשרת */
 async function forceFresh(){
