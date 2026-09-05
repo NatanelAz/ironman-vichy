@@ -1,19 +1,15 @@
 {
  "2": [
   {
-   "role": "runBrick",
-   "type": "run",
-   "title": "ריצה · Brick מיד אחרי הרכיבה הארוכה",
-   "plannedMin": 10,
-   "rpePlanned": "4",
+   "role": "bikeLong",
+   "type": "bike",
+   "title": "אופניים · הרכיבה הארוכה",
+   "plannedMin": 90,
+   "rpePlanned": "4–5",
    "st": "full",
-   "ts": 1788587546020,
-   "dur": 10,
-   "rpe": 4,
-   "knee": 1,
-   "dist": 2,
-   "hr": 160,
-   "sleep": 6
+   "ts": 1788613860344,
+   "dur": 90,
+   "rpe": 3
   }
  ]
 }
