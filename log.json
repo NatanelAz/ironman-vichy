@@ -7,9 +7,21 @@
    "plannedMin": 90,
    "rpePlanned": "4–5",
    "st": "full",
-   "ts": 1788613860344,
+   "ts": 1788613868045,
    "dur": 90,
-   "rpe": 3
+   "rpe": 3,
+   "hr": 160
+  },
+  {
+   "role": "runBrick",
+   "type": "run",
+   "title": "ריצה · Brick מיד אחרי הרכיבה הארוכה",
+   "plannedMin": 10,
+   "rpePlanned": "4",
+   "st": "full",
+   "ts": 1788613871487,
+   "dur": 10,
+   "rpe": 5
   }
  ]
 }
