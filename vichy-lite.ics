@@ -78,7 +78,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20260824T070000
 DTEND;TZID=Asia/Jerusalem:20260824T074500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 45 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 45 דק׳
 DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 5–6 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:10 סה"
  כ\nשבוע 1/52 · הרצה והסתגלות · יום הכוח\n\n3×
@@ -91,8 +91,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 45 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 45 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -167,7 +167,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20260826T103500
 DTEND;TZID=Asia/Jerusalem:20260826T111500
-SUMMARY:🏋️ כוח 2/2 · ליבה וירכיים · 40 דק׳
+SUMMARY:🏋️ כוח · ליבה וירכיים · 40 דק׳
 DESCRIPTION:◆ האימון הזה: 40 דק׳ · RPE 5 · חדר הכו
  שר בעבודה\nהיום כולו: 2 אימונים · 1:45 סה"כ\n
  שבוע 1/52 · הרצה והסתגלות · יום האיכות באו
@@ -181,8 +181,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 2/2 · ליבה וירכיים · 
- 40 דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · ליבה וירכיים · 40 
+ דק׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -1914,7 +1914,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261005T070000
 DTEND;TZID=Asia/Jerusalem:20261005T081500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:15
+SUMMARY:🏋️ כוח · רגליים כבד · 1:15
 DESCRIPTION:◆ האימון הזה: 1:15 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 1:15 סה"כ\n
  שבוע 7/52 · יסודות אירוביים · יום הכוח · ש
@@ -1928,7 +1928,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:15
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:15
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -3144,7 +3144,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261102T070000
 DTEND;TZID=Asia/Jerusalem:20261102T082000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:20
+SUMMARY:🏋️ כוח · רגליים כבד · 1:20
 DESCRIPTION:◆ האימון הזה: 1:20 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 1:20 סה"כ\n
  שבוע 11/52 · יסודות אירוביים · יום הכוח · ש
@@ -3158,7 +3158,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:20
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:20
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -4427,7 +4427,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261130T070000
 DTEND;TZID=Asia/Jerusalem:20261130T080000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
+SUMMARY:🏋️ כוח · רגליים כבד · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 1:00 סה"כ\n
  שבוע 15/52 · סבולת שרירית וטיפוס · יום הכו
@@ -4441,7 +4441,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:00
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:00
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -5737,7 +5737,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261228T070000
 DTEND;TZID=Asia/Jerusalem:20261228T080500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:05
+SUMMARY:🏋️ כוח · רגליים כבד · 1:05
 DESCRIPTION:◆ האימון הזה: 1:05 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 1:05 סה"כ\n
  שבוע 19/52 · סבולת שרירית וטיפוס · יום הכו
@@ -5751,7 +5751,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:05
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:05
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -8250,7 +8250,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270222T070000
 DTEND;TZID=Asia/Jerusalem:20270222T074500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 45 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 45 דק׳
 DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: אימון אחד · 45 דק׳
   סה"כ\nשבוע 27/52 · בנייה 1 · סף · יום הכוח · 
@@ -8264,8 +8264,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 45 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 45 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -9511,7 +9511,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270322T070000
 DTEND;TZID=Asia/Jerusalem:20270322T075500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 55 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:25 סה"
  כ\nשבוע 31/52 · בנייה 1 · סף · יום הכוח · שבו
@@ -9525,8 +9525,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 55 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 55 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -10804,7 +10804,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270419T070000
 DTEND;TZID=Asia/Jerusalem:20270419T075500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 55 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:25 סה"
  כ\nשבוע 35/52 · בנייה 1 · סף · יום הכוח · שבו
@@ -10818,8 +10818,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 55 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 55 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -11948,7 +11948,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270517T070000
 DTEND;TZID=Asia/Jerusalem:20270517T074500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 45 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 45 דק׳
 DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:10 סה"
  כ\nשבוע 39/52 · בנייה 2 · ספציפיות Vichy · יום 
@@ -11962,8 +11962,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 45 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 45 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -12984,7 +12984,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270607T070000
 DTEND;TZID=Asia/Jerusalem:20270607T081500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:15
+SUMMARY:🏋️ כוח · רגליים כבד · 1:15
 DESCRIPTION:◆ האימון הזה: 1:15 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: 2 אימונים · 1:45 סה"כ\nש
  בוע 42/52 · בנייה 2 · ספציפיות Vichy · יום הכו
@@ -12998,7 +12998,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:15
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:15
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -13297,7 +13297,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270614T070000
 DTEND;TZID=Asia/Jerusalem:20270614T074500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 45 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 45 דק׳
 DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:10 סה"
  כ\nשבוע 43/52 · בנייה 2 · ספציפיות Vichy · יום 
@@ -13311,8 +13311,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 45 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 45 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -13973,7 +13973,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270628T070000
 DTEND;TZID=Asia/Jerusalem:20270628T080000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
+SUMMARY:🏋️ כוח · רגליים כבד · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: 2 אימונים · 1:30 סה"כ\nש
  בוע 45/52 · שיא · חום וטיפוס · יום הכוח\n\n3×5
@@ -13987,7 +13987,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:00
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:00
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -14311,7 +14311,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270705T070000
 DTEND;TZID=Asia/Jerusalem:20270705T080500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:05
+SUMMARY:🏋️ כוח · רגליים כבד · 1:05
 DESCRIPTION:◆ האימון הזה: 1:05 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: 2 אימונים · 1:35 סה"כ\nש
  בוע 46/52 · שיא · חום וטיפוס · יום הכוח\n\n3×5
@@ -14325,7 +14325,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:05
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:05
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -14624,7 +14624,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270712T070000
 DTEND;TZID=Asia/Jerusalem:20270712T074000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 40 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 40 דק׳
 DESCRIPTION:◆ האימון הזה: 40 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:10 סה"
  כ\nשבוע 47/52 · שיא · חום וטיפוס · יום הכוח 
@@ -14638,8 +14638,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 40 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 40 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -14937,7 +14937,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270719T070000
 DTEND;TZID=Asia/Jerusalem:20270719T080000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
+SUMMARY:🏋️ כוח · רגליים כבד · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: 2 אימונים · 1:30 סה"כ\nש
  בוע 48/52 · שיא · חום וטיפוס · יום הכוח\n\n3×5
@@ -14951,7 +14951,7 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:00
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 1:00
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -15275,7 +15275,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270726T070000
 DTEND;TZID=Asia/Jerusalem:20270726T075000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 50 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 50 דק׳
 DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:25 סה"
  כ\nשבוע 49/52 · התחדדות · יום הכוח\n\n2×6 · מש
@@ -15288,8 +15288,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 50 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 50 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -15606,7 +15606,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270802T070000
 DTEND;TZID=Asia/Jerusalem:20270802T074000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 40 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 40 דק׳
 DESCRIPTION:◆ האימון הזה: 40 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: 2 אימונים · 1:10 סה"
  כ\nשבוע 50/52 · התחדדות · יום הכוח\n\n2×6 · מש
@@ -15619,8 +15619,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 40 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 40 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -15909,7 +15909,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270809T070000
 DTEND;TZID=Asia/Jerusalem:20270809T073000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 30 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 30 דק׳
 DESCRIPTION:◆ האימון הזה: 30 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: אימון אחד · 30 דק׳
   סה"כ\nשבוע 51/52 · התחדדות · יום הכוח\n\n2×6 ·
@@ -15922,8 +15922,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 30 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 30 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -16161,7 +16161,7 @@ SEQUENCE:20701
 DTSTAMP:20260905T000000Z
 DTSTART;TZID=Asia/Jerusalem:20270816T083000
 DTEND;TZID=Asia/Jerusalem:20270816T085500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 25 דק׳
+SUMMARY:🏋️ כוח · רגליים כבד · 25 דק׳
 DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 4 · חדר כוש
  ר\nהיום כולו: 2 אימונים · 1:10 סה"כ\nשבוע 52/52 
  · התחדדות · יום הכוח · שבוע מרוץ\n\n2×6 · מ
@@ -16174,8 +16174,8 @@ TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 25 
- דק׳
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 25 דק
+ ׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
