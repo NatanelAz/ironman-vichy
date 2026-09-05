@@ -19,9 +19,11 @@
    "plannedMin": 10,
    "rpePlanned": "4",
    "st": "full",
-   "ts": 1788613871487,
+   "ts": 1788613880676,
    "dur": 10,
-   "rpe": 5
+   "rpe": 5,
+   "dist": 2,
+   "hr": 160
   }
  ]
 }
