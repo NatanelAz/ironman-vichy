@@ -7,9 +7,10 @@
    "plannedMin": 10,
    "rpePlanned": "4",
    "st": "full",
-   "ts": 1788587384574,
+   "ts": 1788587394325,
    "dur": 10,
-   "rpe": 4
+   "rpe": 4,
+   "knee": 1
   }
  ]
 }
