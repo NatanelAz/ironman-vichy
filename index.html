@@ -809,6 +809,32 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
 .msalt{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;
   padding:9px 11px;background:var(--surface2);font-size:.8rem;line-height:1.6;color:var(--ink2);margin-bottom:4px}
 .msalt b{flex:0 0 auto;color:var(--ink)}
+
+.lgwarn{margin:8px 0 0;padding:8px 11px;border-radius:9px;font-size:.8rem;line-height:1.6;
+  background:color-mix(in srgb,#C1801F 12%,var(--surface));
+  border:1px solid color-mix(in srgb,#C1801F 50%,var(--line));color:var(--ink2)}
+
+/* ---------- משימות ---------- */
+.tsum{display:flex;align-items:baseline;gap:9px;margin-bottom:14px}
+.tsum b{font-size:1.6rem;font-weight:600}
+.tsum i{font-style:normal;font-size:.8rem;color:var(--ink3)}
+.task{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);padding:12px 14px;margin-bottom:10px}
+.task.soon{border-color:color-mix(in srgb,#C1801F 45%,var(--line))}
+.task.late{border-color:color-mix(in srgb,var(--race) 55%,var(--line));
+  background:color-mix(in srgb,var(--race) 6%,var(--surface))}
+.task.done{opacity:.55}
+.task.done b{text-decoration:line-through}
+.ttop{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+.ttop b{font-size:.95rem}
+.tcat{font-size:.68rem;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--ink3)}
+.tcat.hard{border-color:color-mix(in srgb,var(--race) 50%,var(--line));color:var(--race)}
+.tdue{margin-inline-start:auto;font-size:.74rem;color:var(--ink3);white-space:nowrap}
+.tdue.soon{color:#C1801F;font-weight:600} .tdue.late{color:var(--race);font-weight:600}
+.task p{margin:0;font-size:.84rem;line-height:1.65;color:var(--ink2)}
+.tlink{margin-top:6px!important}
+.tlink a{color:var(--accent);font-weight:600;font-size:.8rem}
+.tbody{flex:1;min-width:0}
 </style></head><body>
 <header class="mast">
   <div class="mast-in wrap">
@@ -838,6 +864,7 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
     <button class="tab" role="tab" id="t-med" aria-controls="p-med" aria-selected="false">בדיקות רפואיות</button>
     <button class="tab" role="tab" id="t-life" aria-controls="p-life" aria-selected="false">משמרות ושינה</button>
     <button class="tab" role="tab" id="t-w1" aria-controls="p-w1" aria-selected="false">שבוע פתיחה</button>
+    <button class="tab" role="tab" id="t-tasks" aria-controls="p-tasks" aria-selected="false">משימות</button>
     <button class="tab" role="tab" id="t-ms" aria-controls="p-ms" aria-selected="false">אבני דרך</button>
     <button class="tab" role="tab" id="t-race" aria-controls="p-race" aria-selected="false">Vichy ויום המרוץ</button>
   </div>
@@ -1426,6 +1453,17 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
     <div class="callout"><strong>למה התקרה היא 21 שעות ולא יותר:</strong> 21 שעות אימון בשבוע עם שתי משמרות לילה שוות, מבחינת עומס פיזיולוגי כולל, לכ-25 שעות אצל מתאמן שישן שמונה שעות בלילה. התוכנית נוגעת ב-21 שעות בשבוע אחד בלבד מתוך 52 (שבוע 46), ונמצאת מעל 20 שעות בארבעה שבועות בסך הכול. כל שאר השנה יושבת בין 9 ל-20. אם המשמרות מתגברות, המסלול החלופי הוא תקרה של 18 שעות: מורידים 45 דקות מהרכיבה הארוכה ואת רכיבת הנפח של יום חמישי, ומגיעים לקו הזינוק עם 90% מהכושר ובלי פציעה.</div>
   </div>
 </section>
+<!-- ============ TASKS ============ -->
+<section class="panel" id="p-tasks" role="tabpanel" aria-labelledby="t-tasks" hidden>
+  <div class="block">
+    <h2>המשימות שלי</h2>
+    <p style="max-width:68ch;color:var(--ink2)">כל מה שאינו אימון אבל בלעדיו אין מרוץ — רישיונות,
+      הרשמות, אישורים ולוגיסטיקה. כל משימה עם תאריך יעד, ומה שדחוף קופץ גם במסך «היום».
+      הסימון נשמר ומסתנכרן בין המכשירים.</p>
+    <div id="tasksout"></div>
+  </div>
+</section>
+
 <!-- ============ MILESTONES ============ -->
 <section class="panel" id="p-ms" role="tabpanel" aria-labelledby="t-ms" hidden>
   <div class="block">
@@ -2644,7 +2682,7 @@ function drawToday(){
   :`<div class="hero done-all"><div class="hero-name">שבוע ${n} הושלם</div>
       <p class="hero-set">כל האימונים סומנו. ${dow===6?"מחר מתחיל שבוע חדש.":"מנוחה טובה."}</p></div>`;
 
-  host.innerHTML=`${banner}<div class="todaygrid"><div class="tmain">${heroHtml}
+  host.innerHTML=`${banner}${typeof tasksAlert==="function"?tasksAlert():""}<div class="todaygrid"><div class="tmain">${heroHtml}
   <div class="tcard ${ctx.c}">
     <div class="trow1">
       <div>
@@ -3478,6 +3516,33 @@ function lgDefault(s,field){
   return null;
 }
 
+/* ---------- בדיקת סבירות ----------
+   הטעות הנפוצה ביותר היא להזין את הדופק המקסימלי במקום הממוצע. הגרפים
+   של הכושר נשענים על הדופק הממוצע, ולכן מספר שגוי אחד מרעיל את המגמה.  */
+function lgSanity(L,s){
+  const hr=num(L&&L.hr), rpe=num(L&&L.rpe), d=num(L&&L.dist), m=num(L&&L.dur);
+  if(hr){
+    if(hr>200||hr<70) return `דופק ${hr} נראה חריג. ודא שזה הדופק <strong>הממוצע</strong> באימון.`;
+    if(rpe && rpe<=3 && hr>=150)
+      return `דופק ${hr} עם RPE ${rpe} לא מסתדר — במאמץ קל כזה מצפים ל-120–145.
+              רוב הסיכוי שזה <strong>הדופק המקסימלי</strong> ולא הממוצע. שווה לבדוק בשעון.`;
+    if(rpe && rpe>=8 && hr<120)
+      return `דופק ${hr} עם RPE ${rpe} נמוך מהצפוי. ייתכן שהרצועה איבדה קשר בתחילת האימון.`;
+  }
+  /* קצב או מהירות בלתי סבירים */
+  if(d&&m&&m>0){
+    if(s.t==="run"){ const p=m/d;
+      if(p<1.0) return `מרחק ${d} עם משך ${m} דק׳ נותן קצב בלתי אפשרי. אם רשמת מטרים — כאן צריך <strong>קילומטרים</strong>.`;
+      if(p<3.0) return `קצב ${Math.floor(p)}:${String(Math.round((p%1)*60)).padStart(2,"0")} לק״מ מהיר מאוד. ודא שהמרחק בקילומטרים.`;
+      if(p>12)  return `קצב איטי מאוד — ייתכן שהמרחק או המשך הוזנו הפוך.`; }
+    if(s.t==="bike"){ const v=d/(m/60);
+      if(v>120) return `מרחק ${d} עם משך ${m} דק׳ נותן מהירות בלתי אפשרית. אם רשמת מטרים — כאן צריך <strong>קילומטרים</strong>.`;
+      if(v>50) return `מהירות ${v.toFixed(0)} קמ״ש גבוהה מאוד. ודא שהמרחק בקילומטרים.`;
+      if(v<8)  return `מהירות ${v.toFixed(0)} קמ״ש נמוכה מאוד — ייתכן שהמרחק או המשך הוזנו הפוך.`; }
+  }
+  return "";
+}
+
 /* ---------- טופס הדיווח ---------- */
 const CHIPS = (name,cur,from,to,cls) => {
   /* שורה אחת נקייה תמיד — רשת בעמודות במקום גלישה לא אחידה */
@@ -3538,6 +3603,7 @@ function lgPart(n,s,multi){
           NUMF(lbl,"w_"+id,L["w_"+id],"","ק״ג","",sk)).join(""):""}
     </div>
     ${s.t==="swim"?`<p class="thint lgnote">בים ה-GPS לא אמין — הזמן והתחושה הם המדד. מרחק רק אם אתה בטוח בו.</p>`:""}
+    ${(()=>{const w=lgSanity(L,s); return w?`<p class="lgwarn">${w}</p>`:"";})()}
 
     ${(()=>{const can={dur:s.dur, dist:planDist(s), hr:avgHR(s.t)};
       const fill=F.filter(x=>x!=="lift"&&L[x]==null&&can[x]!=null);
@@ -4154,8 +4220,10 @@ const SHORTNM = {bikeLong:"הרכיבה הארוכה", runBrick:"Brick — רי�
 /* ============ MENU ENGINE ============
    בונה תפריט יומי אמיתי מתוך אותם יעדים שכבר מחושבים ב-dayTarget.
    שלושה אילוצים מעצבים אותו:
-   1 · כשרות — חלבי מוקדם, בשרי בערב. כך אין המתנה בין בשר לחלב לעולם.
-   2 · חלבי אחרי אימון הוא גם הבחירה הפיזיולוגית הטובה ביותר (ספיגה מהירה, לאוצין).
+   1 · כשרות — הארוחה הבשרית היא הצהריים. כל מה שבא אחריה נבדק מול
+       זמן ההמתנה (MEAT_WAIT): חלבי רק אם עברו מספיק שעות, אחרת פרווה.
+   2 · חלבי אחרי אימון הוא הבחירה הפיזיולוגית הטובה ביותר (ספיגה מהירה,
+       לאוצין) — ולכן הוא נשמר לאימוני הבוקר, שאינם בצל הארוחה הבשרית.
    3 · בבית צריך להכין מראש; בעבודה יש בחירה חופשית.                     */
 
 const MKEY = "vichy.menuloc.v1";
@@ -4225,6 +4293,9 @@ const showAmt = (id,g) => {
 
 /* ---------- שלד היום: אילו ארוחות, מתי, ואיפה ----------
    נגזר משעות האימון בפועל של אותו יום, לא מלוח זמנים כללי.        */
+/* זמן ההמתנה בין בשרי לחלבי, בשעות. משנים כאן — כל התפריט מתעדכן. */
+const MEAT_WAIT = 3;
+
 function mealPlan(n, dow){
   const ad=planWeekAdaptive(n), day=ad.days[dow];
   const items=(day.items||[]).slice().sort((a,b)=>a.st-b.st);
@@ -4237,49 +4308,84 @@ function mealPlan(n, dow){
   const M=[];
   const add=(id,t,name,loc,tag,w)=>M.push({id,t,name,loc,tag,w});
 
+  /* ---- מיקום הארוחה הבשרית ----
+     מנה בשרית גדולה יושבת בבטן שעתיים-שלוש. אסור לה ליפול בתוך
+     חלון של 2.5 שעות לפני אימון, בתוך אימון, או בחלון שאחריו.      */
+  const free = t => real.every(x=>{ const st=H(x), en=x.en-dow*24;
+    return !(t > st-2.5 && t < en+0.6); });
+  const mainAt = (pref, earliest) => {
+    if(free(pref)) return pref;
+    /* קודם מוקדם יותר — ארוחה מרכזית ב-12:00 היא עדיין צהריים.
+       רק אם אין חלון לפני האימון היא עוברת לאחריו.                */
+    for(let t=pref-0.5; t>=earliest; t-=0.5) if(free(t)) return t;
+    for(let t=pref+0.5; t<=18.5; t+=0.5) if(free(t)) return t;
+    return lastEnd!=null ? lastEnd+0.4 : pref;
+  };
+  /* אם הארוחה המרכזית נופלת ממש בחלון שאחרי האימון — היא־היא ארוחת
+     ההתאוששות. שתי ארוחות בהפרש דקות זו מזו הן טעות תכנון, לא תפריט. */
+  const merged = mt => lastEnd!=null && mt>=lastEnd+0.2 && mt<=lastEnd+1.2;
+  /* חלבי מותר לפני הארוחה הבשרית, או אחרי שעברו MEAT_WAIT שעות ממנה */
+  const kindAt = (t, mt) => (mt==null || t<=mt-0.5 || t>=mt+MEAT_WAIT) ? "d" : "p";
+
+  let mT=null;
   if(post){
-    /* קם ב-12:00 אחרי שינה. היום מתחיל מאוחר. */
-    add("wake",12.0,"ארוחה ראשונה אחרי השינה","home","d",0.22);
-    if(first!=null) add("pre",Math.max(12.5,first-1),"לפני האימון","home","p",0.14);
-    if(lastEnd!=null) add("post",lastEnd+0.4,"מיד אחרי האימון","home","d",0.22);
-    add("dinner",20.0,"ארוחת ערב","home","m",0.30);
-    add("night",22.0,"לפני השינה","home","p",0.12);
+    /* קם ב-12:00 אחרי שינה. היום מתחיל מאוחר, ולכן גם הארוחה המרכזית. */
+    mT=mainAt(14.0,13.0);
+    add("wake",12.0,"ארוחה ראשונה אחרי השינה","home","d",0.18);
+    if(first!=null && first>12.8) add("pre",Math.max(12.6,first-1),"לפני האימון","home","p",0.11);
+    if(merged(mT)){ mT=lastEnd+0.4; add("lunch",mT,"אחרי האימון · הארוחה המרכזית","home","m",0.49); }
+    else{ add("lunch",mT,"צהריים · הארוחה המרכזית","home","m",0.30);
+      if(lastEnd!=null) add("post",lastEnd+0.4,"מיד אחרי האימון","home",kindAt(lastEnd+0.4,mT),0.19); }
+    add("dinner",20.0,"ארוחת ערב","home",kindAt(20.0,mT),0.22);
+    add("night",22.0,"לפני השינה","home","p",0.10);
   } else if(first!=null && first<8){
     /* אימון בוקר מוקדם — הרכיבה הארוכה או ריצה */
+    mT=mainAt(13.0,11.5);
     add("pre",Math.max(4.5,first-0.6),"לפני היציאה","home","p",0.10);
-    add("post",lastEnd+0.5,"מיד אחרי האימון","home","d",0.24);
-    add("lunch",13.0,"צהריים",MENULOC,"p",0.24);
-    add("snack",16.5,"נשנוש אחה״צ",MENULOC,"d",0.12);
-    add("dinner",19.5,"ארוחת ערב","home","m",0.30);
+    if(merged(mT)){ mT=lastEnd+0.5; add("lunch",mT,"אחרי האימון · הארוחה המרכזית","home","m",0.54); }
+    else{ add("post",lastEnd+0.5,"מיד אחרי האימון","home",kindAt(lastEnd+0.5,mT),0.22);
+      add("lunch",mT,"צהריים · הארוחה המרכזית",MENULOC,"m",0.32); }
+    add("snack",16.5,"נשנוש אחה״צ",MENULOC,kindAt(16.5,mT),0.12);
+    add("dinner",19.5,"ארוחת ערב","home",kindAt(19.5,mT),0.24);
   } else {
-    add("bfast",7.0,"בוקר",MENULOC,"d",0.22);
-    if(first!=null) add("pre",Math.max(8,first-1),"לפני האימון",MENULOC,"p",0.12);
-    if(lastEnd!=null) add("post",lastEnd+0.4,"אחרי האימון",MENULOC,"d",0.20);
-    add("lunch",13.5,"צהריים",MENULOC,"p",0.20);
-    add("dinner",19.5,"ארוחת ערב","home","m",0.26);
+    mT=mainAt(13.5,11.5);
+    add("bfast",7.0,"בוקר",MENULOC,"d",0.20);
+    if(first!=null) add("pre",Math.max(8,first-1),"לפני האימון",MENULOC,"p",0.10);
+    if(merged(mT)){ mT=lastEnd+0.4; add("lunch",mT,"אחרי האימון · הארוחה המרכזית",MENULOC,"m",0.48); }
+    else{ if(lastEnd!=null) add("post",lastEnd+0.4,"אחרי האימון",MENULOC,kindAt(lastEnd+0.4,mT),0.18);
+      add("lunch",mT,"צהריים · הארוחה המרכזית",MENULOC,"m",0.30); }
+    add("dinner",19.5,"ארוחת ערב","home",kindAt(19.5,mT),0.22);
   }
   if(shift) add("shift",1.5,"ערכת משמרת · 23:00–06:00","work","p",0);
+  M.sort((a,b)=>a.t-b.t);
   /* מנרמלים משקלים */
   const tot=M.reduce((a,x)=>a+x.w,0)||1;
   M.forEach(x=>x.w=x.w/tot);
-  return {meals:M, shift, post, first, lastEnd, dayMin:real.reduce((a,x)=>a+x.s.dur,0)};
+  return {meals:M, shift, post, first, lastEnd, meatAt:mT, wait:MEAT_WAIT,
+          dayMin:real.reduce((a,x)=>a+x.s.dur,0)};
 }
 
 /* ---------- מרכיבי כל ארוחה ----------
    כל ארוחה: עוגן פחמימה + עוגן חלבון + תוספות. בבית — מה שאפשר להכין
    מראש; בעבודה — מה שיש בקפיטריה.                                    */
 const RECIPE = {
-  wake:  {d:{c:"oats",   p:"skyr",    x:["banana","nuts"]}},
+  wake:  {d:{c:"oats",   p:"skyr",    x:["banana","nuts"]},
+          p:{c:"oats",   p:"eggs",    x:["banana","tahini"]}},
   bfast: {d:{c:"bread",  p:"cottage", x:["veg","avo"]},
           p:{c:"bread",  p:"eggs",    x:["veg","tahini"]}},
   pre:   {p:{c:"banana", p:null,      x:["dates"]}},
-  post:  {d:{c:"granola",p:"skyr",    x:["banana"]}},
-  lunch: {p:{c:"rice",   p:"tuna",    x:["veg","oil","chick"]},
+  post:  {d:{c:"granola",p:"skyr",    x:["banana"]},
+          p:{c:"bread",  p:"tuna",    x:["veg","tahini"]}},
+  lunch: {m:{c:"rice",   p:"chicken", x:["veg","oil","chick"]},
+          p:{c:"rice",   p:"tuna",    x:["veg","oil","chick"]},
           d:{c:"pasta",  p:"cheese",  x:["veg","oil"]}},
   snack: {d:{c:"fruit",  p:"yog",     x:["nuts"]},
           p:{c:"fruit",  p:null,      x:["nuts"]}},
-  dinner:{m:{c:"potato", p:"chicken", x:["veg","oil"]}},
-  night: {p:{c:null,     p:"tuna",    x:["veg","tahini"]}},
+  dinner:{d:{c:"potato", p:"cottage", x:["veg","oil"]},
+          p:{c:"potato", p:"salmon",  x:["veg","oil"]},
+          m:{c:"potato", p:"chicken", x:["veg","oil"]}},
+  night: {p:{c:null,     p:"tuna",    x:["veg","tahini"]},
+          d:{c:null,     p:"cottage", x:["veg","tahini"]}},
   shift: {p:{c:"pita",   p:"tuna",    x:["veg","dates","nuts"]}},
 };
 
@@ -4306,7 +4412,7 @@ function buildMenu(n, dow){
   const out=[];
 
   /* חלבון קודם: הוא הקשה ביותר לפזר, ובארוחה בשרית צריכה להיות מנה אמיתית */
-  const pW={pre:0.03, wake:0.20, bfast:0.20, post:0.22, lunch:0.22, snack:0.12, dinner:0.28, night:0.10};
+  const pW={pre:0.03, wake:0.18, bfast:0.18, post:0.22, lunch:0.32, snack:0.10, dinner:0.20, night:0.10};
   const wSum=meals.reduce((a,m)=>a+(pW[m.id]??m.w),0)||1;
 
   for(const m of meals){
@@ -4397,9 +4503,22 @@ function buildMenu(n, dow){
   /* חלבון שנשאר חסר — משלימים באבקה בארוחה החלבית שאחרי האימון */
   const gap=T.pro-tot().p;
   if(gap>10){
-    const host=out.find(m=>m.kind==="d"&&m.id==="post")||out.find(m=>m.kind==="d")||out[0];
-    if(host){ host.items.push(["whey", mClamp("whey", mRound(gap/0.76, 5))]);
-      host.mac=macros(host.items); }
+    /* אבקת חלבון היא חלבית. בארוחה פרווה או בשרית היא אסורה —
+       שם משלימים במקור חלבון שמותר באותה ארוחה.                */
+    const host=out.find(m=>m.kind==="d"&&m.id==="post")
+             ||out.find(m=>m.kind==="d")
+             ||out.find(m=>m.kind==="p"&&m.id==="post")
+             ||out.find(m=>m.kind==="p")||out[0];
+    if(host){
+      const src = host.kind==="d" ? "whey" : host.kind==="m" ? "chicken" : "eggs";
+      const per = FOOD[src].p/100;
+      const F=FOOD[src];
+      let g=mClamp(src, mRound(gap/per, F.step));
+      if(F.unit) g=Math.min(FMAX[src], Math.max(F.g, Math.round(g/F.g)*F.g));
+      const ex=host.items.find(x=>x[0]===src);
+      if(ex) ex[1]=mClamp(src, ex[1]+g); else host.items.push([src,g]);
+      host.mac=macros(host.items);
+    }
   }
 
   const shift=P.meals.find(m=>m.id==="shift");
@@ -4414,7 +4533,8 @@ function buildMenu(n, dow){
   const naFood=G.na, naGap=Math.max(0, naTarget-naFood-duringNa);
   const saltG=Math.round(naGap/390*10)/10;
   return {meals:out, shiftKit, target:T, dt, dayMin:P.dayMin, duringCho, duringNa,
-    choTarget:cho, got:G, flTarget, naTarget, naGap, saltG, heat, post:P.post, shift:!!P.shift};
+    choTarget:cho, got:G, flTarget, naTarget, naGap, saltG, heat, post:P.post, shift:!!P.shift,
+    meatAt:P.meatAt, wait:P.wait, first:P.first};
 }
 
 /* ---------- תצוגה ---------- */
@@ -4481,12 +4601,182 @@ function menuHTML(n,dow){
       </div>`;})():""}
 
     <div class="callout" style="margin-top:14px">
-      <strong>למה חלבי בבוקר ובשרי בערב.</strong> זה פותר שני דברים בבת אחת: אחרי אימון
-      חלבון חלבי נספג הכי מהר ומכיל הכי הרבה לאוצין — בדיוק מה שצריך בחלון שאחרי המאמץ —
-      ובסדר הזה <strong>לעולם אין המתנה בין בשר לחלב</strong>, כי הבשרי תמיד אחרון.
-      ${M.post?"<br><br><strong>היום שאחרי משמרת:</strong> היום מתחיל ב-12:00 ולכן יש ארבע ארוחות בלבד. לא לנסות להשלים את הבוקר שהחמצת — זה מסתיים בבטן מלאה באימון.":""}
+      <strong>הצהריים היא הארוחה המרכזית — וגם הבשרית.</strong> היא מקבלת את נתח החלבון
+      הגדול ביותר של היום${M.meatAt!=null?` ומוגשת ב-<span class="ltr num">${clock(M.meatAt)}</span>`:""}.
+      ${M.meatAt!=null?`מכאן ואילך המערכת בודקת כל ארוחה מול <strong>המתנה של ${M.wait} שעות</strong>:
+      עד <span class="ltr num">${clock(M.meatAt+M.wait)}</span> רק פרווה, ואחרי זה חלבי שוב מותר.
+      לכן ארוחת הערב משתנה בין הימים — זו לא חוסר עקביות, זה החישוב.`:""}
+      <br><br><strong>למה בכל זאת חלבי אחרי אימון בוקר:</strong> חלבון חלבי נספג הכי מהר
+      ומכיל הכי הרבה לאוצין, ואימון הבוקר נמצא לפני הארוחה הבשרית — כך שהחלון שאחרי המאמץ
+      נשאר פנוי לסקיר ולאבקה. באימון אחר הצהריים, בצל ההמתנה, מוצע חלבון פרווה מהיר במקום.
+      ${M.meatAt!=null&&M.first!=null&&M.meatAt>14.5?`<br><br><strong>שים לב:</strong> היום הארוחה הבשרית נדחתה ל-<span class="ltr num">${clock(M.meatAt)}</span> כי אימון נופל בשעת הצהריים הרגילה — מנה בשרית גדולה פחות מ-2.5 שעות לפני אימון יושבת בבטן.`:""}
+      ${M.post?"<br><br><strong>היום שאחרי משמרת:</strong> היום מתחיל ב-12:00. לא לנסות להשלים את הבוקר שהחמצת — זה מסתיים בבטן מלאה באימון.":""}
     </div>
   </div>`;
+}
+/* ============ ADMIN TASKS ============
+   מה שלא קורה באימון אבל בלעדיו אין מרוץ. נשמר ב-PROG.tasks,
+   מסתנכרן למאגר, ויוצא ליומן כאירוע יום שלם עם תזכורות.            */
+
+const RACE_D = new Date(2027,7,22);            /* 22.8.2027 */
+const dAdd = (d,n)=>{const x=new Date(d); x.setDate(x.getDate()+n); return x;};
+
+/* due: תאריך יעד · hard: אין גמישות · cat: קטגוריה */
+const TASKS = [
+  {id:"fftri", cat:"רישום", hard:true,
+   title:"רישיון FFTri למרוץ — Licence Expérience",
+   due:dAdd(RACE_D,-60),
+   detail:`IRONMAN Vichy מתקיים תחת חוקי הפדרציה הצרפתית, ולכן <strong>חובה רישיון</strong>.
+     שתי דרכים: <strong>Licence Expérience</strong> ליום המרוץ — כ-<span class="ltr num">40€</span>
+     למרחק הארוך, נרכש <strong>בתוך טופס ההרשמה של המרוץ</strong> ומתווסף למחיר הדוסאר;
+     או רישיון שנתי של מועדון צרפתי, <span class="ltr num">100–300€</span>+, שמשתלם רק אם רצים
+     כמה מרוצים בצרפת באותה שנה. <strong>עבורך — Licence Expérience.</strong>
+     <br><br>מ-2026 היא החליפה את ה-Pass Compétition הישן.
+     <strong>אין צורך באישור רפואי צרפתי</strong> — במקומו ממלאים
+     <span class="ltr">Formulaire Info Santé</span>, הצהרת בריאות עצמית, באותו מסך.
+     <br><br><strong>לאמת מחיר ותנאים בזמן ההרשמה</strong> — הנתונים כאן נכונים לעונת 2026
+     והפדרציה מעדכנת מדי שנה.`,
+   linkLabel:"המקור הרשמי של הפדרציה הצרפתית ↗",
+   link:"https://www.fftri.com/actualite/evolution-du-pass-competition-place-a-la-licence-experience/"},
+
+  {id:"reg", cat:"רישום", hard:true, warn:120,
+   title:"הרשמה ל-IRONMAN Vichy — לפני שחלון Flex90 נסגר",
+   due:new Date(2026,10,25),          /* 25.11.2026 */
+   detail:`<strong>זו המשימה הכי דחופה ברשימה, והיא שווה כסף.</strong>
+     <span class="ltr">Flex90</span> הוא הטבת «<span class="ltr">First 90 Days</span>» של איירונמן:
+     מי שנרשם בתוך <strong>90 הימים הראשונים</strong> מפתיחת ההרשמה מקבל רשת ביטחון
+     שלא קיימת אחר כך. אצלך החלון נסגר ב-<strong>25.11.2026</strong>.
+     <br><br><strong>מה זה נותן:</strong>
+     <br>· <strong>דחייה ל-2028 ללא עלות</strong> — בבקשה בכתב עד 45 יום לפני המרוץ.
+     <br>· <strong>העברה למרוץ אחר</strong> באותה שנה ואותו אזור, ללא דמי העברה.
+     <br>· <strong>ביטול עם החזר חלקי</strong> — 50% עד 4 חודשים לפני, 25% אחר כך.
+     <br>· <strong>תשלום ב-3 תשלומים</strong>.
+     <br>בלי <span class="ltr">Flex90</span>, דמי ההרשמה אינם ניתנים להחזר או להעברה כלל.
+     <br><br><strong>למה זה קריטי דווקא אצלך:</strong> ברך עם היסטוריית
+     <span class="ltr">PFPS</span>, משמרות לילה בלתי צפויות, ותינוקת. הסיכוי שמשהו ישתבש
+     במהלך 12 חודשי בנייה אינו זניח, ו-<span class="ltr">Flex90</span> הופך «נפצעתי, איבדתי
+     את הכסף» ל-«נפצעתי, נדחה ל-2028». בנוסף מחיר הדוסאר עולה במדרגות ככל שהמרוץ מתמלא —
+     ההרשמה המוקדמת גם זולה יותר וגם גמישה יותר.
+     <br><br><strong>בזמן ההרשמה לסמן גם את ה-Licence Expérience</strong> — זו ההזדמנות
+     הנוחה, ואם מפספסים צריך להסדיר אותה בנפרד מול המארגן.
+     <br><br><strong>לקרוא את תנאי ה-Flex90 בעמוד ההרשמה של ויאשי עצמו</strong> — התנאים
+     המדויקים משתנים בין אזורים ובין מרוצים, והנתונים כאן מתוך הפרסום הרשמי של איירונמן.`,
+   linkLabel:"תנאי Flex90 — הפרסום הרשמי של איירונמן ↗",
+   link:"https://ironmanczech.com/en/flex90/"},
+
+  {id:"israman", cat:"רישום",
+   title:"הרשמה ל-Challenge ISRAMAN אילת",
+   due:new Date(2026,9,15),
+   detail:`המרוץ ב-29.1.2027, אבל אילת נסגרת חודשים מראש. דורש
+     <strong>אישור רפואי לתחרות</strong> לפי חוק הספורט הישראלי — לטפל בו מוקדם.`},
+
+  {id:"med", cat:"רפואה", hard:true,
+   title:"אישור רפואי לתחרות (ישראל)",
+   due:new Date(2026,10,1),
+   detail:`נדרש לכל תחרות בישראל. תקף לשנה. עדיף לעשות אותו פעם אחת בתחילת העונה
+     ולכסות את אשדוד, אכזיב, אילת ותל אביב. <strong>זו אינה המלצה רפואית.</strong>`},
+
+  {id:"passport", cat:"נסיעה",
+   title:"תוקף דרכון — לפחות 6 חודשים אחרי המרוץ",
+   due:dAdd(RACE_D,-180),
+   detail:`הדרכון צריך להיות בתוקף עד <span class="ltr num">פברואר 2028</span> לפחות.
+     חידוש לוקח שבועות. לבדוק עכשיו, לא בקיץ.`},
+
+  {id:"flight", cat:"נסיעה", hard:true,
+   title:"טיסה ולינה — הגעה ביום רביעי 18.8.2027",
+   due:dAdd(RACE_D,-150),
+   detail:`ארבעה ימים לפני המרוץ, לא יומיים: אזור זמן, חום שונה, ואופניים שצריכים
+     הרכבה ובדיקה. לינה בוויאשי נחטפת מוקדם.`},
+
+  {id:"bikebox", cat:"נסיעה",
+   title:"תיק אופניים והובלה",
+   due:dAdd(RACE_D,-120),
+   detail:`תיק קשיח או שירות הובלת אופניים ייעודי. לוודא מול חברת התעופה מראש —
+     מחיר ומידות. לתרגל פירוק והרכבה <strong>לפני</strong> הנסיעה, לא בשדה.`},
+
+  {id:"flexchk", cat:"החלטה", warn:60,
+   title:"נקודת החלטה — 4 חודשים למרוץ",
+   due:new Date(2027,3,22),          /* 22.4.2027 */
+   detail:`מרחק בטוח מהמרוץ כדי להסתכל בכנות על הברך, על נפח הרכיבה ועל השינה.
+     <strong>מהתאריך הזה ההחזר הכספי ב-Flex90 יורד מ-50% ל-25%</strong>, ולכן זו נקודת
+     ההחלטה הכלכלית. חשוב לדעת: <strong>דחייה ל-2028 שומרת על מלוא הערך</strong> ונשארת
+     זמינה עד 8.7.2027 — כמעט תמיד עדיפה על החזר חלקי.
+     <br><br>אם בשלב הזה יש כאב קדמי בברך שחוזר, או שנפח הרכיבה השבועי עדיין רחוק מהיעד —
+     זה לא כישלון, זו החלטה מושכלת. נדבר על זה כשנגיע.`},
+
+  {id:"flexdef", cat:"החלטה", hard:true, warn:60,
+   title:"דדליין אחרון לדחייה ל-2028 — 45 יום לפני",
+   due:new Date(2027,6,8),           /* 8.7.2027 */
+   detail:`<strong>אחרי התאריך הזה אין יותר דחייה ואין החזר.</strong> בקשת דחייה או העברה
+     ב-Flex90 חייבת להישלח <strong>בכתב לפחות 45 יום לפני יום המרוץ</strong>.
+     <br><br>נכון לתאריך הזה נהיה 6 שבועות מהמרוץ, אחרי שיא הנפח ובתחילת ההתחדדות —
+     בדיוק הנקודה שבה כבר יודעים אם הגוף מחזיק. אם התשובה לא, שולחים את הבקשה
+     <strong>לפני</strong> התאריך ולא יום אחריו.`},
+
+  {id:"insur", cat:"נסיעה", hard:true,
+   title:"ביטוח נסיעות שמכסה טריאתלון תחרותי",
+   due:dAdd(RACE_D,-60),
+   detail:`ביטוח נסיעות רגיל <strong>אינו מכסה</strong> ספורט תחרותי ברוב הפוליסות.
+     צריך הרחבה מפורשת לטריאתלון, וכדאי גם כיסוי לציוד — האופניים.`},
+];
+
+const taskDone = id => !!(PROG.tasks && PROG.tasks[id]);
+function toggleTask(id){
+  PROG.tasks = PROG.tasks || {};
+  if(PROG.tasks[id]) delete PROG.tasks[id]; else PROG.tasks[id]=Date.now();
+  PROG.updated=Date.now(); saveLocal(); rerenderProgress();
+  if(typeof scheduleSync==="function") scheduleSync();
+}
+const taskDays = t => Math.ceil((t.due - new Date())/864e5);
+/* דחוף = בתוך 45 יום, או שהתאריך עבר */
+const taskOpen = () => TASKS.filter(t=>!taskDone(t.id)).sort((a,b)=>a.due-b.due);
+const taskWarn = t => t.warn || 45;
+const taskDue  = () => taskOpen().filter(t=>taskDays(t)<=taskWarn(t));
+
+/* ---------- תצוגה ---------- */
+const tFmt = d => `${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+function taskRow(t){
+  const on=taskDone(t.id), days=taskDays(t);
+  const w=taskWarn(t);
+  const late=!on&&days<0, soon=!on&&days>=0&&days<=w;
+  return `<div class="task${on?" done":""}${late?" late":""}${soon?" soon":""}">
+    <button class="chk${on?" on":""}" data-task="${t.id}" role="checkbox" aria-checked="${on}"
+      aria-label="${on?"בטל סימון":"סמן כבוצע"} ${t.title}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+    <div class="tbody">
+      <div class="ttop"><b>${t.title}</b>
+        <span class="tcat">${t.cat}</span>
+        ${t.hard?`<span class="tcat hard">חובה</span>`:""}
+        <span class="tdue ${late?"late":soon?"soon":""}">${on?"בוצע"
+          : late?`עבר לפני ${Math.abs(days)} ימים`
+          : days<=w?`בעוד ${days} ימים · ${tFmt(t.due)}`
+          : `יעד ${tFmt(t.due)}`}</span></div>
+      <p>${t.detail}</p>
+      ${t.link?`<p class="tlink"><a href="${t.link}" target="_blank" rel="noopener">${t.linkLabel||"המקור הרשמי ↗"}</a></p>`:""}
+    </div>
+  </div>`;
+}
+function tasksView(){
+  const host=document.getElementById("tasksout"); if(!host) return;
+  const open=taskOpen(), done=TASKS.filter(t=>taskDone(t.id));
+  host.innerHTML=`
+    <div class="tsum"><b class="num">${done.length}/${TASKS.length}</b><i>הושלמו</i>
+      ${taskDue().length?`<span class="tag miss">${taskDue().length} דורשות טיפול</span>`:""}</div>
+    ${open.map(taskRow).join("")}
+    ${done.length?`<p class="thint" style="margin:16px 0 8px"><strong>הושלמו</strong></p>
+      ${done.map(taskRow).join("")}`:""}`;
+}
+/* בלוק דחוף במסך «היום» — רק כשבאמת צריך */
+function tasksAlert(){
+  const d=taskDue(); if(!d.length) return "";
+  const late=d.filter(t=>taskDays(t)<0);
+  return `<div class="dwarn ${late.length?"bad":"warn"}" style="margin-bottom:14px">
+    <span class="dico" aria-hidden="true">${late.length?"!":"◷"}</span>
+    <div><b>${late.length?`${late.length} משימות עברו את התאריך`:`${d.length} משימות דורשות טיפול`}</b>
+      <p>${d.slice(0,3).map(t=>`<strong>${t.title}</strong> — ${
+        taskDays(t)<0?`עבר לפני ${Math.abs(taskDays(t))} ימים`:`בעוד ${taskDays(t)} ימים`}`).join("<br>")}
+        ${d.length>3?`<br>ועוד ${d.length-3}`:""}</p>
+      <p class="dact"><button class="minibtn" data-act="gototasks">לרשימת המשימות</button></p></div></div>`;
 }
 const DVKEY="vichy.dvweek.v1", DVMODE="vichy.dvmode.v1";
 let dvWeek=1; try{const v=+localStorage.getItem(DVKEY); if(v>=1&&v<=52)dvWeek=v;}catch(e){}
@@ -4796,12 +5086,13 @@ function rerenderProgress(){
   renderStatus();
   if(typeof renderSync==="function") renderSync();
   if(typeof statsView==="function") statsView();
+  if(typeof tasksView==="function") tasksView();
 }
 /* ============ סנכרון אוטומטי: מהאתר אל לוח השנה ============ */
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-09-05d";
+const BUILD="2026-09-06c";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json",logPath:"log.json"};
 let lastSent={cons:null,log:null};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
@@ -4829,6 +5120,8 @@ function consPayload(){
     const pl=c.place&&Object.keys(c.place).length?c.place:null;
     if(diff||pl){ out[n]={shift:sh,day}; if(pl) out[n].place=pl; }
   }
+  /* משימות אדמין נוסעות באותו קובץ. build-cal מדלג על מפתחות שמתחילים ב-_ */
+  if(PROG.tasks && Object.keys(PROG.tasks).length) out._tasks=PROG.tasks;
   return out;
 }
 function b64utf8(s){const b=new TextEncoder().encode(s);let x="";
@@ -5042,6 +5335,7 @@ function pullDown(){
   let raw; try{ raw = JSON.parse(drift.remote); }catch(e){ return; }
   PROG.cons = PROG.cons || {};
   let got = 0;
+  if(raw._tasks && typeof raw._tasks==="object"){ PROG.tasks=Object.assign({},PROG.tasks,raw._tasks); }
   for(const [wk, v] of Object.entries(raw)){
     if(wk.startsWith("_")) continue;
     const arr = Array.isArray(v) ? v : v && v.shift;
@@ -5314,6 +5608,8 @@ document.addEventListener("click",e=>{
     targets.forEach(x=>setLog(n,x,patch,quiet));
     return;
   }
+  const tk=e.target.closest("[data-task]");
+  if(tk){ toggleTask(tk.dataset.task); return; }
   const ml=e.target.closest("[data-mloc]");
   if(ml){ setMenuLoc(ml.dataset.mloc); return; }
   const cr=e.target.closest("[data-cr]");
@@ -5331,6 +5627,8 @@ document.addEventListener("click",e=>{
     if(a==="pulldown"){ pullDown(); return;}
     if(a==="chtab"){ const t=document.getElementById("cht-"+act.dataset.cht);
       if(t){ t.hidden=!t.hidden; act.textContent=t.hidden?"טבלה":"הסתר טבלה"; } return;}
+    if(a==="gototasks"){ document.getElementById("t-tasks").click();
+      window.scrollTo({top:0,behavior:"smooth"}); return;}
     if(a==="gotosync"){
       document.getElementById("t-tmpl").click();
       const c=document.querySelector("[data-syncbox]");
