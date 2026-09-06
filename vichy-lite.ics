@@ -16249,6 +16249,327 @@ DESCRIPTION:בעוד 45 דק׳: שחיית ים · 35 דק׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:vichy-task-fftri@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270623
+DTEND;VALUE=DATE:20270624
+SUMMARY:📋 רישיון FFTri למרוץ — Licence Expérience · ח
+ ובה
+DESCRIPTION:IRONMAN Vichy מתקיים תחת חוקי הפדרציה ה
+ צרפתית\, ולכן חובה רישיון. שתי דרכים: Licenc
+ e Expérience ליום המרוץ — כ-40€ למרחק הארוך\, 
+ נרכש בתוך טופס ההרשמה של המרוץ ומתווסף 
+ למחיר הדוסאר; או רישיון שנתי של מועדון צ
+ רפתי\, 100–300€+\, שמשתלם רק אם רצים כמה מרו
+ צים בצרפת באותה שנה. עבורך — Licence Expérience.
+  מ-2026 היא החליפה את ה-Pass Compétition הישן. אין 
+ צורך באישור רפואי צרפתי — במקומו ממלאי
+ ם Formulaire Info Santé\, הצהרת בריאות עצמית\, באו
+ תו מסך. לאמת מחיר ותנאים בזמן ההרשמה — ה
+ נתונים כאן נכונים לעונת 2026 והפדרציה מעד
+ כנת מדי שנה.\n\nhttps://www.fftri.com/actualite/evolution-du-pa
+ ss-competition-place-a-la-licence-experience/\n\nלסימון: https://n
+ atanelaz.github.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: רישיון FFTri למרוץ — Licence 
+ Expérience
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: רישיון FFTri למרוץ — Licence 
+ Expérience
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-reg@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20261125
+DTEND;VALUE=DATE:20261126
+SUMMARY:📋 הרשמה ל-IRONMAN Vichy — לפני שחלון Flex90 
+ נסגר · חובה
+DESCRIPTION:זו המשימה הכי דחופה ברשימה\, והיא 
+ שווה כסף. Flex90 הוא הטבת «First 90 Days» של אייר
+ ונמן: מי שנרשם בתוך 90 הימים הראשונים מפת
+ יחת ההרשמה מקבל רשת ביטחון שלא קיימת אח
+ ר כך. אצלך החלון נסגר ב-25.11.2026. מה זה נותן:
+  · דחייה ל-2028 ללא עלות — בבקשה בכתב עד 45 
+ יום לפני המרוץ. · העברה למרוץ אחר באותה 
+ שנה ואותו אזור\, ללא דמי העברה. · ביטול ע
+ ם החזר חלקי — 50% עד 4 חודשים לפני\, 25% אחר 
+ כך. · תשלום ב-3 תשלומים. בלי Flex90\, דמי ההרש
+ מה אינם ניתנים להחזר או להעברה כלל. למה 
+ זה קריטי דווקא אצלך: ברך עם היסטוריית PFPS
+ \, משמרות לילה בלתי צפויות\, ותינוקת. הסי
+ כוי שמשהו ישתבש במהלך 12 חודשי בנייה אינ
+ ו זניח\, ו-Flex90 הופך «נפצעתי\, איבדתי את הכ
+ סף» ל-«נפצעתי\, נדחה ל-2028». בנוסף מחיר הד
+ וסאר עולה במדרגות ככל שהמרוץ מתמלא — הה
+ רשמה המוקדמת גם זולה יותר וגם גמישה יות
+ ר. בזמן ההרשמה לסמן גם את ה-Licence Expérience — 
+ זו ההזדמנות הנוחה\, ואם מפספסים צריך להס
+ דיר אותה בנפרד מול המארגן. לקרוא את תנאי
+  ה-Flex90 בעמוד ההרשמה של ויאשי עצמו — התנא
+ ים המדויקים משתנים בין אזורים ובין מרוצ
+ ים\, והנתונים כאן מתוך הפרסום הרשמי של א
+ יירונמן.\n\nhttps://ironmanczech.com/en/flex90/\n\nלסימון: 
+ https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: הרשמה ל-IRONMAN Vichy — לפני 
+ שחלון Flex90 נסגר
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: הרשמה ל-IRONMAN Vichy — לפני 
+ שחלון Flex90 נסגר
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-israman@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261016
+SUMMARY:📋 הרשמה ל-Challenge ISRAMAN אילת
+DESCRIPTION:המרוץ ב-29.1.2027\, אבל אילת נסגרת חודש
+ ים מראש. דורש אישור רפואי לתחרות לפי חוק
+  הספורט הישראלי — לטפל בו מוקדם.\n\nלסימו
+ ן: https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: הרשמה ל-Challenge ISRAMAN אילת
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: הרשמה ל-Challenge ISRAMAN אילת
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-med@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:📋 אישור רפואי לתחרות (ישראל) · חובה
+DESCRIPTION:נדרש לכל תחרות בישראל. תקף לשנה. ע
+ דיף לעשות אותו פעם אחת בתחילת העונה ולכ
+ סות את אשדוד\, אכזיב\, אילת ותל אביב. זו א
+ ינה המלצה רפואית.\n\nלסימון: https://natanelaz.githu
+ b.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: אישור רפואי לתחרות (ישר
+ אל)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: אישור רפואי לתחרות (ישר
+ אל)
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-passport@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270223
+DTEND;VALUE=DATE:20270224
+SUMMARY:📋 תוקף דרכון — לפחות 6 חודשים אחרי 
+ המרוץ
+DESCRIPTION:הדרכון צריך להיות בתוקף עד פברואר
+  2028 לפחות. חידוש לוקח שבועות. לבדוק עכשי
+ ו\, לא בקיץ.\n\nלסימון: https://natanelaz.github.io/ironman
+ -vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: תוקף דרכון — לפחות 6 חו
+ דשים אחרי המרוץ
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: תוקף דרכון — לפחות 6 חו
+ דשים אחרי המרוץ
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-flight@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270325
+DTEND;VALUE=DATE:20270326
+SUMMARY:📋 טיסה ולינה — הגעה ביום רביעי 18.8.20
+ 27 · חובה
+DESCRIPTION:ארבעה ימים לפני המרוץ\, לא יומיים: 
+ אזור זמן\, חום שונה\, ואופניים שצריכים הר
+ כבה ובדיקה. לינה בוויאשי נחטפת מוקדם.\n\n
+ לסימון: https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: טיסה ולינה — הגעה ביום 
+ רביעי 18.8.2027
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: טיסה ולינה — הגעה ביום 
+ רביעי 18.8.2027
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-bikebox@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270424
+DTEND;VALUE=DATE:20270425
+SUMMARY:📋 תיק אופניים והובלה
+DESCRIPTION:תיק קשיח או שירות הובלת אופניים י
+ יעודי. לוודא מול חברת התעופה מראש — מחי
+ ר ומידות. לתרגל פירוק והרכבה לפני הנסיע
+ ה\, לא בשדה.\n\nלסימון: https://natanelaz.github.io/ironman
+ -vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: תיק אופניים והובלה
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: תיק אופניים והובלה
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-flexchk@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270422
+DTEND;VALUE=DATE:20270423
+SUMMARY:📋 נקודת החלטה — 4 חודשים למרוץ
+DESCRIPTION:מרחק בטוח מהמרוץ כדי להסתכל בכנות
+  על הברך\, על נפח הרכיבה ועל השינה. מהתאר
+ יך הזה ההחזר הכספי ב-Flex90 יורד מ-50% ל-25%\, ו
+ לכן זו נקודת ההחלטה הכלכלית. חשוב לדעת: 
+ דחייה ל-2028 שומרת על מלוא הערך ונשארת זמי
+ נה עד 8.7.2027 — כמעט תמיד עדיפה על החזר חלק
+ י. אם בשלב הזה יש כאב קדמי בברך שחוזר\, או
+  שנפח הרכיבה השבועי עדיין רחוק מהיעד — 
+ זה לא כישלון\, זו החלטה מושכלת. נדבר על ז
+ ה כשנגיע.\n\nלסימון: https://natanelaz.github.io/ironman-vi
+ chy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: נקודת החלטה — 4 חודשים 
+ למרוץ
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: נקודת החלטה — 4 חודשים 
+ למרוץ
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P60D
+ACTION:DISPLAY
+DESCRIPTION:נפתח חלון הטיפול (60 יום): נקודת החל
+ טה — 4 חודשים למרוץ
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-flexdef@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270708
+DTEND;VALUE=DATE:20270709
+SUMMARY:📋 דדליין אחרון לדחייה ל-2028 — 45 יום 
+ לפני · חובה
+DESCRIPTION:אחרי התאריך הזה אין יותר דחייה וא
+ ין החזר. בקשת דחייה או העברה ב-Flex90 חייבת 
+ להישלח בכתב לפחות 45 יום לפני יום המרוץ. 
+ נכון לתאריך הזה נהיה 6 שבועות מהמרוץ\, אח
+ רי שיא הנפח ובתחילת ההתחדדות — בדיוק הנ
+ קודה שבה כבר יודעים אם הגוף מחזיק. אם הת
+ שובה לא\, שולחים את הבקשה לפני התאריך ול
+ א יום אחריו.\n\nלסימון: https://natanelaz.github.io/ironm
+ an-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: דדליין אחרון לדחייה ל-20
+ 28 — 45 יום לפני
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: דדליין אחרון לדחייה ל-20
+ 28 — 45 יום לפני
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P60D
+ACTION:DISPLAY
+DESCRIPTION:נפתח חלון הטיפול (60 יום): דדליין אח
+ רון לדחייה ל-2028 — 45 יום לפני
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-task-insur@vichy2027
+SEQUENCE:20702
+DTSTAMP:20260906T000000Z
+DTSTART;VALUE=DATE:20270623
+DTEND;VALUE=DATE:20270624
+SUMMARY:📋 ביטוח נסיעות שמכסה טריאתלון תחרו
+ תי · חובה
+DESCRIPTION:ביטוח נסיעות רגיל אינו מכסה ספורט
+  תחרותי ברוב הפוליסות. צריך הרחבה מפורש
+ ת לטריאתלון\, וכדאי גם כיסוי לציוד — האו
+ פניים.\n\nלסימון: https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:משימה
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:בעוד חודש: ביטוח נסיעות שמכסה טרי
+ אתלון תחרותי
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:בעוד שבוע: ביטוח נסיעות שמכסה טרי
+ אתלון תחרותי
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:vichy-raceday@vichy2027
 SEQUENCE:20702
 DTSTAMP:20260906T000000Z
