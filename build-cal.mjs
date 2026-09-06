@@ -34,7 +34,7 @@ const navigator={};
 const requestAnimationFrame=f=>0;
 `;
 const API = new Function(PRE + SRC + `
-  return {WEEKS,sessionsFor,planWeekAdaptive,weekDates,fuelFor,recoveryFor,MM,PH_META,comboNote,
+  return {WEEKS,sessionsFor,planWeekAdaptive,weekDates,fuelFor,recoveryFor,MM,PH_META,comboNote,TASKS,
           ctxOf,DAYNAME,dayType,dayTarget,heatWeek,rpeOf,PROG};`)();
 
 /* --- אילוצים שהוזנו באתר (מסונכרן משם אוטומטית) --- */
@@ -169,6 +169,34 @@ for (const w of API.WEEKS) {
     });
   });
 }
+/* ---------- משימות אדמין: אירוע יום שלם עם תזכורות ---------- */
+try{
+  for(const t of (API.TASKS||[])){
+    const d=new Date(t.due);
+    const ymd=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+    const nx=new Date(d); nx.setDate(nx.getDate()+1);
+    const ymd2=`${nx.getFullYear()}${pad(nx.getMonth()+1)}${pad(nx.getDate())}`;
+    L.push('BEGIN:VEVENT', `UID:vichy-task-${t.id}@vichy2027`, `SEQUENCE:${VER}`,
+      'DTSTAMP:'+STAMP,
+      `DTSTART;VALUE=DATE:${ymd}`, `DTEND;VALUE=DATE:${ymd2}`,
+      fold(`SUMMARY:📋 ${esc(t.title)}${t.hard?' · חובה':''}`),
+      fold(`DESCRIPTION:${esc(strip(t.detail)+(t.link?'\n\n'+t.link:'')+'\n\nלסימון: '+LIVE)}`),
+      'CATEGORIES:משימה', 'TRANSP:TRANSPARENT',
+      /* תזכורת חודש לפני ושבוע לפני — כדי שלא ייעלם ביומן */
+      'BEGIN:VALARM','TRIGGER:-P30D','ACTION:DISPLAY',
+      fold('DESCRIPTION:'+esc('בעוד חודש: '+t.title)),'END:VALARM',
+      'BEGIN:VALARM','TRIGGER:-P7D','ACTION:DISPLAY',
+      fold('DESCRIPTION:'+esc('בעוד שבוע: '+t.title)),'END:VALARM');
+    /* משימה עם חלון אזהרה ארוך — תזכורת נוספת בתחילת החלון */
+    const warnAt = t.warn ? new Date(d.getTime()-t.warn*864e5) : null;
+    if(t.warn && t.warn>30 && warnAt>new Date()){
+      L.push('BEGIN:VALARM',`TRIGGER:-P${t.warn}D`,'ACTION:DISPLAY',
+        fold('DESCRIPTION:'+esc(`נפתח חלון הטיפול (${t.warn} יום): `+t.title)),'END:VALARM');
+    }
+    L.push('END:VEVENT');
+  }
+}catch(e){ console.warn('משימות: ', e.message); }
+
 L.push('BEGIN:VEVENT','UID:vichy-raceday@vichy2027',`SEQUENCE:${VER}`,
  'DTSTAMP:'+STAMP,
  'DTSTART;TZID=Asia/Jerusalem:20270822T064000','DTEND;TZID=Asia/Jerusalem:20270822T203000',
