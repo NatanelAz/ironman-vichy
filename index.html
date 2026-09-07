@@ -5092,7 +5092,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-09-06c";
+const BUILD="2026-09-07a";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json",logPath:"log.json"};
 let lastSent={cons:null,log:null};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
@@ -5122,7 +5122,39 @@ function consPayload(){
   }
   /* משימות אדמין נוסעות באותו קובץ. build-cal מדלג על מפתחות שמתחילים ב-_ */
   if(PROG.tasks && Object.keys(PROG.tasks).length) out._tasks=PROG.tasks;
+  /* סימוני «בוצע» — בלעדיהם היומן בונה תוכנית בסיס בזמן שהאתר מציג
+     תוכנית מותאמת, והשניים נפרדים בשקט. נשמרים לפי role, שהוא יציב,
+     ולא לפי כותרת מלאה — כדי שהקובץ יישאר קטן.                     */
+  const it=itemsPayload(); if(Object.keys(it).length) out._items=it;
   return out;
+}
+function itemsPayload(){
+  const out={};
+  if(!PROG.items) return out;
+  for(let n=1;n<=52;n++){
+    const w=WEEKS[n-1]; if(!w) continue;
+    let ss; try{ ss=sessionsFor(w); }catch(e){ continue; }
+    for(const s of ss){
+      const v=PROG.items[sKey(n,s)];
+      if(typeof v!=="number"||!v) continue;
+      (out[n]=out[n]||{})[s.role||s.t]=v;
+    }
+  }
+  return out;
+}
+/* הכיוון ההפוך — מ-_items חזרה למפתחות המלאים של האתר */
+function applyItems(raw){
+  if(!raw||typeof raw!=="object") return 0;
+  let hit=0; PROG.items=PROG.items||{};
+  for(const [n,map] of Object.entries(raw)){
+    const w=WEEKS[+n-1]; if(!w||!map) continue;
+    let ss; try{ ss=sessionsFor(w); }catch(e){ continue; }
+    for(const s of ss){
+      const v=map[s.role||s.t];
+      if(typeof v==="number"&&v){ PROG.items[sKey(+n,s)]=v; hit++; }
+    }
+  }
+  return hit;
 }
 function b64utf8(s){const b=new TextEncoder().encode(s);let x="";
   for(const c of b) x+=String.fromCharCode(c); return btoa(x);}
@@ -5336,6 +5368,7 @@ function pullDown(){
   PROG.cons = PROG.cons || {};
   let got = 0;
   if(raw._tasks && typeof raw._tasks==="object"){ PROG.tasks=Object.assign({},PROG.tasks,raw._tasks); }
+      if(raw._items) applyItems(raw._items);
   for(const [wk, v] of Object.entries(raw)){
     if(wk.startsWith("_")) continue;
     const arr = Array.isArray(v) ? v : v && v.shift;

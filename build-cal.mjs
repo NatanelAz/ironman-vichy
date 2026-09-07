@@ -34,7 +34,7 @@ const navigator={};
 const requestAnimationFrame=f=>0;
 `;
 const API = new Function(PRE + SRC + `
-  return {WEEKS,sessionsFor,planWeekAdaptive,weekDates,fuelFor,recoveryFor,MM,PH_META,comboNote,TASKS,
+  return {WEEKS,sessionsFor,planWeekAdaptive,weekDates,fuelFor,recoveryFor,MM,PH_META,comboNote,TASKS,sKey,
           ctxOf,DAYNAME,dayType,dayTarget,heatWeek,rpeOf,PROG};`)();
 
 /* --- אילוצים שהוזנו באתר (מסונכרן משם אוטומטית) --- */
@@ -55,7 +55,24 @@ if (fs.existsSync('shifts.json')) {
     if (v && !Array.isArray(v) && v.place) cons[wk].place = v.place;   /* סידור ידני מהאתר */
   }
   API.PROG.cons = cons;
-  console.log('shifts.json נטען · שבועות:', Object.keys(cons).join(', ') || '—');
+  /* --- סימוני «בוצע» ---
+     בלעדיהם היומן בונה את תוכנית הבסיס בזמן שהאתר מציג תוכנית
+     מותאמת (אימון שבוצע ננעץ ליומו, אימון שלא סומן בעבר מסומן
+     כהוחמץ והשבוע נפרס מחדש) — והשניים נפרדים בשקט.              */
+  let nItems = 0;
+  if (raw._items && typeof raw._items === 'object') {
+    API.PROG.items = API.PROG.items || {};
+    for (const [n, map] of Object.entries(raw._items)) {
+      const w = API.WEEKS[+n - 1]; if (!w || !map) continue;
+      let ss; try { ss = API.sessionsFor(w); } catch(e) { continue; }
+      for (const s of ss) {
+        const v = map[s.role || s.t];
+        if (typeof v === 'number' && v) { API.PROG.items[API.sKey(+n, s)] = v; nItems++; }
+      }
+    }
+  }
+  console.log('shifts.json נטען · שבועות:', Object.keys(cons).join(', ') || '—',
+              '· סימוני ביצוע:', nItems);
 }
 
 /* --- כתיבת ICS --- */
@@ -115,8 +132,19 @@ const L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Vichy 2027//Ironman Plan//HE
 let count=0;
 for (const w of API.WEEKS) {
   const {days} = API.planWeekAdaptive(w.n), dates = API.weekDates(w.n);
+  const dayItems = days.map(D => D.items.filter(it=>!(w.n===52&&it.s.role==='race')));
+  /* ── מזהה האירוע אינו תלוי ביום ──
+     היה: vichy-w3-d2-swimA. אימון שעבר מיום ג׳ ליום ה׳ קיבל מזהה
+     חדש, והישן נשאר ביומן של הטלפון כרפאים — משם הכפילויות ו«לא
+     מסונכרן». עכשיו: vichy-w3-swimA. אותו אירוע פשוט מקבל תאריך
+     אחר, וזה מה שכל לקוח יומן יודע לעדכן במקום.                   */
+  const uidOf = new Map();
+  { const c={};
+    dayItems.forEach(arr=>arr.forEach(it=>{
+      const r=it.s.role||it.s.t, k=(c[r]=(c[r]||0)+1);
+      uidOf.set(it, `vichy-w${w.n}-${r}${k>1?'-'+k:''}`); })); }
   days.forEach((D,di)=>{
-    const items = D.items.filter(it=>!(w.n===52&&it.s.role==='race'));
+    const items = dayItems[di];
     if(!items.length) return;
     const day=dates[di], dayMin=items.reduce((a,x)=>a+x.s.dur,0);
     const dt=API.dayType(dayMin), tg=API.dayTarget(dt), ctx=API.ctxOf(w.n,di);
@@ -154,7 +182,7 @@ for (const w of API.WEEKS) {
       }
       const st=it.st-di*24, en=Math.min(it.en-di*24,23.9);
       const ev=['BEGIN:VEVENT',
-        `UID:vichy-w${w.n}-d${di}${ix===0?'':'-'+s.role+suff}@vichy2027`,
+        `UID:${uidOf.get(it)}@vichy2027`,
         `SEQUENCE:${VER}`,'DTSTAMP:'+STAMP,
         `DTSTART;TZID=Asia/Jerusalem:${stamp(day,st)}`,
         `DTEND;TZID=Asia/Jerusalem:${stamp(day,en)}`,
