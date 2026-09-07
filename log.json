@@ -1,29 +1,15 @@
 {
- "2": [
+ "3": [
   {
-   "role": "bikeLong",
+   "role": "bikeKey",
    "type": "bike",
-   "title": "אופניים · הרכיבה הארוכה",
-   "plannedMin": 90,
-   "rpePlanned": "4–5",
+   "title": "אופניים A · אימון האיכות",
+   "plannedMin": 70,
+   "rpePlanned": "6–7",
    "st": "full",
-   "ts": 1788613868045,
-   "dur": 90,
-   "rpe": 3,
-   "hr": 160
-  },
-  {
-   "role": "runBrick",
-   "type": "run",
-   "title": "ריצה · Brick מיד אחרי הרכיבה הארוכה",
-   "plannedMin": 10,
-   "rpePlanned": "4",
-   "st": "full",
-   "ts": 1788613880676,
-   "dur": 10,
-   "rpe": 5,
-   "dist": 2,
-   "hr": 160
+   "ts": 1788784076607,
+   "dur": 70,
+   "rpe": 6
   }
  ]
 }
