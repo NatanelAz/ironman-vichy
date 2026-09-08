@@ -7,9 +7,19 @@
    "plannedMin": 55,
    "rpePlanned": "6–7",
    "st": "full",
-   "ts": 1788847426013,
+   "ts": 1788847450641,
    "dur": 35,
-   "w_sq": 85
+   "w_sq": 85,
+   "w_dl": 120
+  },
+  {
+   "role": "str2",
+   "type": "str",
+   "title": "כוח #2 · ליבה, ירכיים ופרהב",
+   "plannedMin": 55,
+   "rpePlanned": "5",
+   "st": "skip",
+   "ts": 1788847450749
   }
  ]
 }
