@@ -679,7 +679,7 @@ DTSTART;TZID=Asia/Jerusalem:20260908T063000
 DTEND;TZID=Asia/Jerusalem:20260908T073000
 SUMMARY:🏃 ריצה ארוכה · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 4–5 · 10–10 ק״מ 
- · טיילת / שטוח\nהיום כולו: 2 אימונים · 2:00 ס
+ · טיילת / שטוח\nהיום כולו: 2 אימונים · 1:55 ס
  ה"כ\nשבוע 3/52 · הרצה והסתגלות · יום הריצה 
  הארוכה\n\n1:00 · רצוף ב-Z2 · 6×20 שניות סטרייד 
  בסוף\nתזונה תוך כדי: 30 ג׳ פחמימה/שעה · 550 
@@ -696,20 +696,63 @@ DESCRIPTION:בעוד 45 דק׳: ריצה ארוכה · 1:00
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:vichy-w3-str@vichy2027
+SEQUENCE:20704
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260908T133000
+DTEND;TZID=Asia/Jerusalem:20260908T142500
+SUMMARY:🏋️ כוח · רגליים כבד · 55 דק׳
+DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
+ כושר בעבודה\nהיום כולו: 2 אימונים · 1:55 סה"
+ כ\nשבוע 3/52 · הרצה והסתגלות · יום הריצה הא
+ רוכה\n\n3×12–15 · טמפו 3-1-3 · משקל קל\nמנוחה א
+ חרי: 8ש׳ לעומס דומה · 18ש׳ לאיכות באותו ענ
+ ף
+LOCATION:חדר הכושר בעבודה
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:כוח
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: כוח · רגליים כבד · 55 דק
+ ׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w3-str2@vichy2027
+SEQUENCE:20704
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260909T075500
+DTEND;TZID=Asia/Jerusalem:20260909T085000
+SUMMARY:🏋️ ↳ כוח · ליבה וירכיים · 55 דק׳
+DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 5 · חדר הכו
+ שר בעבודה\nהיום כולו: אימון אחד · 1:55 סה"כ\
+ nשבוע 3/52 · הרצה והסתגלות · יום הכוח\n◆ אי
+ מון משולב · החלק השני. מיד אחרי כוח רגלי
+ ים · 55 דק׳ · 13:30–14:25 · RPE 6–7.\n\n3×10–15 · ללא
+  כשל · בלי סקוואט או דדליפט כבדים\nמנוחה 
+ אחרי: 6ש׳ לעומס דומה · 12ש׳ לאיכות באותו ע
+ נף
+LOCATION:חדר הכושר בעבודה
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:כוח
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
 UID:vichy-w3-swimA@vichy2027
 SEQUENCE:20704
 DTSTAMP:20260908T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260908T103000
-DTEND;TZID=Asia/Jerusalem:20260908T113000
+DTSTART;TZID=Asia/Jerusalem:20260909T115000
+DTEND;TZID=Asia/Jerusalem:20260909T125000
 SUMMARY:🏊 שחייה סטים · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · ~2\,900 מ׳ ·
-  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
- 2:00 סה"כ\nשבוע 3/52 · הרצה והסתגלות · יום הר
- יצה הארוכה\n\nחימום 200 חופשי קל · 8×50 תרגי
- לי טכניקה (מרפק גבוה\, אצבע לאורך הגוף) ע
- ם 20 שנ׳ מנוחה · 4×100 קל · שחרור 100\nמנוחה א
- חרי: 4ש׳ לעומס דומה · 14ש׳ לאיכות באותו ענ
- ף
+  בריכה (מרחק מדוד)\nהיום כולו: אימון אחד ·
+  1:55 סה"כ\nשבוע 3/52 · הרצה והסתגלות · יום הכ
+ וח\n\nחימום 200 חופשי קל · 8×50 תרגילי טכניק
+ ה (מרפק גבוה\, אצבע לאורך הגוף) עם 20 שנ׳ מ
+ נוחה · 4×100 קל · שחרור 100\nמנוחה אחרי: 4ש׳ ל
+ עומס דומה · 14ש׳ לאיכות באותו ענף
 LOCATION:בריכה (מרחק מדוד)
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:שחייה
@@ -719,52 +762,6 @@ TRIGGER:-PT45M
 ACTION:DISPLAY
 DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:00
 END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w3-str@vichy2027
-SEQUENCE:20704
-DTSTAMP:20260908T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260909T070000
-DTEND;TZID=Asia/Jerusalem:20260909T075500
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 55 דק׳
-DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
- כושר בעבודה\nהיום כולו: אימון אחד · 1:50 סה
- "כ\nשבוע 3/52 · הרצה והסתגלות · יום הכוח\n◆ 
- אימון משולב · החלק הראשון. מיד אחריו כוח
-  ליבה · 55 דק׳ · 07:55–08:50 · RPE 5. השניים נספר
- ים כבלוק אימון אחד.\n\n3×12–15 · טמפו 3-1-3 · מ
- שקל קל\nמנוחה אחרי: 8ש׳ לעומס דומה · 18ש׳ ל
- איכות באותו ענף
-LOCATION:חדר הכושר בעבודה
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:כוח
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 55 
- דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w3-str2@vichy2027
-SEQUENCE:20704
-DTSTAMP:20260908T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260909T075500
-DTEND;TZID=Asia/Jerusalem:20260909T085000
-SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 55 דק׳
-DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 5 · חדר הכו
- שר בעבודה\nהיום כולו: אימון אחד · 1:50 סה"כ\
- nשבוע 3/52 · הרצה והסתגלות · יום הכוח\n◆ אי
- מון משולב · החלק השני. מיד אחרי כוח רגלי
- ים · 55 דק׳ · 07:00–07:55 · RPE 6–7.\n\n3×10–15 · ללא
-  כשל · בלי סקוואט או דדליפט כבדים\nמנוחה 
- אחרי: 6ש׳ לעומס דומה · 12ש׳ לאיכות באותו ע
- נף
-LOCATION:חדר הכושר בעבודה
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:כוח
-TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
 UID:vichy-w3-bikeEnd@vichy2027
