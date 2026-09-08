@@ -19,8 +19,10 @@
    "plannedMin": 55,
    "rpePlanned": "5",
    "st": "full",
-   "ts": 1788847500630,
-   "dur": 55
+   "ts": 1788847522446,
+   "dur": 35,
+   "knee": 0,
+   "sleep": 7
   }
  ]
 }
