@@ -1,28 +1,14 @@
 {
  "3": [
   {
-   "role": "str",
-   "type": "str",
-   "title": "כוח #1 · הסתגלות אנטומית (רגליים כבד)",
-   "plannedMin": 55,
-   "rpePlanned": "6–7",
-   "st": "skip",
-   "ts": 1788847485510,
-   "dur": 35,
-   "w_sq": 85,
-   "w_dl": 120
-  },
-  {
-   "role": "str2",
-   "type": "str",
-   "title": "כוח #2 · ליבה, ירכיים ופרהב",
-   "plannedMin": 55,
-   "rpePlanned": "5",
+   "role": "runLong",
+   "type": "run",
+   "title": "ריצה · הריצה הארוכה",
+   "plannedMin": 60,
+   "rpePlanned": "4–5",
    "st": "full",
-   "ts": 1788847522446,
-   "dur": 35,
-   "knee": 0,
-   "sleep": 7
+   "ts": 1788956357035,
+   "dur": 60
   }
  ]
 }
