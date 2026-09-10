@@ -7,9 +7,10 @@
    "plannedMin": 45,
    "rpePlanned": "2–3",
    "st": "full",
-   "ts": 1789066923430,
+   "ts": 1789066936536,
    "dur": 45,
-   "rpe": 4
+   "rpe": 4,
+   "dist": 2
   }
  ]
 }
