@@ -1211,44 +1211,6 @@ CATEGORIES:כוח
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w3-bikeEnd@vichy2027
-SEQUENCE:20706
-DTSTAMP:20260910T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260910T133000
-DTEND;TZID=Asia/Jerusalem:20260910T145000
-SUMMARY:🚴 אופניים נפח · 1:20
-DESCRIPTION:◆ האימון הזה: 1:20 · RPE 3–4 · 31–36 ק״מ 
- · כביש\nהיום כולו: 2 אימונים · 2:05 סה"כ\nשבו
- ע 3/52 · הרצה והסתגלות · יום הנפח הקל\n\n1:20 
- רצוף ב-Z2 (56–75% FTP) · 22–26 קמ״ש בשטח מתגלגל\
- nקדנס 85–95 לאורך כל הרכיבה\n\n◆ רכיבה שאפ
- שר לדבר בה במשפטים שלמים. אם אי אפשר — ז
- ה כבר לא Z2.\n• זו הרכיבה שמוסיפה שעות אוכ
- ף בלי לעלות בעייפות\n• היום הזה נבנה קל 
- בכוונה — הוא בא אחרי משמרת לילה\, ולכן א
- ין בו שום עצימות\n\nתזונה — לפני: אפשר על 
- צום אם ה-RPE עד 3 והמשך עד 60 דקות. אחרת 50 גר
- ם פחמימה שעה לפני.\nבמהלך: 30 גרם פחמימה ל
- שעה = כ-40 גרם באימון · 550 מ״ל נוזלים לשעה =
-  730 מ״ל · 450 מ״ג נתרן לשעה = 600 מ״ג\nאחרי: אר
- וחה רגילה. אין צורך בחלון תזונה מיוחד אח
- רי אימון קל.\n\nמנוחה אחרי: 2ש׳ לאימון קל ב
- ענף אחר · 4ש׳ לעומס דומה · 12ש׳ לאיכות באו
- תו ענף\n\n━━━ תזונה יומית · יום בינוני\n3
- \,430 קק"ל · 530 ג׳ פחמימה · 135 ג׳ חלבון · 85 ג׳
-  שומן\nנוזלים 3.8 ליטר · נתרן 3\,650 מ"ג\n\nהדף 
- המלא: https://natanelaz.github.io/ironman-vichy/
-LOCATION:כביש
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:20
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w3-swimC@vichy2027
 SEQUENCE:20706
 DTSTAMP:20260910T000000Z
@@ -1270,8 +1232,11 @@ DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 2–3 · ~2\,100 מ
  מה + 25 גרם חלבון תוך שעה. מים מסתירים הזע
  ה — לשתות 500 מ״ל אחרי\, גם בלי תחושת צמא.\n
  \nמנוחה אחרי: 0ש׳ לאימון קל בענף אחר · 2ש׳ 
- לעומס דומה · 4ש׳ לאיכות באותו ענף\n\nהדף ה
- מלא: https://natanelaz.github.io/ironman-vichy/
+ לעומס דומה · 4ש׳ לאיכות באותו ענף\n\n━━━
+  תזונה יומית · יום בינוני\n3\,430 קק"ל · 530 ג
+ ׳ פחמימה · 135 ג׳ חלבון · 85 ג׳ שומן\nנוזלים
+  3.8 ליטר · נתרן 3\,650 מ"ג\n\nהדף המלא: https://natan
+ elaz.github.io/ironman-vichy/
 LOCATION:בריכה או ים
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:שחייה
@@ -1280,6 +1245,42 @@ BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
 DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 45 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w3-bikeEnd@vichy2027
+SEQUENCE:20706
+DTSTAMP:20260910T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260910T193500
+DTEND;TZID=Asia/Jerusalem:20260910T205500
+SUMMARY:🚴 אופניים נפח · 1:20
+DESCRIPTION:◆ האימון הזה: 1:20 · RPE 3–4 · 31–36 ק״מ 
+ · כביש\nהיום כולו: 2 אימונים · 2:05 סה"כ\nשבו
+ ע 3/52 · הרצה והסתגלות · יום הנפח הקל\n\n1:20 
+ רצוף ב-Z2 (56–75% FTP) · 22–26 קמ״ש בשטח מתגלגל\
+ nקדנס 85–95 לאורך כל הרכיבה\n\n◆ רכיבה שאפ
+ שר לדבר בה במשפטים שלמים. אם אי אפשר — ז
+ ה כבר לא Z2.\n• זו הרכיבה שמוסיפה שעות אוכ
+ ף בלי לעלות בעייפות\n• היום הזה נבנה קל 
+ בכוונה — הוא בא אחרי משמרת לילה\, ולכן א
+ ין בו שום עצימות\n\nתזונה — לפני: אפשר על 
+ צום אם ה-RPE עד 3 והמשך עד 60 דקות. אחרת 50 גר
+ ם פחמימה שעה לפני.\nבמהלך: 30 גרם פחמימה ל
+ שעה = כ-40 גרם באימון · 550 מ״ל נוזלים לשעה =
+  730 מ״ל · 450 מ״ג נתרן לשעה = 600 מ״ג\nאחרי: אר
+ וחה רגילה. אין צורך בחלון תזונה מיוחד אח
+ רי אימון קל.\n\nמנוחה אחרי: 2ש׳ לאימון קל ב
+ ענף אחר · 4ש׳ לעומס דומה · 12ש׳ לאיכות באו
+ תו ענף\n\nהדף המלא: https://natanelaz.github.io/ironman-vich
+ y/
+LOCATION:כביש
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:אופניים
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:20
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT

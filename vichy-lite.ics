@@ -767,30 +767,6 @@ CATEGORIES:כוח
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w3-bikeEnd@vichy2027
-SEQUENCE:20706
-DTSTAMP:20260910T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260910T133000
-DTEND;TZID=Asia/Jerusalem:20260910T145000
-SUMMARY:🚴 אופניים נפח · 1:20
-DESCRIPTION:◆ האימון הזה: 1:20 · RPE 3–4 · 31–36 ק״מ 
- · כביש\nהיום כולו: 2 אימונים · 2:05 סה"כ\nשבו
- ע 3/52 · הרצה והסתגלות · יום הנפח הקל\n\n1:20 
- רצוף ב-Z2 (56–75% FTP) · 22–26 קמ״ש בשטח מתגלגל\
- nתזונה תוך כדי: 30 ג׳ פחמימה/שעה · 550 מ״ל/ש
- עה · 450 מ״ג נתרן/שעה\nמנוחה אחרי: 4ש׳ לעומ
- ס דומה · 12ש׳ לאיכות באותו ענף
-LOCATION:כביש
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:20
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w3-swimC@vichy2027
 SEQUENCE:20706
 DTSTAMP:20260910T000000Z
@@ -812,6 +788,30 @@ BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
 DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 45 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w3-bikeEnd@vichy2027
+SEQUENCE:20706
+DTSTAMP:20260910T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260910T193500
+DTEND;TZID=Asia/Jerusalem:20260910T205500
+SUMMARY:🚴 אופניים נפח · 1:20
+DESCRIPTION:◆ האימון הזה: 1:20 · RPE 3–4 · 31–36 ק״מ 
+ · כביש\nהיום כולו: 2 אימונים · 2:05 סה"כ\nשבו
+ ע 3/52 · הרצה והסתגלות · יום הנפח הקל\n\n1:20 
+ רצוף ב-Z2 (56–75% FTP) · 22–26 קמ״ש בשטח מתגלגל\
+ nתזונה תוך כדי: 30 ג׳ פחמימה/שעה · 550 מ״ל/ש
+ עה · 450 מ״ג נתרן/שעה\nמנוחה אחרי: 4ש׳ לעומ
+ ס דומה · 12ש׳ לאיכות באותו ענף
+LOCATION:כביש
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:אופניים
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:20
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
