@@ -1,18 +1,15 @@
 {
  "3": [
   {
-   "role": "runLong",
-   "type": "run",
-   "title": "ריצה · הריצה הארוכה",
-   "plannedMin": 60,
-   "rpePlanned": "4–5",
+   "role": "swimC",
+   "type": "swim",
+   "title": "שחייה C · טכניקה ושחרור",
+   "plannedMin": 45,
+   "rpePlanned": "2–3",
    "st": "full",
-   "ts": 1788956396680,
-   "dur": 60,
-   "dist": 10.5,
-   "knee": 3,
-   "sleep": 8,
-   "note": "‏השעה כללה בתוכה 10 דקות חימום"
+   "ts": 1789066923430,
+   "dur": 45,
+   "rpe": 4
   }
  ]
 }
