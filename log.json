@@ -12,6 +12,16 @@
    "rpe": 4,
    "dist": 2,
    "knee": 0
+  },
+  {
+   "role": "runSocial",
+   "type": "run",
+   "title": "ריצה · הריצה עם החבר",
+   "plannedMin": 70,
+   "rpePlanned": "2–3",
+   "st": "full",
+   "ts": 1789066962562,
+   "dur": 70
   }
  ]
 }
