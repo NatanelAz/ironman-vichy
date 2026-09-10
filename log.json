@@ -20,9 +20,10 @@
    "plannedMin": 70,
    "rpePlanned": "2–3",
    "st": "full",
-   "ts": 1789066969892,
+   "ts": 1789067006588,
    "dur": 70,
-   "rpe": 2
+   "rpe": 2,
+   "knee": 3
   }
  ]
 }
