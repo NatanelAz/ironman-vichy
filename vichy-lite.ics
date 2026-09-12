@@ -919,7 +919,7 @@ DTSTART;TZID=Asia/Jerusalem:20260913T063000
 DTEND;TZID=Asia/Jerusalem:20260913T073000
 SUMMARY:🏃 ריצה ארוכה · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 4–5 · 10–10 ק״מ 
- · טיילת / שטוח\nהיום כולו: 2 אימונים · 2:05 ס
+ · טיילת / שטוח\nהיום כולו: 2 אימונים · 1:45 ס
  ה"כ\nשבוע 4/52 · יסודות אירוביים · יום הריצ
  ה הארוכה · שבוע עם מרוץ הכנה\n\n1:00 · רצוף 
  ב-Z2 · 6×20 שניות סטרייד בסוף\nתזונה תוך כד
@@ -937,27 +937,26 @@ DESCRIPTION:בעוד 45 דק׳: ריצה ארוכה · 1:00
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w4-swimA@vichy2027
+UID:vichy-w4-bikeSpin@vichy2027
 SEQUENCE:20708
 DTSTAMP:20260912T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260913T103000
-DTEND;TZID=Asia/Jerusalem:20260913T113500
-SUMMARY:🏊 שחייה סטים · 1:05
-DESCRIPTION:◆ האימון הזה: 1:05 · RPE 6–7 · ~3\,100 מ׳ ·
-  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
- 2:05 סה"כ\nשבוע 4/52 · יסודות אירוביים · יום 
- הריצה הארוכה · שבוע עם מרוץ הכנה\n\nחימום
-  300 · 6×150 ב-CSS+5 עם 25 שנ׳ · 6×50 מהיר עם 20 שנ׳ 
- · שחרור 200\nמנוחה אחרי: 4ש׳ לעומס דומה · 14
- ש׳ לאיכות באותו ענף
-LOCATION:בריכה (מרחק מדוד)
+DTSTART;TZID=Asia/Jerusalem:20260913T093000
+DTEND;TZID=Asia/Jerusalem:20260913T101500
+SUMMARY:🚴 ספין שחרור · 45 דק׳
+DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 1–2 · סטציו
+ נרי\nהיום כולו: 2 אימונים · 1:45 סה"כ\nשבוע 4/
+ 52 · יסודות אירוביים · יום הריצה הארוכה ·
+  שבוע עם מרוץ הכנה\n\n45 דק׳ ב-Z1 (<55% FTP)\, קדנ
+ ס 90–100\, ללא התנגדות\nמנוחה אחרי: 3ש׳ לעומ
+ ס דומה · 8ש׳ לאיכות באותו ענף
+LOCATION:סטציונרי
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:שחייה
+CATEGORIES:אופניים
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:05
+DESCRIPTION:בעוד 45 דק׳: ספין שחרור · 45 דק׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -1007,37 +1006,38 @@ CATEGORIES:כוח
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w4-bikeSpin@vichy2027
+UID:vichy-w4-swimA@vichy2027
 SEQUENCE:20708
 DTSTAMP:20260912T000000Z
 DTSTART;TZID=Asia/Jerusalem:20260915T133000
-DTEND;TZID=Asia/Jerusalem:20260915T141500
-SUMMARY:🚴 ספין שחרור · 45 דק׳
-DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 1–2 · סטציו
- נרי\nהיום כולו: אימון אחד · 1:27 סה"כ\nשבוע 4
- /52 · יסודות אירוביים · יום המנוחה · שבוע 
- עם מרוץ הכנה\n\n45 דק׳ ב-Z1 (<55% FTP)\, קדנס 90–100
- \, ללא התנגדות\nמנוחה אחרי: 3ש׳ לעומס דומה
-  · 8ש׳ לאיכות באותו ענף
-LOCATION:סטציונרי
+DTEND;TZID=Asia/Jerusalem:20260915T143500
+SUMMARY:🏊 שחייה סטים · 1:05
+DESCRIPTION:◆ האימון הזה: 1:05 · RPE 6–7 · ~3\,100 מ׳ ·
+  בריכה (מרחק מדוד)\nהיום כולו: אימון אחד ·
+  1:47 סה"כ\nשבוע 4/52 · יסודות אירוביים · יום 
+ המנוחה · שבוע עם מרוץ הכנה\n\nחימום 300 · 6×
+ 150 ב-CSS+5 עם 25 שנ׳ · 6×50 מהיר עם 20 שנ׳ · שחרו
+ ר 200\nמנוחה אחרי: 4ש׳ לעומס דומה · 14ש׳ לאי
+ כות באותו ענף
+LOCATION:בריכה (מרחק מדוד)
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
+CATEGORIES:שחייה
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ספין שחרור · 45 דק׳
+DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:05
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:vichy-w4-mob@vichy2027
 SEQUENCE:20708
 DTSTAMP:20260912T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260915T141500
-DTEND;TZID=Asia/Jerusalem:20260915T145700
+DTSTART;TZID=Asia/Jerusalem:20260915T173500
+DTEND;TZID=Asia/Jerusalem:20260915T181700
 SUMMARY:🧘 ניידות · 42 דק׳
 DESCRIPTION:◆ האימון הזה: 42 דק׳ · RPE 1 · בבית\nהי
- ום כולו: אימון אחד · 1:27 סה"כ\nשבוע 4/52 · יס
+ ום כולו: אימון אחד · 1:47 סה"כ\nשבוע 4/52 · יס
  ודות אירוביים · יום המנוחה · שבוע עם מרו
  ץ הכנה\n\nהמינון היומי (7 דק׳): Spanish squat / יש
  יבת קיר 5×45 שנ׳ בזווית 60° · פשיטת ירך בשכ
