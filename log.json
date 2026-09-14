@@ -1,30 +1,15 @@
 {
- "3": [
+ "4": [
   {
-   "role": "swimC",
-   "type": "swim",
-   "title": "שחייה C · טכניקה ושחרור",
-   "plannedMin": 45,
-   "rpePlanned": "2–3",
+   "role": "str",
+   "type": "str",
+   "title": "כוח #1 · הסתגלות אנטומית (רגליים כבד)",
+   "plannedMin": 50,
+   "rpePlanned": "6–7",
    "st": "full",
-   "ts": 1789066942000,
-   "dur": 45,
-   "rpe": 4,
-   "dist": 2,
-   "knee": 0
-  },
-  {
-   "role": "runSocial",
-   "type": "run",
-   "title": "ריצה · הריצה עם החבר",
-   "plannedMin": 70,
-   "rpePlanned": "2–3",
-   "st": "full",
-   "ts": 1789067013321,
-   "dur": 70,
-   "rpe": 2,
-   "knee": 3,
-   "sleep": 6
+   "ts": 1789396363907,
+   "dur": 50,
+   "rpe": 5
   }
  ]
 }
