@@ -7,12 +7,13 @@
    "plannedMin": 50,
    "rpePlanned": "6–7",
    "st": "full",
-   "ts": 1789396378016,
+   "ts": 1789396414137,
    "dur": 50,
    "rpe": 5,
    "w_sq": 100,
    "w_dl": 125,
-   "knee": 0
+   "knee": 0,
+   "sleep": 6
   },
   {
    "role": "str2",
@@ -21,12 +22,13 @@
    "plannedMin": 50,
    "rpePlanned": "5",
    "knee": 0,
-   "ts": 1789396405341,
+   "ts": 1789396414244,
    "st": "full",
    "dur": 25,
    "rpe": 3,
    "w_hip": 0,
-   "w_cal": 0
+   "w_cal": 0,
+   "sleep": 6
   }
  ]
 }
