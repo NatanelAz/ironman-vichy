@@ -21,10 +21,11 @@
    "plannedMin": 50,
    "rpePlanned": "5",
    "knee": 0,
-   "ts": 1789396387532,
+   "ts": 1789396398808,
    "st": "full",
-   "dur": 50,
-   "rpe": 3
+   "dur": 25,
+   "rpe": 3,
+   "w_hip": 0
   }
  ]
 }
