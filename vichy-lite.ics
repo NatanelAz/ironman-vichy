@@ -1323,11 +1323,59 @@ CATEGORIES:ריצה
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
+UID:vichy-w5-bikeEnd@vichy2027
+SEQUENCE:20715
+DTSTAMP:20260919T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260922T063000
+DTEND;TZID=Asia/Jerusalem:20260922T082000
+SUMMARY:🚴 אופניים נפח · 1:50
+DESCRIPTION:◆ האימון הזה: 1:50 · RPE 3–4 · 42–50 ק״מ 
+ · כביש\nהיום כולו: 2 אימונים · 2:45 סה"כ\nשבו
+ ע 5/52 · יסודות אירוביים · יום הנפח הקל\n\n1:
+ 50 רצוף ב-Z2 (56–75% FTP) · 23–27 קמ״ש\nתזונה תוך 
+ כדי: 55 ג׳ פחמימה/שעה · 550 מ״ל/שעה · 450 מ״ג 
+ נתרן/שעה\nמנוחה אחרי: 6ש׳ לעומס דומה · 18ש
+ ׳ לאיכות באותו ענף
+LOCATION:כביש
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:אופניים
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:50
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w5-swimC@vichy2027
+SEQUENCE:20715
+DTSTAMP:20260919T000000Z
+DTSTART;TZID=Asia/Jerusalem:20260922T102000
+DTEND;TZID=Asia/Jerusalem:20260922T111500
+SUMMARY:🏊 שחייה קלה · 55 דק׳
+DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 2–3 · ~2\,600 מ
+ ׳ · בריכה או ים\nהיום כולו: 2 אימונים · 2:45 
+ סה"כ\nשבוע 5/52 · יסודות אירוביים · יום הנפ
+ ח הקל\n\nחימום 200 · 8×50 תרגילים (מרפק גבוה 
+ · אצבע לאורך הגוף · שחייה חד-צדדית) עם 20 
+ שנ׳ · 6×100 קל · שחרור 200\nמנוחה אחרי: 2ש׳ לע
+ ומס דומה · 4ש׳ לאיכות באותו ענף
+LOCATION:בריכה או ים
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:שחייה
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 55 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:vichy-w5-str@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260922T070000
-DTEND;TZID=Asia/Jerusalem:20260922T075500
+DTSTART;TZID=Asia/Jerusalem:20260923T070000
+DTEND;TZID=Asia/Jerusalem:20260923T075500
 SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: אימון אחד · 1:50 סה
@@ -1352,8 +1400,8 @@ BEGIN:VEVENT
 UID:vichy-w5-str2@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260922T075500
-DTEND;TZID=Asia/Jerusalem:20260922T085000
+DTSTART;TZID=Asia/Jerusalem:20260923T075500
+DTEND;TZID=Asia/Jerusalem:20260923T085000
 SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 5 · חדר הכו
  שר בעבודה\nהיום כולו: אימון אחד · 1:50 סה"כ\
@@ -1372,8 +1420,8 @@ BEGIN:VEVENT
 UID:vichy-w5-bikeSpin@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260923T133000
-DTEND;TZID=Asia/Jerusalem:20260923T142000
+DTSTART;TZID=Asia/Jerusalem:20260924T133000
+DTEND;TZID=Asia/Jerusalem:20260924T142000
 SUMMARY:🚴 ספין שחרור · 50 דק׳
 DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 1–2 · סטציו
  נרי\nהיום כולו: אימון אחד · 1:35 סה"כ\nשבוע 5
@@ -1395,8 +1443,8 @@ BEGIN:VEVENT
 UID:vichy-w5-mob@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260923T142000
-DTEND;TZID=Asia/Jerusalem:20260923T150500
+DTSTART;TZID=Asia/Jerusalem:20260924T142000
+DTEND;TZID=Asia/Jerusalem:20260924T150500
 SUMMARY:🧘 ניידות · 45 דק׳
 DESCRIPTION:◆ האימון הזה: 45 דק׳ · RPE 1 · בבית\nהי
  ום כולו: אימון אחד · 1:35 סה"כ\nשבוע 5/52 · יס
@@ -1410,59 +1458,11 @@ CATEGORIES:ניידות
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w5-bikeEnd@vichy2027
-SEQUENCE:20715
-DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260924T070000
-DTEND;TZID=Asia/Jerusalem:20260924T085000
-SUMMARY:🚴 אופניים נפח · 1:50
-DESCRIPTION:◆ האימון הזה: 1:50 · RPE 3–4 · 42–50 ק״מ 
- · כביש\nהיום כולו: 2 אימונים · 2:45 סה"כ\nשבו
- ע 5/52 · יסודות אירוביים · יום הנפח הקל\n\n1:
- 50 רצוף ב-Z2 (56–75% FTP) · 23–27 קמ״ש\nתזונה תוך 
- כדי: 55 ג׳ פחמימה/שעה · 550 מ״ל/שעה · 450 מ״ג 
- נתרן/שעה\nמנוחה אחרי: 6ש׳ לעומס דומה · 18ש
- ׳ לאיכות באותו ענף
-LOCATION:כביש
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:50
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w5-swimC@vichy2027
-SEQUENCE:20715
-DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260924T105000
-DTEND;TZID=Asia/Jerusalem:20260924T114500
-SUMMARY:🏊 שחייה קלה · 55 דק׳
-DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 2–3 · ~2\,600 מ
- ׳ · בריכה או ים\nהיום כולו: 2 אימונים · 2:45 
- סה"כ\nשבוע 5/52 · יסודות אירוביים · יום הנפ
- ח הקל\n\nחימום 200 · 8×50 תרגילים (מרפק גבוה 
- · אצבע לאורך הגוף · שחייה חד-צדדית) עם 20 
- שנ׳ · 6×100 קל · שחרור 200\nמנוחה אחרי: 2ש׳ לע
- ומס דומה · 4ש׳ לאיכות באותו ענף
-LOCATION:בריכה או ים
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:שחייה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 55 דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w5-runSocial@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260925T133000
-DTEND;TZID=Asia/Jerusalem:20260925T143000
+DTSTART;TZID=Asia/Jerusalem:20260925T063000
+DTEND;TZID=Asia/Jerusalem:20260925T073000
 SUMMARY:🏃 הריצה עם החבר · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 2–3 · 10 ק״מ בק
  ירוב · טיילת · בוקר\nהיום כולו: 2 אימונים 
@@ -1486,8 +1486,8 @@ BEGIN:VEVENT
 UID:vichy-w5-swimB@vichy2027
 SEQUENCE:20715
 DTSTAMP:20260919T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260925T173000
-DTEND;TZID=Asia/Jerusalem:20260925T183400
+DTSTART;TZID=Asia/Jerusalem:20260925T103000
+DTEND;TZID=Asia/Jerusalem:20260925T113400
 SUMMARY:🏊 שחיית ים · 1:04
 DESCRIPTION:◆ האימון הזה: 1:04 · RPE 4–5 · 2.2 ק״מ רצ
  וף · ים פתוח · ללא חליפה\nהיום כולו: 2 אימ
