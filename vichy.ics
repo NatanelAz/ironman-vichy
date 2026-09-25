@@ -3401,8 +3401,8 @@ BEGIN:VEVENT
 UID:vichy-w8-bikeEnd@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261011T133000
-DTEND;TZID=Asia/Jerusalem:20261011T152000
+DTSTART;TZID=Asia/Jerusalem:20261011T063000
+DTEND;TZID=Asia/Jerusalem:20261011T082000
 SUMMARY:🚴 אופניים נפח · 1:50
 DESCRIPTION:◆ האימון הזה: 1:50 · RPE 3–4 · 42–50 ק״מ 
  · כביש\nהיום כולו: 2 אימונים · 2:45 סה"כ\nשבו
@@ -3441,8 +3441,8 @@ BEGIN:VEVENT
 UID:vichy-w8-swimC@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261011T172000
-DTEND;TZID=Asia/Jerusalem:20261011T181500
+DTSTART;TZID=Asia/Jerusalem:20261011T102000
+DTEND;TZID=Asia/Jerusalem:20261011T111500
 SUMMARY:🏊 שחייה קלה · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 2–3 · ~2\,600 מ
  ׳ · בריכה או ים\nהיום כולו: 2 אימונים · 2:45 
@@ -3475,14 +3475,14 @@ BEGIN:VEVENT
 UID:vichy-w8-str@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261012T070000
-DTEND;TZID=Asia/Jerusalem:20261012T075500
+DTSTART;TZID=Asia/Jerusalem:20261012T063000
+DTEND;TZID=Asia/Jerusalem:20261012T072500
 SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 6–7 · חדר ה
  כושר בעבודה\nהיום כולו: אימון אחד · 1:50 סה
  "כ\nשבוע 8/52 · יסודות אירוביים · יום הכוח\n
  ◆ אימון משולב · החלק הראשון. מיד אחריו כ
- וח ליבה · 55 דק׳ · 07:55–08:50 · RPE 5. השניים נס
+ וח ליבה · 55 דק׳ · 07:25–08:20 · RPE 5. השניים נס
  פרים כבלוק אימון אחד.\n\n3×12–15 · טמפו 3-1-3 
  · משקל קל\nסקוואט גביע 3×12 · פיצול קדמי (Sp
  lit squat) 3×10 לכל רגל · הרמה רומנית ברגל אחת 
@@ -3521,14 +3521,14 @@ BEGIN:VEVENT
 UID:vichy-w8-str2@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261012T075500
-DTEND;TZID=Asia/Jerusalem:20261012T085000
+DTSTART;TZID=Asia/Jerusalem:20261012T072500
+DTEND;TZID=Asia/Jerusalem:20261012T082000
 SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 55 דק׳
 DESCRIPTION:◆ האימון הזה: 55 דק׳ · RPE 5 · חדר הכו
  שר בעבודה\nהיום כולו: אימון אחד · 1:50 סה"כ\
  nשבוע 8/52 · יסודות אירוביים · יום הכוח\n◆ 
  אימון משולב · החלק השני. מיד אחרי כוח רג
- ליים · 55 דק׳ · 07:00–07:55 · RPE 6–7.\n\n3×10–15 · ל
+ ליים · 55 דק׳ · 06:30–07:25 · RPE 6–7.\n\n3×10–15 · ל
  לא כשל · בלי סקוואט או דדליפט כבדים\nSpanish
   squat איזומטרי 5×45 שנ׳ · פשיטת ירך בשכיבה 
  על הצד 3×15 · הליכות גומייה צידיות 3×20 · Hip
@@ -3556,8 +3556,8 @@ BEGIN:VEVENT
 UID:vichy-w8-bikeSpin@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261013T133000
-DTEND;TZID=Asia/Jerusalem:20261013T142000
+DTSTART;TZID=Asia/Jerusalem:20261013T063000
+DTEND;TZID=Asia/Jerusalem:20261013T072000
 SUMMARY:🚴 ספין שחרור · 50 דק׳
 DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 1–2 · סטציו
  נרי\nהיום כולו: אימון אחד · 1:37 סה"כ\nשבוע 8
@@ -3592,8 +3592,8 @@ BEGIN:VEVENT
 UID:vichy-w8-mob@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261013T142000
-DTEND;TZID=Asia/Jerusalem:20261013T150700
+DTSTART;TZID=Asia/Jerusalem:20261013T072000
+DTEND;TZID=Asia/Jerusalem:20261013T080700
 SUMMARY:🧘 ניידות · 47 דק׳
 DESCRIPTION:◆ האימון הזה: 47 דק׳ · RPE 1 · בבית\nהי
  ום כולו: אימון אחד · 1:37 סה"כ\nשבוע 8/52 · יס
