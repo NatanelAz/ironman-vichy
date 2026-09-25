@@ -1559,8 +1559,8 @@ BEGIN:VEVENT
 UID:vichy-w6-bikeEnd@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260927T133000
-DTEND;TZID=Asia/Jerusalem:20260927T153000
+DTSTART;TZID=Asia/Jerusalem:20260927T063000
+DTEND;TZID=Asia/Jerusalem:20260927T083000
 SUMMARY:🚴 אופניים נפח · 2:00
 DESCRIPTION:◆ האימון הזה: 2:00 · RPE 3–4 · 46–54 ק״מ 
  · כביש\nהיום כולו: 2 אימונים · 3:05 סה"כ\nשבו
@@ -1583,8 +1583,8 @@ BEGIN:VEVENT
 UID:vichy-w6-swimC@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260927T173000
-DTEND;TZID=Asia/Jerusalem:20260927T183500
+DTSTART;TZID=Asia/Jerusalem:20260927T103000
+DTEND;TZID=Asia/Jerusalem:20260927T113500
 SUMMARY:🏊 שחייה קלה · 1:05
 DESCRIPTION:◆ האימון הזה: 1:05 · RPE 2–3 · ~3\,100 מ׳ ·
   בריכה או ים\nהיום כולו: 2 אימונים · 3:05 סה"
@@ -1607,14 +1607,14 @@ BEGIN:VEVENT
 UID:vichy-w6-str@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260928T070000
-DTEND;TZID=Asia/Jerusalem:20260928T080000
+DTSTART;TZID=Asia/Jerusalem:20260928T063000
+DTEND;TZID=Asia/Jerusalem:20260928T073000
 SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 2:00 סה"כ\n
  שבוע 6/52 · יסודות אירוביים · יום הכוח\n◆ 
  אימון משולב · החלק הראשון. מיד אחריו כוח
-  ליבה · 1:00 · 08:00–09:00 · RPE 5. השניים נספרים 
+  ליבה · 1:00 · 07:30–08:30 · RPE 5. השניים נספרים 
  כבלוק אימון אחד.\n\n3×12–15 · טמפו 3-1-3 · משק
  ל קל\nמנוחה אחרי: 8ש׳ לעומס דומה · 18ש׳ לאי
  כות באותו ענף
@@ -1632,14 +1632,14 @@ BEGIN:VEVENT
 UID:vichy-w6-str2@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260928T080000
-DTEND;TZID=Asia/Jerusalem:20260928T090000
+DTSTART;TZID=Asia/Jerusalem:20260928T073000
+DTEND;TZID=Asia/Jerusalem:20260928T083000
 SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 5 · חדר הכושר 
  בעבודה\nהיום כולו: אימון אחד · 2:00 סה"כ\nשב
  וע 6/52 · יסודות אירוביים · יום הכוח\n◆ אי
  מון משולב · החלק השני. מיד אחרי כוח רגלי
- ים · 1:00 · 07:00–08:00 · RPE 6–7.\n\n3×10–15 · ללא כש
+ ים · 1:00 · 06:30–07:30 · RPE 6–7.\n\n3×10–15 · ללא כש
  ל · בלי סקוואט או דדליפט כבדים\nמנוחה אח
  רי: 6ש׳ לעומס דומה · 12ש׳ לאיכות באותו ענף
 LOCATION:חדר הכושר בעבודה
@@ -1651,8 +1651,8 @@ BEGIN:VEVENT
 UID:vichy-w6-bikeSpin@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260929T133000
-DTEND;TZID=Asia/Jerusalem:20260929T142000
+DTSTART;TZID=Asia/Jerusalem:20260929T063000
+DTEND;TZID=Asia/Jerusalem:20260929T072000
 SUMMARY:🚴 ספין שחרור · 50 דק׳
 DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 1–2 · סטציו
  נרי\nהיום כולו: אימון אחד · 1:38 סה"כ\nשבוע 6
@@ -1674,8 +1674,8 @@ BEGIN:VEVENT
 UID:vichy-w6-mob@vichy2027
 SEQUENCE:20721
 DTSTAMP:20260925T000000Z
-DTSTART;TZID=Asia/Jerusalem:20260929T142000
-DTEND;TZID=Asia/Jerusalem:20260929T150800
+DTSTART;TZID=Asia/Jerusalem:20260929T072000
+DTEND;TZID=Asia/Jerusalem:20260929T080800
 SUMMARY:🧘 ניידות · 48 דק׳
 DESCRIPTION:◆ האימון הזה: 48 דק׳ · RPE 1 · בבית\nהי
  ום כולו: אימון אחד · 1:38 סה"כ\nשבוע 6/52 · יס
