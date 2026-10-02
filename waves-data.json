@@ -1,143 +1,116 @@
 {
-  "fetched": "2026-10-01T10:05:31.694Z",
+  "fetched": "2026-10-02T09:44:03.773Z",
   "spot": "תל אביב · חוף הילטון",
   "lat": 32.0892,
   "lon": 34.7695,
-  "seaTemp": 28.6,
+  "seaTemp": 28.5,
   "source": "Open-Meteo Forecast & Marine API",
   "days": [
     {
-      "d": "2026-10-01",
-      "am": {
-        "h": 0.9,
-        "p": 6,
-        "w": 8,
-        "dir": "SSW",
-        "st": "Glassy"
-      },
-      "pm": {
-        "h": 0.9,
-        "p": 6,
-        "w": 13,
-        "dir": "W",
-        "st": "On-shore"
-      },
-      "nt": {
-        "h": 0.9,
-        "p": 6,
-        "w": 5,
-        "dir": "WSW",
-        "st": "Glassy"
-      },
-      "seaTemp": 28.6,
-      "rise": "06:34",
-      "set": "18:25"
-    },
-    {
       "d": "2026-10-02",
       "am": {
-        "h": 0.7,
+        "h": 0.8,
         "p": 5,
-        "w": 9,
-        "dir": "SSE",
-        "st": "On-shore"
+        "w": 8,
+        "dir": "S",
+        "st": "Glassy"
       },
       "pm": {
-        "h": 0.7,
+        "h": 0.8,
         "p": 5,
         "w": 15,
         "dir": "WSW",
         "st": "On-shore"
       },
       "nt": {
-        "h": 0.6,
+        "h": 0.8,
         "p": 5,
-        "w": 6,
-        "dir": "NNW",
+        "w": 5,
+        "dir": "NNE",
         "st": "Glassy"
       },
-      "seaTemp": 28.4,
+      "seaTemp": 28.5,
       "rise": "06:35",
       "set": "18:24"
     },
     {
       "d": "2026-10-03",
       "am": {
-        "h": 0.5,
+        "h": 0.6,
         "p": 5,
-        "w": 5,
-        "dir": "SE",
+        "w": 7,
+        "dir": "SSW",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.5,
         "p": 5,
-        "w": 12,
+        "w": 13,
         "dir": "W",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.5,
         "p": 5,
-        "w": 5,
-        "dir": "NNE",
+        "w": 6,
+        "dir": "N",
         "st": "Glassy"
       },
-      "seaTemp": 28.3,
+      "seaTemp": 28.4,
       "rise": "06:35",
       "set": "18:23"
     },
     {
       "d": "2026-10-04",
       "am": {
-        "h": 0.4,
-        "p": 6,
+        "h": 0.5,
+        "p": 5,
         "w": 4,
-        "dir": "ESE",
+        "dir": "SE",
         "st": "Glassy"
       },
       "pm": {
-        "h": 0.5,
-        "p": 5,
-        "w": 14,
+        "h": 0.7,
+        "p": 4,
+        "w": 15,
         "dir": "NW",
         "st": "On-shore"
       },
       "nt": {
-        "h": 0.5,
+        "h": 0.8,
         "p": 4,
-        "w": 6,
+        "w": 7,
         "dir": "NNW",
         "st": "Glassy"
       },
-      "seaTemp": 28.2,
+      "seaTemp": 28.3,
       "rise": "06:36",
       "set": "18:21"
     },
     {
       "d": "2026-10-05",
       "am": {
-        "h": 0.4,
+        "h": 0.5,
         "p": 5,
         "w": 5,
-        "dir": "ESE",
+        "dir": "SSE",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.4,
         "p": 5,
-        "w": 13,
-        "dir": "NW",
+        "w": 12,
+        "dir": "WNW",
         "st": "On-shore"
       },
       "nt": {
         "h": 0.4,
         "p": 4,
-        "w": 7,
-        "dir": "N",
+        "w": 6,
+        "dir": "NNW",
         "st": "Glassy"
       },
-      "seaTemp": 28.1,
+      "seaTemp": 28.2,
       "rise": "06:37",
       "set": "18:20"
     },
@@ -146,25 +119,25 @@
       "am": {
         "h": 0.3,
         "p": 5,
-        "w": 3,
-        "dir": "ENE",
+        "w": 4,
+        "dir": "S",
         "st": "Glassy"
       },
       "pm": {
-        "h": 0.3,
+        "h": 0.4,
         "p": 5,
-        "w": 10,
+        "w": 14,
         "dir": "NW",
         "st": "On-shore"
       },
       "nt": {
-        "h": 0.3,
+        "h": 0.4,
         "p": 4,
-        "w": 7,
-        "dir": "N",
-        "st": "Glassy"
+        "w": 9,
+        "dir": "NNE",
+        "st": "On-shore"
       },
-      "seaTemp": 28,
+      "seaTemp": 28.1,
       "rise": "06:37",
       "set": "18:19"
     },
@@ -173,27 +146,54 @@
       "am": {
         "h": 0.3,
         "p": 5,
-        "w": 3,
-        "dir": "E",
+        "w": 5,
+        "dir": "NE",
         "st": "Glassy"
       },
       "pm": {
         "h": 0.5,
         "p": 4,
-        "w": 14,
-        "dir": "NNW",
+        "w": 15,
+        "dir": "NW",
         "st": "Cross"
       },
       "nt": {
         "h": 0.6,
         "p": 4,
-        "w": 11,
-        "dir": "NNE",
+        "w": 9,
+        "dir": "NNW",
         "st": "Cross"
       },
       "seaTemp": 28,
       "rise": "06:38",
       "set": "18:18"
+    },
+    {
+      "d": "2026-10-08",
+      "am": {
+        "h": 0.5,
+        "p": 4,
+        "w": 5,
+        "dir": "ESE",
+        "st": "Glassy"
+      },
+      "pm": {
+        "h": 0.8,
+        "p": 4,
+        "w": 17,
+        "dir": "NNW",
+        "st": "Cross"
+      },
+      "nt": {
+        "h": 0.8,
+        "p": 4,
+        "w": 11,
+        "dir": "N",
+        "st": "Cross"
+      },
+      "seaTemp": 27.9,
+      "rise": "06:39",
+      "set": "18:16"
     }
   ]
 }
