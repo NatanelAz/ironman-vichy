@@ -3013,8 +3013,8 @@ BEGIN:VEVENT
 UID:vichy-w7-bikeEnd@vichy2027
 SEQUENCE:20729
 DTSTAMP:20261003T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261004T133000
-DTEND;TZID=Asia/Jerusalem:20261004T151000
+DTSTART;TZID=Asia/Jerusalem:20261004T063000
+DTEND;TZID=Asia/Jerusalem:20261004T081000
 SUMMARY:🚴 אופניים נפח · 1:40
 DESCRIPTION:◆ האימון הזה: 1:40 · RPE 3–4 · 38–45 ק״מ 
  · כביש\nהיום כולו: אימון אחד · 1:40 סה"כ\nשב
@@ -3054,8 +3054,8 @@ BEGIN:VEVENT
 UID:vichy-w7-str@vichy2027
 SEQUENCE:20729
 DTSTAMP:20261003T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261005T070000
-DTEND;TZID=Asia/Jerusalem:20261005T081500
+DTSTART;TZID=Asia/Jerusalem:20261005T063000
+DTEND;TZID=Asia/Jerusalem:20261005T074500
 SUMMARY:🏋️ כוח · רגליים כבד · 1:15
 DESCRIPTION:◆ האימון הזה: 1:15 · RPE 6–7 · חדר הכוש
  ר בעבודה\nהיום כולו: אימון אחד · 1:15 סה"כ\n
@@ -3097,8 +3097,8 @@ BEGIN:VEVENT
 UID:vichy-w7-mob@vichy2027
 SEQUENCE:20729
 DTSTAMP:20261003T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261006T133000
-DTEND;TZID=Asia/Jerusalem:20261006T140100
+DTSTART;TZID=Asia/Jerusalem:20261006T063000
+DTEND;TZID=Asia/Jerusalem:20261006T070100
 SUMMARY:🧘 ניידות · 31 דק׳
 DESCRIPTION:◆ האימון הזה: 31 דק׳ · RPE 1 · בבית\nהי
  ום כולו: 0 אימונים · 31 דק׳ סה"כ\nשבוע 7/52 · 
