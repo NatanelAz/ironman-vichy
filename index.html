@@ -835,6 +835,38 @@ body.dragmode .brow{transition:background .12s,box-shadow .12s}
 .tlink{margin-top:6px!important}
 .tlink a{color:var(--accent);font-weight:600;font-size:.8rem}
 .tbody{flex:1;min-width:0}
+/* --- אימון שהגיע מהשעון --- */
+.minibtn.watch{border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);font-weight:700}
+.dwarn.watch{background:color-mix(in srgb,var(--accent) 7%,transparent);
+  border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+.dwarn.watch .dico{background:var(--accent);color:#fff}
+/* --- כרטיס השלמה מהשעון --- */
+.ibwrap{margin-bottom:16px;display:flex;flex-direction:column;gap:10px}
+.ibhead{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--accent)}
+.ibcard{background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent);
+  border-inline-start:3px solid var(--accent);border-radius:12px;padding:13px 14px;
+  display:flex;flex-direction:column;gap:11px;box-shadow:var(--shadow)}
+.ibtop{display:flex;gap:11px;align-items:flex-start}
+.ibico{width:28px;height:28px;flex:none;border-radius:8px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:.95rem}
+.ibtop b{display:block;font-size:.98rem;color:var(--ink)}
+.ibtop i{display:block;font-style:normal;font-size:.82rem;color:var(--ink3);
+  font-family:"IBM Plex Mono",monospace;margin-top:2px}
+.ibq{display:flex;flex-direction:column;gap:6px}
+.ibq.done{opacity:.55}
+.ibql{font-size:.84rem;font-weight:600;color:var(--ink2)}
+.ibql em{font-style:normal;font-weight:400;color:var(--ink3);font-size:.78rem}
+.ibrow{display:grid;grid-template-columns:repeat(var(--cols),1fr);gap:3px}
+.ibchip{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--ink2);
+  border-radius:7px;padding:9px 0;font:600 .86rem/1 "IBM Plex Mono",monospace;cursor:pointer;
+  min-height:38px;transition:background .12s,border-color .12s}
+.ibchip:active{transform:scale(.95)}
+.ibq.main .ibchip{min-height:42px}
+.ibchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.ibq.main .ibchip.on{background:var(--race);border-color:var(--race)}
+.ibhint{font-size:.78rem;color:var(--ink3);margin:0}
+.ibhint.orphan{padding:8px 11px;background:var(--bg);border:1px dashed var(--line);border-radius:9px}
 </style></head><body>
 <header class="mast">
   <div class="mast-in wrap">
@@ -2682,7 +2714,7 @@ function drawToday(){
   :`<div class="hero done-all"><div class="hero-name">שבוע ${n} הושלם</div>
       <p class="hero-set">כל האימונים סומנו. ${dow===6?"מחר מתחיל שבוע חדש.":"מנוחה טובה."}</p></div>`;
 
-  host.innerHTML=`${banner}${typeof tasksAlert==="function"?tasksAlert():""}<div class="todaygrid"><div class="tmain">${heroHtml}
+  host.innerHTML=`${banner}${typeof tasksAlert==="function"?tasksAlert():""}${typeof ibAlert==="function"?ibAlert():""}<div class="todaygrid"><div class="tmain">${heroHtml}
   <div class="tcard ${ctx.c}">
     <div class="trow1">
       <div>
@@ -3611,6 +3643,7 @@ function lgPart(n,s,multi){
       const bits=fill.map(x=> x==="dur"?`${MM(can.dur)}`
         : x==="dist"?`${can.dist} ${s.t==="swim"?"מ׳":"ק״מ"}` : `${can.hr} דופק`);
       return `<div class="lgline"><button class="minibtn wideb" data-lg="asplan"${A()}>מלא כמתוכנן · ${bits.join(" · ")}</button></div>`;})()}
+    ${typeof ibBtn==="function"?ibBtn(n,s):""}
     `:""}
   </div>`;
 }
@@ -5092,7 +5125,7 @@ function rerenderProgress(){
 /* כשמשנים משמרות כאן, הדף כותב shifts.json למאגר בגיטהאב.
    GitHub Actions בונה מחדש את vichy.ics, והאייפון מושך את העדכון.
    הטוקן נשמר אך ורק במכשיר הזה — הוא לא נמצא בדף ולא במאגר.      */
-const BUILD="2026-09-07a";
+const BUILD="2026-10-13a";
 const GH={owner:"NatanelAz",repo:"ironman-vichy",branch:"main",path:"shifts.json",logPath:"log.json"};
 let lastSent={cons:null,log:null};
 const TKEY="vichy.ghtok.v1", SSKEY="vichy.sync.v1";
@@ -5122,6 +5155,7 @@ function consPayload(){
   }
   /* משימות אדמין נוסעות באותו קובץ. build-cal מדלג על מפתחות שמתחילים ב-_ */
   if(PROG.tasks && Object.keys(PROG.tasks).length) out._tasks=PROG.tasks;
+  if(PROG.inbox && Object.keys(PROG.inbox).length) out._inbox=PROG.inbox;
   /* סימוני «בוצע» — בלעדיהם היומן בונה תוכנית בסיס בזמן שהאתר מציג
      תוכנית מותאמת, והשניים נפרדים בשקט. נשמרים לפי role, שהוא יציב,
      ולא לפי כותרת מלאה — כדי שהקובץ יישאר קטן.                     */
@@ -5369,6 +5403,7 @@ function pullDown(){
   let got = 0;
   if(raw._tasks && typeof raw._tasks==="object"){ PROG.tasks=Object.assign({},PROG.tasks,raw._tasks); }
       if(raw._items) applyItems(raw._items);
+      if(raw._inbox && typeof raw._inbox==="object"){ PROG.inbox=Object.assign({},PROG.inbox,raw._inbox); }
   for(const [wk, v] of Object.entries(raw)){
     if(wk.startsWith("_")) continue;
     const arr = Array.isArray(v) ? v : v && v.shift;
@@ -5517,6 +5552,189 @@ function dragDrop(){
   setPlace(s.week,s.key,to);
   toast(`«${s.chip.dataset.name}» הועבר ליום ${DAYNAME[to]}`,true,false);
 }
+/* ============ INBOX — אימונים שהגיעו מה-Apple Watch ============
+   השעון נותן רק את מה שאפשר למדוד: משך, מרחק, דופק, שינה.
+   RPE וכאב בברך הם סובייקטיביים — ודווקא הם המדדים שמנבאים
+   את חזרת ה-PFPS. לכן השעון *ממלא מראש* ואינו מדווח במקומך.
+
+   הזרימה: Shortcuts באייפון → repository_dispatch → Action →
+   inbox.json → הדף קורא אותו ללא טוקן מ-raw.githubusercontent.  */
+
+const IB_URL = "https://raw.githubusercontent.com/NatanelAz/ironman-vichy/main/inbox.json";
+let IBOX = null, ibState = "idle";        /* idle · loading · ok · err */
+
+/* סוגי אימון של אפל → הסוגים שלנו */
+const IB_TYPE = {
+  swim:"swim", "pool swim":"swim", "open water swim":"swim", swimming:"swim",
+  bike:"bike", cycling:"bike", "outdoor cycle":"bike", "indoor cycle":"bike", biking:"bike",
+  run:"run", running:"run", "outdoor run":"run", "indoor run":"run", walking:"run",
+  str:"str", "traditional strength training":"str", "functional strength training":"str",
+  "core training":"str", "strength training":"str", hiit:"str",
+};
+const ibType = t => IB_TYPE[String(t||"").trim().toLowerCase()] || "other";
+const ibYMD  = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+
+const ibUsed  = id => !!(PROG.inbox && PROG.inbox[id]);
+function ibConsume(id){
+  PROG.inbox = PROG.inbox || {};
+  PROG.inbox[id] = Date.now();
+  PROG.updated = Date.now(); saveLocal();
+  if(typeof scheduleSync==="function") scheduleSync();
+}
+
+async function ibLoad(force){
+  if(ibState==="loading") return IBOX;
+  if(IBOX && !force) return IBOX;
+  ibState="loading";
+  try{
+    const r = await fetch(IB_URL + "?t=" + Date.now(), {cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    IBOX = Array.isArray(j.items) ? j.items : [];
+    ibState="ok";
+  }catch(e){ IBOX = IBOX || []; ibState="err"; }
+  return IBOX;
+}
+
+/* כל מה שהגיע ועדיין לא שויך */
+const ibPending = () => (IBOX||[]).filter(x=>x && x.id && !ibUsed(x.id));
+
+/* באיזה יום בפועל מתוכנן האימון הזה */
+function ibDayOf(n, s){
+  try{
+    const ad = planWeekAdaptive(n), dates = weekDates(n);
+    for(let d=0; d<7; d++)
+      if(ad.days[d].sessions.some(x => (x.role||x.t)===(s.role||s.t))) return ibYMD(dates[d]);
+  }catch(e){}
+  return null;
+}
+
+/* הפריט מהשעון שמתאים לאימון הזה: אותו יום, אותו ענף */
+function ibFor(n, s){
+  const day = ibDayOf(n, s); if(!day) return null;
+  const want = s.t==="str2" ? "str" : s.t;
+  return ibPending().find(x => String(x.date||"").slice(0,10)===day && ibType(x.type)===want) || null;
+}
+
+/* מה הפריט ימלא באימון הזה — רק שדות שעדיין ריקים */
+function ibPatch(it, s){
+  const L = {}, F = (typeof logFields==="function") ? logFields(s) : ["dur","dist","hr"];
+  if(F.includes("dur")  && it.dur  != null) L.dur  = Math.round(+it.dur);
+  if(F.includes("dist") && it.dist != null) L.dist = s.t==="swim" ? Math.round(+it.dist) : +(+it.dist).toFixed(2);
+  if(F.includes("hr")   && it.hr   != null) L.hr   = Math.round(+it.hr);
+  if(it.sleep != null)  L.sleep = Math.round(+it.sleep*2)/2;
+  /* RPE מגיע מדירוג המאמץ בשעון, אם הקיצור הצליח לקרוא אותו */
+  const r = Math.round(+it.rpe);
+  if(Number.isFinite(r) && r>=1 && r<=10) L.rpe = r;
+  return L;
+}
+const ibHasRpe = it => { const r=Math.round(+it.rpe); return Number.isFinite(r)&&r>=1&&r<=10; };
+const ibBits = (it, s) => {
+  const P = ibPatch(it, s), b = [];
+  if(P.dur  != null) b.push(MM(P.dur));
+  if(P.dist != null) b.push(`${P.dist} ${s.t==="swim"?"מ׳":"ק״מ"}`);
+  if(P.hr   != null) b.push(`${P.hr} דופק`);
+  if(P.sleep!= null) b.push(`${P.sleep}ש׳ שינה`);
+  return b;
+};
+
+/* הכפתור בתוך טופס הדיווח */
+function ibBtn(n, s){
+  const it = ibFor(n, s); if(!it) return "";
+  const bits = ibBits(it, s); if(!bits.length) return "";
+  const t = it.start ? String(it.start).slice(11,16) : "";
+  return `<div class="lgline"><button class="minibtn wideb watch" data-lg="fromwatch"
+    data-lgs="${sKey(n,s).replace(/"/g,"&quot;")}" data-ibid="${String(it.id).replace(/"/g,"&quot;")}">
+    ⌚ מלא מהשעון${t?` · ${t}`:""} · ${bits.join(" · ")}</button></div>`;
+}
+
+/* ---------- כרטיס ההשלמה ----------
+   השעון מביא את הכול חוץ מהברך. לכן הכרטיס מציג את מה שנקלט,
+   ושואל שאלה אחת. הקשה על מספר סוגרת את הדיווח כולו.          */
+
+/* כל פריט ממתין + האימון שאליו הוא שייך, בשבוע הנוכחי ובקודם */
+function ibMatches(){
+  const out = [], seen = {};
+  const now = typeof weekOfDate==="function" ? weekOfDate(new Date()) : 1;
+  for(const n of [now, now-1, now+1]){
+    if(n<1 || n>52 || seen[n]) continue; seen[n]=1;
+    let ad; try{ ad = planWeekAdaptive(n); }catch(e){ continue; }
+    for(const day of ad.days) for(const s of day.sessions){
+      const it = ibFor(n, s); if(!it) continue;
+      if(out.some(x=>x.it.id===it.id)) continue;
+      out.push({n, s, it});
+    }
+  }
+  return out;
+}
+
+const ibScale = (name, cur, it, s, n, max) => {
+  let h = `<div class="ibrow" role="group" style="--cols:${max+1}">`;
+  for(let i=(name==="knee"?0:1); i<=max; i++)
+    h += `<button class="ibchip${cur===i?" on":""}" data-ibq="${name}" data-v="${i}"
+      data-ibid="${String(it.id).replace(/"/g,"&quot;")}"
+      data-ibs="${sKey(n,s).replace(/"/g,"&quot;")}" data-ibn="${n}">${i}</button>`;
+  return h + `</div>`;
+};
+
+function ibQuickCard(n, s, it){
+  const P = ibPatch(it, s), bits = [];
+  if(P.dur  != null) bits.push(MM(P.dur));
+  if(P.dist != null) bits.push(`${P.dist} ${s.t==="swim"?"מ׳":"ק״מ"}`);
+  if(P.hr   != null) bits.push(`${P.hr} דופק`);
+  if(P.rpe  != null) bits.push(`RPE ${P.rpe}`);
+  if(P.sleep!= null) bits.push(`${P.sleep}ש׳ שינה`);
+  const L = logOf(n, s) || {};
+  const needRpe = P.rpe==null;
+  const rpeNow  = L.rpe!=null ? L.rpe : null;
+  const t = it.start ? String(it.start).slice(11,16) : "";
+  return `<div class="ibcard">
+    <div class="ibtop"><span class="ibico" aria-hidden="true">⌚</span>
+      <div><b>${SHORTNM[s.role]||s.title}</b>
+        <i>${t?t+" · ":""}${bits.join(" · ")}</i></div></div>
+    ${needRpe?`<div class="ibq${rpeNow!=null?" done":""}">
+      <span class="ibql">כמה קשה היה? <em>RPE</em></span>
+      ${ibScale("rpe", rpeNow, it, s, n, 10)}</div>`:""}
+    <div class="ibq main">
+      <span class="ibql">כאב בברך? <em>0 = כלום</em></span>
+      ${ibScale("knee", L.knee, it, s, n, 10)}</div>
+    <p class="ibhint">${needRpe && rpeNow==null
+      ? "בחר RPE, ואז את הברך — והדיווח ייסגר."
+      : "הקשה על מספר סוגרת את הדיווח. כל השאר כבר נקלט מהשעון."}</p>
+  </div>`;
+}
+
+/* הבלוק במסך «היום» */
+function ibAlert(){
+  if(ibState!=="ok") return "";
+  const m = ibMatches();
+  const orphan = ibPending().filter(x=>!m.some(y=>y.it.id===x.id));
+  if(!m.length && !orphan.length) return "";
+  return `<div class="ibwrap">
+    <div class="ibhead">⌚ ${m.length+orphan.length===1?"אימון מהשעון מחכה להשלמה":"אימונים מהשעון מחכים להשלמה"}</div>
+    ${m.map(x=>ibQuickCard(x.n,x.s,x.it)).join("")}
+    ${orphan.length?`<p class="ibhint orphan">${orphan.length} ${orphan.length===1?"אימון לא נמצאה לו":"אימונים לא נמצאה להם"}
+      התאמה בתוכנית (${orphan.map(o=>`${IB_LBL[ibType(o.type)]||"אימון"} ${String(o.date||"").slice(5).split("-").reverse().join(".")}`).join(" · ")}).
+      אפשר לדווח ידנית, או להתעלם.</p>`:""}
+  </div>`;
+}
+
+/* הקשה על מספר בכרטיס */
+function ibQuick(name, v, id, skey, n){
+  const it = (IBOX||[]).find(x=>String(x.id)===id); if(!it) return;
+  const s = logSessByKey(n, skey); if(!s) return;
+  if(name==="rpe"){ setLog(n, s, {rpe:v}, true); }
+  else {
+    const P = ibPatch(it, s);
+    P.knee = v; P.st = "full";
+    setLog(n, s, P, true);
+    ibConsume(it.id);
+  }
+  try{ drawToday(); rerenderProgress(); }catch(e){}
+}
+
+const IB_LBL = {swim:"שחייה", bike:"רכיבה", run:"ריצה", str:"כוח", other:"אימון"};
+
 /* ============ INIT ============ */
 loadLocal();
 buildPicker();
@@ -5526,6 +5744,15 @@ chart(); phaseCards(); weeksTable(); buildPicker2();
 drawNutri(); renderSync(); drawWeek(curWeek); dayView(1,"dv1"); dayView(dvWeek,"dvout"); drawToday(); rerenderProgress();
 (function(){const h=document.querySelector(".mast h1");
   if(h){const d=Math.max(0,Math.ceil((RACE_DAY-new Date())/864e5)); h.setAttribute("data-days",d+" ימים");}})();
+
+/* --- התיבה של השעון: נקראת ברקע, ומרעננת כשהיא מגיעה --- */
+(function(){
+  if(typeof ibLoad!=="function") return;
+  const pull = () => ibLoad(true).then(()=>{ try{ drawToday(); rerenderProgress(); }catch(e){} });
+  pull();
+  /* חזרה לאפליקציה אחרי אימון היא בדיוק הרגע שבו יש מה למשוך */
+  document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) pull(); });
+})();
 
 document.getElementById("wkpick").addEventListener("click",e=>{
   const b=e.target.closest(".wkbtn"); if(b) drawWeek(+b.dataset.w);
@@ -5608,6 +5835,11 @@ document.addEventListener("click",e=>{
   if(e.target.closest("[data-lgclose]")){ lgClose(); return; }
 
   /* ---- דיווח אימון ---- */
+  const ibq=e.target.closest("[data-ibq]");
+  if(ibq){ e.preventDefault();
+    ibQuick(ibq.dataset.ibq, +ibq.dataset.v, ibq.dataset.ibid, ibq.dataset.ibs, +ibq.dataset.ibn);
+    return; }
+
   const lg=e.target.closest("[data-lg]");
   if(lg){
     const box=lg.closest(".lgbox"); if(!box) return;
@@ -5618,6 +5850,10 @@ document.addEventListener("click",e=>{
     const s=lg.dataset.lgs ? (logSessByKey(n,lg.dataset.lgs)||anchor) : anchor;
     const targets=lg.dataset.lgall ? all : [s];
     const f=lg.dataset.lg;
+    if(f==="fromwatch"){
+      const it=(IBOX||[]).find(x=>String(x.id)===lg.dataset.ibid);
+      if(it){ setLog(n,s,ibPatch(it,s),true); ibConsume(it.id); }
+      if(LGOPEN) lgPaint(); else rerenderProgress(); return; }
     if(f==="asplan"){
       const patch={dur:s.dur};
       const d=planDist(s); if(d!=null) patch.dist=d;
