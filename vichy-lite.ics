@@ -2305,30 +2305,6 @@ CATEGORIES:ניידות
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w8-runLong@vichy2027
-SEQUENCE:20741
-DTSTAMP:20261015T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261015T063000
-DTEND;TZID=Asia/Jerusalem:20261015T074500
-SUMMARY:🏃 ריצה ארוכה · 1:15
-DESCRIPTION:◆ האימון הזה: 1:15 · RPE 4–5 · 12–13 ק״מ 
- · טיילת / שטוח\nהיום כולו: 2 אימונים · 2:25 ס
- ה"כ\nשבוע 8/52 · יסודות אירוביים · יום הריצ
- ה הארוכה\n\n1:15 · רצוף ב-Z2 · 6×20 שניות סטריי
- ד בסוף\nתזונה תוך כדי: 30 ג׳ פחמימה/שעה · 55
- 0 מ״ל/שעה · 450 מ״ג נתרן/שעה\nמנוחה אחרי: 12ש
- ׳ לעומס דומה · 48ש׳ לאיכות באותו ענף
-LOCATION:טיילת / שטוח
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ריצה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ריצה ארוכה · 1:15
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w8-swimA@vichy2027
 SEQUENCE:20741
 DTSTAMP:20261015T000000Z
@@ -2336,8 +2312,8 @@ DTSTART;TZID=Asia/Jerusalem:20261015T154500
 DTEND;TZID=Asia/Jerusalem:20261015T165500
 SUMMARY:🏊 שחייה סטים · 1:10
 DESCRIPTION:◆ האימון הזה: 1:10 · RPE 6–7 · ~3\,300 מ׳ ·
-  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
- 2:25 סה"כ\nשבוע 8/52 · יסודות אירוביים · יום 
+  בריכה (מרחק מדוד)\nהיום כולו: אימון אחד ·
+  1:10 סה"כ\nשבוע 8/52 · יסודות אירוביים · יום 
  הריצה הארוכה\n\nחימום 300 · 5×200 ב-CSS+5 עם 30 ש
  נ׳ · שחרור 200\nמנוחה אחרי: 4ש׳ לעומס דומה 
  · 14ש׳ לאיכות באותו ענף
