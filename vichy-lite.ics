@@ -3037,46 +3037,21 @@ DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:10
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w10-bikeEnd@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261029T063000
-DTEND;TZID=Asia/Jerusalem:20261029T082500
-SUMMARY:🚴 אופניים נפח · 1:55
-DESCRIPTION:◆ האימון הזה: 1:55 · RPE 3–4 · 44–52 ק״מ 
- · כביש\nהיום כולו: אימון אחד · 1:55 סה"כ\nשב
- וע 10/52 · יסודות אירוביים · יום הריצה האר
- וכה · שבוע עם מרוץ הכנה\n\n1:55 רצוף ב-Z2 (56–7
- 5% FTP) · 23–27 קמ״ש\nתזונה תוך כדי: 55 ג׳ פחמי
- מה/שעה · 550 מ״ל/שעה · 450 מ״ג נתרן/שעה\nמנוח
- ה אחרי: 6ש׳ לעומס דומה · 18ש׳ לאיכות באותו
-  ענף
-LOCATION:כביש
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:55
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w10-swimB@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261030T063000
-DTEND;TZID=Asia/Jerusalem:20261030T074700
+DTSTART;TZID=Asia/Jerusalem:20261029T063000
+DTEND;TZID=Asia/Jerusalem:20261029T074700
 SUMMARY:🏊 שחיית ים · 1:17
 DESCRIPTION:◆ האימון הזה: 1:17 · RPE 4–5 · 2.8 ק״מ רצ
  וף · ים פתוח · ללא חליפה\nהיום כולו: אימו
  ן אחד · 1:17 סה"כ\nשבוע 10/52 · יסודות אירוביי
- ם · ריצת הבוקר עם החבר · שבוע עם מרוץ הכנ
- ה\n\nחימום 200 מ׳ קל · 2.8 ק״מ רצוף בקצב מרוץ 
- (CSS + 8–12 שנ׳/100) · שחרור 200 מ׳\nתזונה תוך כד
- י: 30 ג׳ פחמימה/שעה · 0 מ״ל/שעה · 0 מ״ג נתרן/
- שעה\nמנוחה אחרי: 2ש׳ לעומס דומה · 6ש׳ לאיכ
- ות באותו ענף
+ ם · יום הריצה הארוכה · שבוע עם מרוץ הכנה\
+ n\nחימום 200 מ׳ קל · 2.8 ק״מ רצוף בקצב מרוץ (CS
+ S + 8–12 שנ׳/100) · שחרור 200 מ׳\nתזונה תוך כדי:
+  30 ג׳ פחמימה/שעה · 0 מ״ל/שעה · 0 מ״ג נתרן/ש
+ עה\nמנוחה אחרי: 2ש׳ לעומס דומה · 6ש׳ לאיכו
+ ת באותו ענף
 LOCATION:ים פתוח · ללא חליפה
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:שחייה
@@ -3085,6 +3060,31 @@ BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
 DESCRIPTION:בעוד 45 דק׳: שחיית ים · 1:17
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-bikeEnd@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261030T063000
+DTEND;TZID=Asia/Jerusalem:20261030T082500
+SUMMARY:🚴 אופניים נפח · 1:55
+DESCRIPTION:◆ האימון הזה: 1:55 · RPE 3–4 · 44–52 ק״מ 
+ · כביש\nהיום כולו: אימון אחד · 1:55 סה"כ\nשב
+ וע 10/52 · יסודות אירוביים · ריצת הבוקר עם 
+ החבר · שבוע עם מרוץ הכנה\n\n1:55 רצוף ב-Z2 (56
+ –75% FTP) · 23–27 קמ״ש\nתזונה תוך כדי: 55 ג׳ פח
+ מימה/שעה · 550 מ״ל/שעה · 450 מ״ג נתרן/שעה\nמנ
+ וחה אחרי: 6ש׳ לעומס דומה · 18ש׳ לאיכות באו
+ תו ענף
+LOCATION:כביש
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:אופניים
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:55
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
