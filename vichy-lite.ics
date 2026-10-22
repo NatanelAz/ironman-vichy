@@ -2851,122 +2851,11 @@ DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 1:05
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w10-str@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261026T070000
-DTEND;TZID=Asia/Jerusalem:20261026T080000
-SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
-DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
- ר בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nש
- בוע 10/52 · יסודות אירוביים · יום הכוח · שב
- וע עם מרוץ הכנה\n◆ אימון משולב · החלק הר
- אשון. מיד אחריו כוח ליבה · 1:00 · 08:00–09:00 · 
- RPE 5. השניים נספרים כבלוק אימון אחד.\n\n3×12
- –15 · טמפו 3-1-3 · משקל קל\nמנוחה אחרי: 8ש׳ ל
- עומס דומה · 18ש׳ לאיכות באותו ענף
-LOCATION:חדר הכושר בעבודה
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:כוח
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:00
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w10-str2@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261026T080000
-DTEND;TZID=Asia/Jerusalem:20261026T090000
-SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 1:00
-DESCRIPTION:◆ האימון הזה: 1:00 · RPE 5 · חדר הכושר 
- בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nשב
- וע 10/52 · יסודות אירוביים · יום הכוח · שבו
- ע עם מרוץ הכנה\n◆ אימון משולב · החלק השנ
- י. מיד אחרי כוח רגליים · 1:00 · 07:00–08:00 · RPE 
- 6–7.\n\n3×10–15 · ללא כשל · בלי סקוואט או דדל
- יפט כבדים\nמנוחה אחרי: 6ש׳ לעומס דומה · 12
- ש׳ לאיכות באותו ענף
-LOCATION:חדר הכושר בעבודה
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:כוח
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w10-runEasy@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261026T090000
-DTEND;TZID=Asia/Jerusalem:20261026T092500
-SUMMARY:🏃 ריצה קלה · 25 דק׳
-DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 2–3 · 4 ק״מ 
- בקירוב · שטוח\, קרקע רכה אם אפשר\nהיום כו
- לו: 2 אימונים · 2:25 סה"כ\nשבוע 10/52 · יסודות 
- אירוביים · יום הכוח · שבוע עם מרוץ הכנה\n
- \n25 דק׳ ב-Z1–Z2\, נשימה שמאפשרת שיחה מלאה · 
- 4–6×20 שניות סטרייד בסוף\nמנוחה אחרי: 3ש׳ 
- לעומס דומה · 10ש׳ לאיכות באותו ענף
-LOCATION:שטוח\, קרקע רכה אם אפשר
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ריצה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ריצה קלה · 25 דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w10-bikeSpin@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261027T133000
-DTEND;TZID=Asia/Jerusalem:20261027T142000
-SUMMARY:🚴 ספין שחרור · 50 דק׳
-DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 1–2 · סטציו
- נרי\nהיום כולו: אימון אחד · 1:41 סה"כ\nשבוע 1
- 0/52 · יסודות אירוביים · יום המנוחה · שבוע
-  עם מרוץ הכנה\n\n50 דק׳ ב-Z1 (<55% FTP)\, קדנס 90–10
- 0\, ללא התנגדות\nמנוחה אחרי: 3ש׳ לעומס דומ
- ה · 8ש׳ לאיכות באותו ענף
-LOCATION:סטציונרי
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ספין שחרור · 50 דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w10-mob@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261027T142000
-DTEND;TZID=Asia/Jerusalem:20261027T151100
-SUMMARY:🧘 ניידות · 51 דק׳
-DESCRIPTION:◆ האימון הזה: 51 דק׳ · RPE 1 · בבית\nהי
- ום כולו: אימון אחד · 1:41 סה"כ\nשבוע 10/52 · יס
- ודות אירוביים · יום המנוחה · שבוע עם מרו
- ץ הכנה\n\nהמינון היומי (7 דק׳): Spanish squat / יש
- יבת קיר 5×45 שנ׳ בזווית 60° · פשיטת ירך בשכ
- יבה על הצד 3×15 לכל צד · ירידה מבוקרת ממדר
- גה 3×8
-LOCATION:בבית
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ניידות
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w10-bikeKey@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261028T063000
-DTEND;TZID=Asia/Jerusalem:20261028T082000
+DTSTART;TZID=Asia/Jerusalem:20261026T063000
+DTEND;TZID=Asia/Jerusalem:20261026T082000
 SUMMARY:🚴 אופניים איכות · 1:50
 DESCRIPTION:◆ האימון הזה: 1:50 · RPE 6–7 · טריינר / 
  סטציונרי (עצימות מדויקת)\nהיום כולו: אימ
@@ -2994,8 +2883,8 @@ BEGIN:VEVENT
 UID:vichy-w10-runBrick2@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261028T082000
-DTEND;TZID=Asia/Jerusalem:20261028T084500
+DTSTART;TZID=Asia/Jerusalem:20261026T082000
+DTEND;TZID=Asia/Jerusalem:20261026T084500
 SUMMARY:🏃 ↳ ריצת מעבר · 25 דק׳
 DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 3 · 4 ק״מ בק
  ירוב · מיד מהטריינר\, שטוח\nהיום כולו: אי
@@ -3010,6 +2899,117 @@ DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 3 · 4 ק״מ בק
 LOCATION:מיד מהטריינר\, שטוח
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:ריצה
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-str@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261027T070000
+DTEND;TZID=Asia/Jerusalem:20261027T080000
+SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
+DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
+ ר בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nש
+ בוע 10/52 · יסודות אירוביים · יום הכוח · שב
+ וע עם מרוץ הכנה\n◆ אימון משולב · החלק הר
+ אשון. מיד אחריו כוח ליבה · 1:00 · 08:00–09:00 · 
+ RPE 5. השניים נספרים כבלוק אימון אחד.\n\n3×12
+ –15 · טמפו 3-1-3 · משקל קל\nמנוחה אחרי: 8ש׳ ל
+ עומס דומה · 18ש׳ לאיכות באותו ענף
+LOCATION:חדר הכושר בעבודה
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:כוח
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: כוח 1/2 · רגליים כבד · 1:00
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-str2@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261027T080000
+DTEND;TZID=Asia/Jerusalem:20261027T090000
+SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 1:00
+DESCRIPTION:◆ האימון הזה: 1:00 · RPE 5 · חדר הכושר 
+ בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nשב
+ וע 10/52 · יסודות אירוביים · יום הכוח · שבו
+ ע עם מרוץ הכנה\n◆ אימון משולב · החלק השנ
+ י. מיד אחרי כוח רגליים · 1:00 · 07:00–08:00 · RPE 
+ 6–7.\n\n3×10–15 · ללא כשל · בלי סקוואט או דדל
+ יפט כבדים\nמנוחה אחרי: 6ש׳ לעומס דומה · 12
+ ש׳ לאיכות באותו ענף
+LOCATION:חדר הכושר בעבודה
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:כוח
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-runEasy@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261027T090000
+DTEND;TZID=Asia/Jerusalem:20261027T092500
+SUMMARY:🏃 ריצה קלה · 25 דק׳
+DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 2–3 · 4 ק״מ 
+ בקירוב · שטוח\, קרקע רכה אם אפשר\nהיום כו
+ לו: 2 אימונים · 2:25 סה"כ\nשבוע 10/52 · יסודות 
+ אירוביים · יום הכוח · שבוע עם מרוץ הכנה\n
+ \n25 דק׳ ב-Z1–Z2\, נשימה שמאפשרת שיחה מלאה · 
+ 4–6×20 שניות סטרייד בסוף\nמנוחה אחרי: 3ש׳ 
+ לעומס דומה · 10ש׳ לאיכות באותו ענף
+LOCATION:שטוח\, קרקע רכה אם אפשר
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:ריצה
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: ריצה קלה · 25 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-bikeSpin@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261028T133000
+DTEND;TZID=Asia/Jerusalem:20261028T142000
+SUMMARY:🚴 ספין שחרור · 50 דק׳
+DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 1–2 · סטציו
+ נרי\nהיום כולו: אימון אחד · 1:41 סה"כ\nשבוע 1
+ 0/52 · יסודות אירוביים · יום המנוחה · שבוע
+  עם מרוץ הכנה\n\n50 דק׳ ב-Z1 (<55% FTP)\, קדנס 90–10
+ 0\, ללא התנגדות\nמנוחה אחרי: 3ש׳ לעומס דומ
+ ה · 8ש׳ לאיכות באותו ענף
+LOCATION:סטציונרי
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:אופניים
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: ספין שחרור · 50 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-mob@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261028T142000
+DTEND;TZID=Asia/Jerusalem:20261028T151100
+SUMMARY:🧘 ניידות · 51 דק׳
+DESCRIPTION:◆ האימון הזה: 51 דק׳ · RPE 1 · בבית\nהי
+ ום כולו: אימון אחד · 1:41 סה"כ\nשבוע 10/52 · יס
+ ודות אירוביים · יום המנוחה · שבוע עם מרו
+ ץ הכנה\n\nהמינון היומי (7 דק׳): Spanish squat / יש
+ יבת קיר 5×45 שנ׳ בזווית 60° · פשיטת ירך בשכ
+ יבה על הצד 3×15 לכל צד · ירידה מבוקרת ממדר
+ גה 3×8
+LOCATION:בבית
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:ניידות
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
