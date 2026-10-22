@@ -2989,19 +2989,43 @@ CATEGORIES:ניידות
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w10-swimA@vichy2027
+UID:vichy-w10-runSocial@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261028T133000
-DTEND;TZID=Asia/Jerusalem:20261028T144000
+DTEND;TZID=Asia/Jerusalem:20261028T141000
+SUMMARY:🏃 הריצה עם החבר · 40 דק׳
+DESCRIPTION:◆ האימון הזה: 40 דק׳ · RPE 2–3 · 6 ק״מ 
+ בקירוב · טיילת · בוקר\nהיום כולו: 2 אימונ
+ ים · 1:50 סה"כ\nשבוע 10/52 · יסודות אירוביים ·
+  יום המנוחה · שבוע עם מרוץ הכנה\n\n40 דק׳ ב-
+ Z1–Z2 · קצב שיחה מלאה לכל האורך · 4×20 שניו
+ ת סטרייד בסוף\nמנוחה אחרי: 3ש׳ לעומס דומה
+  · 10ש׳ לאיכות באותו ענף
+LOCATION:טיילת · בוקר
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:ריצה
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: הריצה עם החבר · 40 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w10-swimA@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261028T161000
+DTEND;TZID=Asia/Jerusalem:20261028T172000
 SUMMARY:🏊 שחייה סטים · 1:10
 DESCRIPTION:◆ האימון הזה: 1:10 · RPE 6–7 · ~3\,300 מ׳ ·
-  בריכה (מרחק מדוד)\nהיום כולו: אימון אחד ·
-  1:10 סה"כ\nשבוע 10/52 · יסודות אירוביים · יום
-  המנוחה · שבוע עם מרוץ הכנה\n\nחימום 300 · 6
- ×150 ב-CSS+5 עם 25 שנ׳ · 6×50 מהיר עם 20 שנ׳ · שחר
- ור 200\nמנוחה אחרי: 4ש׳ לעומס דומה · 14ש׳ לא
- יכות באותו ענף
+  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
+ 1:50 סה"כ\nשבוע 10/52 · יסודות אירוביים · יום 
+ המנוחה · שבוע עם מרוץ הכנה\n\nחימום 300 · 6×
+ 150 ב-CSS+5 עם 25 שנ׳ · 6×50 מהיר עם 20 שנ׳ · שחרו
+ ר 200\nמנוחה אחרי: 4ש׳ לעומס דומה · 14ש׳ לאי
+ כות באותו ענף
 LOCATION:בריכה (מרחק מדוד)
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:שחייה
@@ -3038,39 +3062,15 @@ DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:55
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w10-runSocial@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261030T063000
-DTEND;TZID=Asia/Jerusalem:20261030T071000
-SUMMARY:🏃 הריצה עם החבר · 40 דק׳
-DESCRIPTION:◆ האימון הזה: 40 דק׳ · RPE 2–3 · 6 ק״מ 
- בקירוב · טיילת · בוקר\nהיום כולו: 2 אימונ
- ים · 1:57 סה"כ\nשבוע 10/52 · יסודות אירוביים ·
-  ריצת הבוקר עם החבר · שבוע עם מרוץ הכנה\n\
- n40 דק׳ ב-Z1–Z2 · קצב שיחה מלאה לכל האורך · 4
- ×20 שניות סטרייד בסוף\nמנוחה אחרי: 3ש׳ לעו
- מס דומה · 10ש׳ לאיכות באותו ענף
-LOCATION:טיילת · בוקר
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ריצה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: הריצה עם החבר · 40 דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:vichy-w10-swimB@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261030T101000
-DTEND;TZID=Asia/Jerusalem:20261030T112700
+DTSTART;TZID=Asia/Jerusalem:20261030T063000
+DTEND;TZID=Asia/Jerusalem:20261030T074700
 SUMMARY:🏊 שחיית ים · 1:17
 DESCRIPTION:◆ האימון הזה: 1:17 · RPE 4–5 · 2.8 ק״מ רצ
- וף · ים פתוח · ללא חליפה\nהיום כולו: 2 אימ
- ונים · 1:57 סה"כ\nשבוע 10/52 · יסודות אירוביי
+ וף · ים פתוח · ללא חליפה\nהיום כולו: אימו
+ ן אחד · 1:17 סה"כ\nשבוע 10/52 · יסודות אירוביי
  ם · ריצת הבוקר עם החבר · שבוע עם מרוץ הכנ
  ה\n\nחימום 200 מ׳ קל · 2.8 ק״מ רצוף בקצב מרוץ 
  (CSS + 8–12 שנ׳/100) · שחרור 200 מ׳\nתזונה תוך כד
