@@ -2809,7 +2809,7 @@ DTSTART;TZID=Asia/Jerusalem:20261025T133000
 DTEND;TZID=Asia/Jerusalem:20261025T152500
 SUMMARY:🚴 אופניים נפח · 1:55
 DESCRIPTION:◆ האימון הזה: 1:55 · RPE 3–4 · 44–52 ק״מ 
- · כביש\nהיום כולו: 2 אימונים · 3:00 סה"כ\nשבו
+ · כביש\nהיום כולו: 2 אימונים · 2:20 סה"כ\nשבו
  ע 10/52 · יסודות אירוביים · יום הנפח הקל · 
  שבוע עם מרוץ הכנה\n\n1:55 רצוף ב-Z2 (56–75% FTP) ·
   23–27 קמ״ש\nתזונה תוך כדי: 55 ג׳ פחמימה/שעה
@@ -2826,28 +2826,27 @@ DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:55
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w10-swimC@vichy2027
+UID:vichy-w10-runEasy@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
 DTSTART;TZID=Asia/Jerusalem:20261025T172500
-DTEND;TZID=Asia/Jerusalem:20261025T183000
-SUMMARY:🏊 שחייה קלה · 1:05
-DESCRIPTION:◆ האימון הזה: 1:05 · RPE 2–3 · ~3\,100 מ׳ ·
-  בריכה או ים\nהיום כולו: 2 אימונים · 3:00 סה"
- כ\nשבוע 10/52 · יסודות אירוביים · יום הנפח 
- הקל · שבוע עם מרוץ הכנה\n\nחימום 200 · 8×50 ת
- רגילים (מרפק גבוה · אצבע לאורך הגוף · שח
- ייה חד-צדדית) עם 20 שנ׳ · 6×100 קל · שחרור 200\
- nמנוחה אחרי: 2ש׳ לעומס דומה · 4ש׳ לאיכות ב
- אותו ענף
-LOCATION:בריכה או ים
+DTEND;TZID=Asia/Jerusalem:20261025T175000
+SUMMARY:🏃 ריצה קלה · 25 דק׳
+DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 2–3 · 4 ק״מ 
+ בקירוב · שטוח\, קרקע רכה אם אפשר\nהיום כו
+ לו: 2 אימונים · 2:20 סה"כ\nשבוע 10/52 · יסודות 
+ אירוביים · יום הנפח הקל · שבוע עם מרוץ ה
+ כנה\n\n25 דק׳ ב-Z1–Z2\, נשימה שמאפשרת שיחה מל
+ אה · 4–6×20 שניות סטרייד בסוף\nמנוחה אחרי:
+  3ש׳ לעומס דומה · 10ש׳ לאיכות באותו ענף
+LOCATION:שטוח\, קרקע רכה אם אפשר
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:שחייה
+CATEGORIES:ריצה
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 1:05
+DESCRIPTION:בעוד 45 דק׳: ריצה קלה · 25 דק׳
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -2858,8 +2857,8 @@ DTSTART;TZID=Asia/Jerusalem:20261026T063000
 DTEND;TZID=Asia/Jerusalem:20261026T082000
 SUMMARY:🚴 אופניים איכות · 1:50
 DESCRIPTION:◆ האימון הזה: 1:50 · RPE 6–7 · טריינר / 
- סטציונרי (עצימות מדויקת)\nהיום כולו: אימ
- ון אחד · 2:15 סה"כ\nשבוע 10/52 · יסודות אירובי
+ סטציונרי (עצימות מדויקת)\nהיום כולו: 2 אי
+ מונים · 3:20 סה"כ\nשבוע 10/52 · יסודות אירובי
  ים · יום האיכות באופניים · שבוע עם מרוץ 
  הכנה\n◆ אימון משולב · החלק הראשון. מיד א
  חריו ריצת מעבר · 25 דק׳ · 08:20–08:45 · RPE 3. המ
@@ -2887,8 +2886,8 @@ DTSTART;TZID=Asia/Jerusalem:20261026T082000
 DTEND;TZID=Asia/Jerusalem:20261026T084500
 SUMMARY:🏃 ↳ ריצת מעבר · 25 דק׳
 DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 3 · 4 ק״מ בק
- ירוב · מיד מהטריינר\, שטוח\nהיום כולו: אי
- מון אחד · 2:15 סה"כ\nשבוע 10/52 · יסודות אירוב
+ ירוב · מיד מהטריינר\, שטוח\nהיום כולו: 2 א
+ ימונים · 3:20 סה"כ\nשבוע 10/52 · יסודות אירוב
  יים · יום האיכות באופניים · שבוע עם מרוץ
   הכנה\n◆ אימון משולב · החלק השני. מיד אחר
  י אימון האיכות באופניים · 1:50 · 06:30–08:20 · 
@@ -2902,6 +2901,31 @@ CATEGORIES:ריצה
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
+UID:vichy-w10-swimC@vichy2027
+SEQUENCE:20748
+DTSTAMP:20261022T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261026T112000
+DTEND;TZID=Asia/Jerusalem:20261026T122500
+SUMMARY:🏊 שחייה קלה · 1:05
+DESCRIPTION:◆ האימון הזה: 1:05 · RPE 2–3 · ~3\,100 מ׳ ·
+  בריכה או ים\nהיום כולו: 2 אימונים · 3:20 סה"
+ כ\nשבוע 10/52 · יסודות אירוביים · יום האיכו
+ ת באופניים · שבוע עם מרוץ הכנה\n\nחימום 200
+  · 8×50 תרגילים (מרפק גבוה · אצבע לאורך הג
+ וף · שחייה חד-צדדית) עם 20 שנ׳ · 6×100 קל · ש
+ חרור 200\nמנוחה אחרי: 2ש׳ לעומס דומה · 4ש׳ ל
+ איכות באותו ענף
+LOCATION:בריכה או ים
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:שחייה
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: שחייה קלה · 1:05
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:vichy-w10-str@vichy2027
 SEQUENCE:20748
 DTSTAMP:20261022T000000Z
@@ -2909,13 +2933,13 @@ DTSTART;TZID=Asia/Jerusalem:20261027T070000
 DTEND;TZID=Asia/Jerusalem:20261027T080000
 SUMMARY:🏋️ כוח 1/2 · רגליים כבד · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 6–7 · חדר הכוש
- ר בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nש
- בוע 10/52 · יסודות אירוביים · יום הכוח · שב
- וע עם מרוץ הכנה\n◆ אימון משולב · החלק הר
- אשון. מיד אחריו כוח ליבה · 1:00 · 08:00–09:00 · 
- RPE 5. השניים נספרים כבלוק אימון אחד.\n\n3×12
- –15 · טמפו 3-1-3 · משקל קל\nמנוחה אחרי: 8ש׳ ל
- עומס דומה · 18ש׳ לאיכות באותו ענף
+ ר בעבודה\nהיום כולו: אימון אחד · 2:00 סה"כ\n
+ שבוע 10/52 · יסודות אירוביים · יום הכוח · ש
+ בוע עם מרוץ הכנה\n◆ אימון משולב · החלק ה
+ ראשון. מיד אחריו כוח ליבה · 1:00 · 08:00–09:00 
+ · RPE 5. השניים נספרים כבלוק אימון אחד.\n\n3×
+ 12–15 · טמפו 3-1-3 · משקל קל\nמנוחה אחרי: 8ש׳ 
+ לעומס דומה · 18ש׳ לאיכות באותו ענף
 LOCATION:חדר הכושר בעבודה
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:כוח
@@ -2934,7 +2958,7 @@ DTSTART;TZID=Asia/Jerusalem:20261027T080000
 DTEND;TZID=Asia/Jerusalem:20261027T090000
 SUMMARY:🏋️ ↳ כוח 2/2 · ליבה וירכיים · 1:00
 DESCRIPTION:◆ האימון הזה: 1:00 · RPE 5 · חדר הכושר 
- בעבודה\nהיום כולו: 2 אימונים · 2:25 סה"כ\nשב
+ בעבודה\nהיום כולו: אימון אחד · 2:00 סה"כ\nשב
  וע 10/52 · יסודות אירוביים · יום הכוח · שבו
  ע עם מרוץ הכנה\n◆ אימון משולב · החלק השנ
  י. מיד אחרי כוח רגליים · 1:00 · 07:00–08:00 · RPE 
@@ -2945,30 +2969,6 @@ LOCATION:חדר הכושר בעבודה
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
 CATEGORIES:כוח
 TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w10-runEasy@vichy2027
-SEQUENCE:20748
-DTSTAMP:20261022T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261027T090000
-DTEND;TZID=Asia/Jerusalem:20261027T092500
-SUMMARY:🏃 ריצה קלה · 25 דק׳
-DESCRIPTION:◆ האימון הזה: 25 דק׳ · RPE 2–3 · 4 ק״מ 
- בקירוב · שטוח\, קרקע רכה אם אפשר\nהיום כו
- לו: 2 אימונים · 2:25 סה"כ\nשבוע 10/52 · יסודות 
- אירוביים · יום הכוח · שבוע עם מרוץ הכנה\n
- \n25 דק׳ ב-Z1–Z2\, נשימה שמאפשרת שיחה מלאה · 
- 4–6×20 שניות סטרייד בסוף\nמנוחה אחרי: 3ש׳ 
- לעומס דומה · 10ש׳ לאיכות באותו ענף
-LOCATION:שטוח\, קרקע רכה אם אפשר
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ריצה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ריצה קלה · 25 דק׳
-END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:vichy-w10-bikeSpin@vichy2027
