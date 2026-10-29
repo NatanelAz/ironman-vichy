@@ -3115,27 +3115,49 @@ DESCRIPTION:בעוד 45 דק׳: GALILEE100 אכזיב · אולימפי
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w11-bikeEnd@vichy2027
+UID:vichy-w11-runLong@vichy2027
 SEQUENCE:20755
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261101T133000
-DTEND;TZID=Asia/Jerusalem:20261101T152000
-SUMMARY:🚴 אופניים נפח · 1:50
-DESCRIPTION:◆ האימון הזה: 1:50 · RPE 3–4 · 42–50 ק״מ 
- · כביש\nהיום כולו: אימון אחד · 1:50 סה"כ\nשב
- וע 11/52 · יסודות אירוביים · יום הנפח הקל ·
-  שבוע התאוששות\n\n1:50 רצוף ב-Z2 (56–75% FTP) · 23
- –27 קמ״ש\nתזונה תוך כדי: 55 ג׳ פחמימה/שעה ·
-  550 מ״ל/שעה · 450 מ״ג נתרן/שעה\nמנוחה אחרי: 6
- ש׳ לעומס דומה · 18ש׳ לאיכות באותו ענף
-LOCATION:כביש
+DTSTART;TZID=Asia/Jerusalem:20261101T063000
+DTEND;TZID=Asia/Jerusalem:20261101T072000
+SUMMARY:🏃 ריצה ארוכה · 50 דק׳
+DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 3 · 8–9 ק״מ 
+ · טיילת / שטוח\nהיום כולו: 2 אימונים · 2:00 ס
+ ה"כ\nשבוע 11/52 · יסודות אירוביים · יום הרי
+ צה הארוכה · שבוע התאוששות\n\n50 דק׳ · רצוף 
+ וקל בלבד\nמנוחה אחרי: 3ש׳ לעומס דומה · 10ש
+ ׳ לאיכות באותו ענף
+LOCATION:טיילת / שטוח
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:אופניים
+CATEGORIES:ריצה
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:50
+DESCRIPTION:בעוד 45 דק׳: ריצה ארוכה · 50 דק׳
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vichy-w11-swimA@vichy2027
+SEQUENCE:20755
+DTSTAMP:20261029T000000Z
+DTSTART;TZID=Asia/Jerusalem:20261101T102000
+DTEND;TZID=Asia/Jerusalem:20261101T113000
+SUMMARY:🏊 שחייה סטים · 1:10
+DESCRIPTION:◆ האימון הזה: 1:10 · RPE 3–4 · ~3\,300 מ׳ ·
+  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
+ 2:00 סה"כ\nשבוע 11/52 · יסודות אירוביים · יום 
+ הריצה הארוכה · שבוע התאוששות\n\nחימום 300 
+ · 6×100 קל עם 25 שנ׳ · שחרור 200\nמנוחה אחרי: 2
+ ש׳ לעומס דומה · 6ש׳ לאיכות באותו ענף
+LOCATION:בריכה (מרחק מדוד)
+URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
+CATEGORIES:שחייה
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:10
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -3184,8 +3206,8 @@ BEGIN:VEVENT
 UID:vichy-w11-bikeKey@vichy2027
 SEQUENCE:20755
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261104T063000
-DTEND;TZID=Asia/Jerusalem:20261104T075500
+DTSTART;TZID=Asia/Jerusalem:20261104T070000
+DTEND;TZID=Asia/Jerusalem:20261104T082500
 SUMMARY:🚴 אופניים איכות · 1:25
 DESCRIPTION:◆ האימון הזה: 1:25 · RPE 3 · טריינר / סט
  ציונרי (עצימות מדויקת)\nהיום כולו: אימון 
@@ -3206,49 +3228,27 @@ DESCRIPTION:בעוד 45 דק׳: אופניים איכות · 1:25
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:vichy-w11-runLong@vichy2027
+UID:vichy-w11-bikeEnd@vichy2027
 SEQUENCE:20755
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261105T063000
-DTEND;TZID=Asia/Jerusalem:20261105T072000
-SUMMARY:🏃 ריצה ארוכה · 50 דק׳
-DESCRIPTION:◆ האימון הזה: 50 דק׳ · RPE 3 · 8–9 ק״מ 
- · טיילת / שטוח\nהיום כולו: 2 אימונים · 2:00 ס
- ה"כ\nשבוע 11/52 · יסודות אירוביים · יום הרי
- צה הארוכה · שבוע התאוששות\n\n50 דק׳ · רצוף 
- וקל בלבד\nמנוחה אחרי: 3ש׳ לעומס דומה · 10ש
- ׳ לאיכות באותו ענף
-LOCATION:טיילת / שטוח
+DTSTART;TZID=Asia/Jerusalem:20261105T133000
+DTEND;TZID=Asia/Jerusalem:20261105T152000
+SUMMARY:🚴 אופניים נפח · 1:50
+DESCRIPTION:◆ האימון הזה: 1:50 · RPE 3–4 · 42–50 ק״מ 
+ · כביש\nהיום כולו: אימון אחד · 1:50 סה"כ\nשב
+ וע 11/52 · יסודות אירוביים · יום הנפח הקל ·
+  שבוע התאוששות\n\n1:50 רצוף ב-Z2 (56–75% FTP) · 23
+ –27 קמ״ש\nתזונה תוך כדי: 55 ג׳ פחמימה/שעה ·
+  550 מ״ל/שעה · 450 מ״ג נתרן/שעה\nמנוחה אחרי: 6
+ ש׳ לעומס דומה · 18ש׳ לאיכות באותו ענף
+LOCATION:כביש
 URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:ריצה
+CATEGORIES:אופניים
 TRANSP:OPAQUE
 BEGIN:VALARM
 TRIGGER:-PT45M
 ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: ריצה ארוכה · 50 דק׳
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:vichy-w11-swimA@vichy2027
-SEQUENCE:20755
-DTSTAMP:20261029T000000Z
-DTSTART;TZID=Asia/Jerusalem:20261105T102000
-DTEND;TZID=Asia/Jerusalem:20261105T113000
-SUMMARY:🏊 שחייה סטים · 1:10
-DESCRIPTION:◆ האימון הזה: 1:10 · RPE 3–4 · ~3\,300 מ׳ ·
-  בריכה (מרחק מדוד)\nהיום כולו: 2 אימונים · 
- 2:00 סה"כ\nשבוע 11/52 · יסודות אירוביים · יום 
- הריצה הארוכה · שבוע התאוששות\n\nחימום 300 
- · 6×100 קל עם 25 שנ׳ · שחרור 200\nמנוחה אחרי: 2
- ש׳ לעומס דומה · 6ש׳ לאיכות באותו ענף
-LOCATION:בריכה (מרחק מדוד)
-URL;VALUE=URI:https://natanelaz.github.io/ironman-vichy/
-CATEGORIES:שחייה
-TRANSP:OPAQUE
-BEGIN:VALARM
-TRIGGER:-PT45M
-ACTION:DISPLAY
-DESCRIPTION:בעוד 45 דק׳: שחייה סטים · 1:10
+DESCRIPTION:בעוד 45 דק׳: אופניים נפח · 1:50
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
